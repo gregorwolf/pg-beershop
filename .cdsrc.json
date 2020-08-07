@@ -1,0 +1,21 @@
+{
+  "cds": {
+    "db": {
+      "kind": "postgres"
+    },
+    "requires": {
+      "postgres": {
+        "impl": "lib/postgres.js",
+        "model": [
+          "srv"
+        ],
+        "credentials": {
+          "host": "localhost",
+          "port": "5432",
+          "database": "postgres",
+          "user": "gwolf"
+        }
+      }
+    }
+  }
+}

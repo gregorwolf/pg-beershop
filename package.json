@@ -14,24 +14,5 @@
     "@sap/cds-dk": "^2.0.7",
     "express": "^4.17.1",
     "pg": "^8.3.0"
-  },
-  "cds": {
-    "db": {
-      "kind": "postges"
-    },
-    "requires": {
-      "postgres": {
-        "impl": "lib/postgres.js",
-        "model": [
-          "srv"
-        ],
-        "credentials": {
-          "host": "localhost",
-          "port": "5432",
-          "database": "postgres",
-          "user": "gwolf"
-        }
-      }
-    }
   }
 }
