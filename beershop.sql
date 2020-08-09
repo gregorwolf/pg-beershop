@@ -1,3 +1,5 @@
+CREATE DATABASE beershop;
+
 CREATE TABLE csw_Beers (
   ID CHAR(36) NOT NULL,
   name CHAR(100),

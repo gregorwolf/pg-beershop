@@ -1,21 +1,19 @@
 {
-  "cds": {
+  "requires": {
     "db": {
       "kind": "postgres"
     },
-    "requires": {
-      "postgres": {
-        "impl": "lib/postgres.js",
-        "model": [
-          "srv"
-        ],
-        "credentials": {
-          "host": "localhost",
-          "port": "5432",
-          "database": "beershop",
-          "user": "postgres",
-          "password": "postgres"
-        }
+    "postgres": {
+      "impl": "lib/postgres.js",
+      "model": [
+        "srv"
+      ],
+      "credentials": {
+        "host": "localhost",
+        "port": "5432",
+        "database": "beershop",
+        "user": "postgres",
+        "password": "postgres"
       }
     }
   }
