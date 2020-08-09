@@ -12,8 +12,9 @@
         "credentials": {
           "host": "localhost",
           "port": "5432",
-          "database": "postgres",
-          "user": "gwolf"
+          "database": "beershop",
+          "user": "postgres",
+          "password": "postgres"
         }
       }
     }
