@@ -4,7 +4,7 @@
       "kind": "postgres"
     },
     "postgres": {
-      "impl": "lib/postgres.js",
+      "impl": "lib/pg-hana.js",
       "model": [
         "srv"
       ]      

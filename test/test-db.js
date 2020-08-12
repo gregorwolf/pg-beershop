@@ -1,7 +1,7 @@
-var cdsrc = require("../.cdsrc.json");
+const defaultEnv = require("../default-env.json")
 
 const { Client } = require('pg')
-const client = new Client(cdsrc.requires.postgres.credentials)
+const client = new Client(defaultEnv.VCAP_SERVICES.postgres[0].credentials)
 ;(async () => {
   await client.connect()
   const res = await client.query('SELECT "ID", "name" FROM "BeershopService_Beers" AS "Beers";')

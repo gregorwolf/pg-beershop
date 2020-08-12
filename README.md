@@ -40,3 +40,10 @@ Then open [http://localhost:8080/](http://localhost:8080/) and login by selectin
 Now you can start the CAP application by using:
 
 `cds run`
+
+# Ideas
+
+## Schema Migrations
+
+- https://flywaydb.org/
+- https://www.liquibase.org/
