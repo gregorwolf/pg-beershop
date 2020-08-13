@@ -1,16 +1,20 @@
 {
   "name": "pg-bookshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample project to demonstrate the use of cds-pg",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:docker": "docker-compose -f stack.yml up",
     "test:db": "node test/test-db.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregorwolf/pg-beershop.git"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Gregor Wolf",
+  "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/cds": "^4.1.5",
     "@sap/cds-dk": "^2.0.7",
