@@ -41,6 +41,20 @@ Now you can start the CAP application by using:
 
 `cds run`
 
+Then open http://localhost:4004/beershop/Beers in the browser and you should see:
+
+```JSON
+{
+  "@odata.context": "$metadata#Beers",
+  "value": [
+    {
+      "ID": "b8c3fc14-22e2-4f42-837a-e6134775a186",
+      "name": "Augustiner Hell                                                                                     "
+    }
+  ]
+}
+```
+
 # Ideas
 
 ## Schema Migrations

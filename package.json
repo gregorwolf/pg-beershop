@@ -16,7 +16,21 @@
     "@sap/cds-dk": "^2.0.7",
     "@sap/hana-client": "^2.5.105",
     "@sap/xsenv": "^3.0.0",
+    "cds-pg": "^0.0.3",
     "express": "^4.17.1",
     "pg": "^8.3.0"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "postgres"
+      },
+      "postgres": {
+        "impl": "cds-pg",
+        "model": [
+          "srv"
+        ]
+      }
+    }
   }
 }
