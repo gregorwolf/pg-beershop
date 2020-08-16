@@ -2,8 +2,11 @@
 GET http://localhost:4004/v2/beershop/
 ### Read Beers
 GET http://localhost:4004/v2/beershop/Beers
+### Read Beers only ID and name
+GET http://localhost:4004/v2/beershop/Beers?$select=ID,name
+### Read Beers skip first and read only one
+GET http://localhost:4004/v2/beershop/Beers?$skip=1&$top=1
 ### Read Beers and expand to Brewery - not supported yet
 GET http://localhost:4004/v2/beershop/Beers?$expand=brewery
-
-### Read Beers
+### Read Breweries
 GET http://localhost:4004/v2/beershop/Breweries
