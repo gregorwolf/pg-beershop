@@ -1,0 +1,9 @@
+### Read Available Entities
+GET http://localhost:4004/v2/beershop/
+### Read Beers
+GET http://localhost:4004/v2/beershop/Beers
+### Read Beers and expand to Brewery - not supported yet
+GET http://localhost:4004/v2/beershop/Beers?$expand=brewery
+
+### Read Beers
+GET http://localhost:4004/v2/beershop/Breweries

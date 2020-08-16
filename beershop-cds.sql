@@ -1,16 +1,16 @@
 
 CREATE TABLE csw_Beers (
-  ID VARCHAR(36) NOT NULL,
-  name VARCHAR(100),
+  ID NVARCHAR(36) NOT NULL,
+  name NVARCHAR(100),
   abv DECIMAL(3, 1),
   ibu INTEGER,
-  brewery_ID VARCHAR(36),
+  brewery_ID NVARCHAR(36),
   PRIMARY KEY(ID)
 );
 
 CREATE TABLE csw_Brewery (
-  ID VARCHAR(36) NOT NULL,
-  name VARCHAR(150),
+  ID NVARCHAR(36) NOT NULL,
+  name NVARCHAR(150),
   PRIMARY KEY(ID)
 );
 
@@ -27,6 +27,3 @@ CREATE VIEW BeershopService_Breweries AS SELECT
   Brewery_0.name
 FROM csw_Brewery AS Brewery_0;
 
-
-COPY csw_Beers(ID, name, abv, ibu, brewery_ID) FROM '/tmp/data/csw-Beers.csv' DELIMITER ',' CSV HEADER;
-COPY csw_Brewery(ID, name) FROM '/tmp/data/csw-Brewery.csv' DELIMITER ',' CSV HEADER;

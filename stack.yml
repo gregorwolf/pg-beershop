@@ -8,6 +8,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./db/data:/tmp/data
     ports:
       - '5432:5432'
 

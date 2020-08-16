@@ -49,15 +49,25 @@ Then open http://localhost:4004/beershop/Beers in the browser and you should see
   "value": [
     {
       "ID": "b8c3fc14-22e2-4f42-837a-e6134775a186",
-      "name": "Augustiner Hell                                                                                     "
+      "name": "Lagerbier Hell",
+      "abv": 5.2,
+      "ibu": 12,
+      "brewery_ID": "9c937100-d459-491f-a72d-81b2929af10f"
+    },
+    {
+      "ID": "9e1704e3-6fd0-4a5d-bfb1-13ac47f7976b",
+      "name": "Schönramer Hell",
+      "abv": 5,
+      "ibu": 20,
+      "brewery_ID": "fa6b959e-3a01-40ef-872e-6030ee4de4e5"
     }
   ]
 }
 ```
 
-# Ideas
+## Ideas
 
-## Schema Migrations
+### Schema Migrations
 
 - https://flywaydb.org/
 - https://www.liquibase.org/

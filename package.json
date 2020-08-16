@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
     "start:docker": "docker-compose -f stack.yml up",
     "test:db": "node test/test-db.js"
   },
@@ -18,6 +19,7 @@
   "dependencies": {
     "@sap/cds": "^4.1.5",
     "@sap/cds-dk": "^2.0.7",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.4.41",
     "@sap/hana-client": "^2.5.105",
     "@sap/xsenv": "^3.0.0",
     "cds-pg": "^0.0.3",
@@ -30,7 +32,7 @@
         "kind": "postgres"
       },
       "postgres": {
-        "impl": "cds-pg",
+        "impl": "../cds-pg",
         "model": [
           "srv"
         ]
