@@ -35,13 +35,13 @@ Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 
 `npm run start:docker`
 
-Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. Create a new database *beershop* using the *Create database* link. Then execute the SQL commands you find in beershop.sql.
+Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. Create a new database *beershop* using the *Create database* link. Then execute the SQL commands you find in *beershop.sql*.
 
 Now you can start the CAP application by using:
 
 `cds run`
 
-Then open http://localhost:4004/beershop/Beers in the browser and you should see:
+Then open <http://localhost:4004/beershop/Beers> in the browser and you should see:
 
 ```JSON
 {
@@ -65,9 +65,39 @@ Then open http://localhost:4004/beershop/Beers in the browser and you should see
 }
 ```
 
+## Features
+
+### Convert SQL generated from cds compile to PostgreSQL
+
+When you run:
+
+`npm run compile:tosql`
+
+the CDS model will be compiled to the *beershop-cds.sql* file. Using the script *cdssql2pgsql.js* this SQL is converted to support PostgreSQL. Currently only the datatype NVARCHAR must be replaced with VARCHAR.
+
+### Import CDS files from db/data into the beershop database
+
+The path db/data is mounted to the docker container at /tmp/data. That allows to run the COPY commands generated at the end of *beershop.sql*.
+
+## Limitations
+
+### jest tests not working yet
+
+Running the jest test with `npm test` currently fails with:
+
+```bash
+    Failed: Object {
+      "code": -20005,
+      "message": "Failed to load DBCAPI.",
+      "sqlState": "HY000",
+      "stack": "Error: Failed to load DBCAPI.
+```
+
+when running the standalone script `node test/test-db.js` that uses the same way to connect everything is OK.
+
 ## Ideas
 
 ### Schema Migrations
 
-- https://flywaydb.org/
-- https://www.liquibase.org/
+- <https://flywaydb.org/>
+- <https://www.liquibase.org/>
