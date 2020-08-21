@@ -17,12 +17,12 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/cds": "^4.1.5",
-    "@sap/cds-dk": "^2.0.7",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.4.41",
+    "@sap/cds": "^4.1.7",
+    "@sap/cds-dk": "^2.0.8",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.4.42",
     "@sap/hana-client": "^2.5.105",
     "@sap/xsenv": "^3.0.0",
-    "cds-pg": "^0.0.3",
+    "cds-pg": "^0.0.4",
     "express": "^4.17.1",
     "pg": "^8.3.0"
   },
