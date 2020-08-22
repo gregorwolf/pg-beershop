@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "start": "cds run",
+    "build": "cds build",
+    "build:ElasticBeanstalk": "run-s build build:zipsrv",
+    "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
     "start:docker": "docker-compose -f stack.yml up",
     "test:db": "node test/test-db.js"
@@ -27,6 +31,7 @@
     "pg": "^8.3.0"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
