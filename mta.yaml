@@ -1,0 +1,40 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = pg-bookshop
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: pg-bookshop
+version: 1.0.0
+description: "Sample project to demonstrate the use of cds-pg"
+parameters:
+  enable-parallel-deployments: true
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install --production
+      - npx -p @sap/cds-dk cds build --production
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: pg-bookshop-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+   requires:
+    - name: azure-postgresql
+
+resources:
+  - name: azure-postgresql
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: azure-postgresql-9-6
+      service-plan: basic
+      config:
+        location: "eastus"
+        resourceGroup: "SAPCloudPlatform"
