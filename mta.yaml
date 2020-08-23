@@ -1,9 +1,9 @@
 ## Generated mta.yaml based on template version 0.4.0
-## appName = pg-bookshop
+## appName = pg-beershop
 ## language=nodejs; multiTenant=false
 ## approuter=
 _schema-version: '3.1'
-ID: pg-bookshop
+ID: pg-beershop
 version: 1.0.0
 description: "Sample project to demonstrate the use of cds-pg"
 parameters:
@@ -18,7 +18,7 @@ build-parameters:
 
 modules:
  # --------------------- SERVER MODULE ------------------------
- - name: pg-bookshop-srv
+ - name: pg-beershop-srv
  # ------------------------------------------------------------
    type: nodejs
    path: gen/srv
@@ -27,14 +27,10 @@ modules:
       properties:
         srv-url: ${default-url}
    requires:
-    - name: azure-postgresql
+    - name: pg-beershop-database
 
 resources:
-  - name: azure-postgresql
-    type: org.cloudfoundry.managed-service
+  - name: pg-beershop-database
+    type: org.cloudfoundry.existing-service
     parameters:
-      service: azure-postgresql-9-6
-      service-plan: basic
-      config:
-        location: "eastus"
-        resourceGroup: "SAPCloudPlatform"
+      service-name: beershop-database

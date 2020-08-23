@@ -28,7 +28,7 @@ APIExternalProducer.js
 /mta_archives/
 /mta-op*
 Makefile*
-db/bookshop.db-journal
+db/beershop.db-journal
 preview.json
 cp.project.properties.json
 

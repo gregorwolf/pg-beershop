@@ -1,0 +1,12 @@
+{
+  "location": "eastus",
+  "resourceGroup": "SAPCloudPlatform",
+  "alias": "azure-pg",
+  "firewallRules" : [
+      {
+          "name": "AllowAll",
+          "startIPAddress": "0.0.0.0",
+          "endIPAddress" : "255.255.255.255"
+      }
+  ]
+}
