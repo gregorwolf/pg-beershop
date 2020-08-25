@@ -1,10 +1,12 @@
 # CAP Beershop using PostgreSQL for persistence
 
-## Prerequisites
+## Local execution
 
-For the quickest start docker and docker-compose are needed.
+### Prerequisites
 
-## Setup
+To get started quickly you need docker and docker-compose.
+
+### Setup
 
 To run the example with a local PostgreSQL DB in docker create a `default-env.json` file with the following content:
 
@@ -64,6 +66,26 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
   ]
 }
 ```
+
+## Execution on SAP Cloud Platform
+
+Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
+
+`npm run create-service:pg:dbms`
+
+to instanciate a PostgreSQL DBMS. Then run:
+
+`npm run create-service:pg:db`
+
+to create a the beershop database in the DBMS. With that opreperation done you can build the MTA by running:
+
+`npm run build:mta`
+
+That MTA can be deployed using:
+
+`npm run deploy:cf`
+
+The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in *beershop.sql*. To fill the database with data also execute the ones in *beershop-data.sql*. Now try out the URL you find in the Overview of the pg-beershop-srv application.
 
 ## Features
 
