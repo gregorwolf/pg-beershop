@@ -67,7 +67,7 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-## Execution on SAP Cloud Platform
+## Run on SAP Cloud Platform
 
 Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
 
@@ -86,6 +86,84 @@ That MTA can be deployed using:
 `npm run deploy:cf`
 
 The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in *beershop.sql*. To fill the database with data also execute the ones in *beershop-data.sql*. Now try out the URL you find in the Overview of the pg-beershop-srv application.
+
+## Run on Microsoft Azure
+
+Install [Azure CLI](https://docs.microsoft.com/cli/azure/) for your resprective OS. With the comand:
+
+`az account list-locations -o table`
+
+you can retrieve the list of locations and select the one fitting your needs best. To deploy a PostgreSQL the extension db-up needs to be installed:
+
+`az extension add --name db-up`
+
+Set the environment variables:
+
+```bash
+export postgreservername=<yourServerName>
+export adminpassword=<yourAdminPassword>
+```
+
+Then the PostgreSQL server and database can be created:
+
+`az postgres up --resource-group beershop --location germanywestcentral --sku-name B_Gen5_1 --server-name $postgreservername --database-name beershop --admin-user beershop --admin-password $adminpassword --ssl-enforcement Enabled`
+
+Store the DB connection information *default-env.json* in the following format:
+
+```json
+{
+  "VCAP_SERVICES": {
+    "postgres": [
+      {
+        "label": "azure-postgresql-database",
+        "provider": null,
+        "plan": "database",
+        "name": "beershop-database",
+        "tags": [
+          "PostgreSQL"
+        ],
+        "instance_name": "beershop-database",
+        "binding_name": null,
+        "credentials": {
+          "host": "<yourServerName>.postgres.database.azure.com",
+          "port": 5432,
+          "database": "beershop",
+          "password": "<yourAdminPassword>",
+          "username": "beershop@<yourServerName>",
+          "sslRequired": true,
+          "tags": [
+            "postgresql"
+          ]
+        },
+        "syslog_drain_url": null,
+        "volume_mounts": []
+      }
+    ]
+  }
+}
+```
+
+Connect to the database as described in the last paragraph of *Run on SAP Cloud Platform*.
+
+Store the file content in the environment variable VCAP_SERVICES (jq must be installed):
+
+`export VCAP_SERVICES="$(cat default-env.json | jq .VCAP_SERVICES)"`
+
+Now create the app service plan:
+
+`az appservice plan create --name beershop --resource-group beershop --sku F1 --is-linux`
+
+Check out what Node.JS runtimes are available:
+
+`az webapp list-runtimes --linux`
+
+Then create the web app:
+
+`az webapp create --resource-group beershop --plan beershop --name beershop --runtime "NODE|12.9"`
+
+Configure an environment variable the variable created before:
+
+`az webapp config appsettings set --name beershop --resource-group beershop --settings VCAP_SERVICES="$VCAP_SERVICES"`
 
 ## Features
 
