@@ -18,8 +18,8 @@ after(() => {
 
 describe('Consuming Services locally', () => {
     before('bootstrap db and services', async () => {
-        const srv = await cds.connect.to ('db')
         /*
+        const srv = await cds.connect.to ('db')
         const { BeershopService } = await cds.serve('BeershopService')
         const { Beers, Breweries } = BeershopService.entities
         expect(BeershopService).not.to.be.undefined
