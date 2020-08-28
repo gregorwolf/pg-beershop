@@ -1,5 +1,7 @@
 # CAP Beershop using PostgreSQL for persistence
 
+[![Build Status](https://dev.azure.com/gregorwolf/gregorwolf/_apis/build/status/gregorwolf.pg-beershop?branchName=master)](https://dev.azure.com/gregorwolf/gregorwolf/_build/latest?definitionId=2&branchName=master)
+
 ## Local execution
 
 ### Prerequisites
