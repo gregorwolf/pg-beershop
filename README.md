@@ -173,6 +173,12 @@ Configure an environment variable the variable created before:
 
 Now you can publish the app using the Azure DevOps Pipeline.
 
+## Run on Google Cloud Platform (GCP)
+
+Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/downloads-interactive) for your resprective OS. Then work through the [Quickstart for Node.js in the standard environment](https://cloud.google.com/appengine/docs/standard/nodejs/quickstart) to deploy
+
+`gcloud app create`
+
 ## Features
 
 ### Convert SQL generated from cds compile to PostgreSQL
