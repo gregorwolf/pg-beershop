@@ -179,6 +179,15 @@ Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/downloads-interacti
 
 `gcloud app create`
 
+Store the environment variable in *env_variables.yaml*:
+
+```YAML
+env_variables:
+    VCAP_SERVICES: '{}'
+```
+
+This file is included in *app.yaml*.
+
 ## Features
 
 ### Convert SQL generated from cds compile to PostgreSQL
