@@ -29,7 +29,7 @@
     "@sap/cds-dk": "^3.0.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.4.44",
     "@sap/xsenv": "^3.0.0",
-    "cds-pg": "^0.0.6",
+    "cds-pg": "mikezaschka/cds-pg#main",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "pg": "^8.3.3"
