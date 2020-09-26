@@ -25,5 +25,8 @@ Authorization: Basic alice:
 ### Delete the new Beer
 DELETE http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
 Authorization: Basic alice:
-### Read Beers
+
+### Read Breweries
 GET http://localhost:4004/beershop/Breweries
+### Read Breweries with $count
+GET http://localhost:4004/beershop/Breweries?$count=true&$select=ID,name&$skip=0&$top=30

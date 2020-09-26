@@ -10,3 +10,5 @@ GET http://localhost:4004/v2/beershop/Beers?$skip=1&$top=1
 GET http://localhost:4004/v2/beershop/Beers?$expand=brewery
 ### Read Breweries
 GET http://localhost:4004/v2/beershop/Breweries
+### Read Breweries $count
+GET http://localhost:4004/v2/beershop/Breweries/$count
