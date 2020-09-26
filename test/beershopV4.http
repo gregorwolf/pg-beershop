@@ -6,7 +6,7 @@ GET http://localhost:4004/beershop/Beers
 GET http://localhost:4004/beershop/Beers?$expand=brewery
 ### Create new Beer
 POST http://localhost:4004/beershop-admin/Beers
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
 
 {
@@ -15,11 +15,12 @@ Authorization: Basic alice:
 }
 ### Update the new Beer
 PATCH http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
-Content-Type: application/json
+Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
 
 {
-    "ibu": 10
+    "ibu": 10,
+    "abv": "5.3"
 }
 ### Delete the new Beer
 DELETE http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
