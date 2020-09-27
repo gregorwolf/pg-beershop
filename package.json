@@ -48,7 +48,7 @@
         "kind": "PostgreSQL"
       },
       "PostgreSQL": {
-        "impl": "node_modules/cds-pg/index.js",
+        "impl": "cds-pg",
         "model": [
           "srv"
         ]
