@@ -15,6 +15,7 @@
     "create-service:pg:dbms": "cf create-service azure-postgresql-9-6-dbms basic azure-postgresql -c azure-pg-dbms.json",
     "create-service:pg:db": "cf create-service azure-postgresql-9-6-database database beershop-database -c azure-pg-db.json",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
+    "deploy:pg": "node node_modules/cds-pg/bin/cds-pg deploy srv --to db",
     "test:db": "node test/test-db.js"
   },
   "repository": {
@@ -29,7 +30,7 @@
     "@sap/cds-dk": "^3.0.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.4.44",
     "@sap/xsenv": "^3.0.0",
-    "cds-pg": "^0.0.7",
+    "cds-pg": "^0.0.8",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "pg": "^8.3.3"
@@ -47,7 +48,7 @@
         "kind": "PostgreSQL"
       },
       "PostgreSQL": {
-        "impl": "cds-pg",
+        "impl": "node_modules/cds-pg/index.js",
         "model": [
           "srv"
         ]
