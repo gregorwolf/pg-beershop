@@ -11,7 +11,8 @@
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
     "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
-    "start:docker": "docker-compose -f stack.yml up",
+    "start:docker": "docker-compose -f stack.yml up -d",
+    "stop:docker": "docker-compose -f stack.yml down",
     "create-service:pg:dbms": "cf create-service azure-postgresql-9-6-dbms basic azure-postgresql -c azure-pg-dbms.json",
     "create-service:pg:db": "cf create-service azure-postgresql-9-6-database database beershop-database -c azure-pg-db.json",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
@@ -30,7 +31,7 @@
     "@sap/cds-dk": "^3.0.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.4.44",
     "@sap/xsenv": "^3.0.0",
-    "cds-pg": "0.0.7",
+    "cds-pg": "gregorwolf/cds-pg#mikezaschka-main",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "pg": "^8.3.3"
