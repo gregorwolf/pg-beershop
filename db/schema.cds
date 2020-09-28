@@ -37,6 +37,22 @@ annotate Beers with @(
       {Value: abv},
       {Value: ibu},
     ],
+    HeaderInfo: {
+      TypeName: '{i18n>Beer}', TypeNamePlural: '{i18n>Beers}',
+      Title: { Value: name },
+      Description: { Value: brewery.name }
+    },
+    Facets: [
+      {$Type: 'UI.ReferenceFacet', Label: '{i18n>Details}', Target: '@UI.FieldGroup#Details'},
+    ],
+    FieldGroup#Details: {
+      Data: [
+        {Value: name},
+        {Value: brewery.name},
+        {Value: abv},
+        {Value: ibu},
+      ]
+    }
   }
 );
 
