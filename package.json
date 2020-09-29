@@ -5,18 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "start:docker": "docker-compose -f stack.yml up -d",
+    "deploy:pg": "node node_modules/cds-pg/bin/cds-pg deploy srv --to db",
     "start": "cds run",
+    "stop:docker": "docker-compose -f stack.yml down",
     "build": "cds build",
     "build:mta": "mbt build",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
     "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
-    "start:docker": "docker-compose -f stack.yml up -d",
-    "stop:docker": "docker-compose -f stack.yml down",
     "create-service:pg:dbms": "cf create-service azure-postgresql-9-6-dbms basic azure-postgresql -c azure-pg-dbms.json",
     "create-service:pg:db": "cf create-service azure-postgresql-9-6-database database beershop-database -c azure-pg-db.json",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
-    "deploy:pg": "node node_modules/cds-pg/bin/cds-pg deploy srv --to db",
     "test:db": "node test/test-db.js"
   },
   "repository": {
