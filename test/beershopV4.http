@@ -4,6 +4,9 @@ GET http://localhost:4004/beershop/
 GET http://localhost:4004/beershop/Beers
 ### Read Beers and expand to Brewery
 GET http://localhost:4004/beershop/Beers?$expand=brewery
+### Read Available Entities for admin endpoint
+GET http://localhost:4004/beershop-admin/
+Authorization: Basic alice:
 ### Create new Beer
 POST http://localhost:4004/beershop-admin/Beers
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
@@ -78,3 +81,8 @@ Authorization: Basic alice:
 ### Delete new TypeCheck
 DELETE http://localhost:4004/beershop-admin/TypeChecks(169af1ff-9f74-4795-98f9-8be901e60c6b)
 Authorization: Basic alice:
+
+### Read TypeChecksWithDraft
+GET http://localhost:4004/beershop-admin/TypeChecksWithDraft
+Authorization: Basic alice:
+Accept: application/json;charset=UTF-8;IEEE754Compatible=true

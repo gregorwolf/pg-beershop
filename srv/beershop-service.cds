@@ -4,6 +4,8 @@ service BeershopAdminService @(requires:'admin')  {
   entity Beers as projection on csw.Beers;
   entity Breweries as projection on csw.Brewery;
   entity TypeChecks as projection on csw.TypeChecks;
+  @odata.draft.enabled
+  entity TypeChecksWithDraft as projection on csw.TypeChecks;
 }
 
 service BeershopService {
