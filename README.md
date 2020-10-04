@@ -69,7 +69,7 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-## Run on SAP Cloud Platform
+## Run on SAP Cloud Platform - Cloud Foundry Environment
 
 Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
 
@@ -88,6 +88,48 @@ That MTA can be deployed using:
 `npm run deploy:cf`
 
 The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in *beershop.sql*. To fill the database with data also execute the ones in *beershop-data.sql*. Now try out the URL you find in the Overview of the pg-beershop-srv application.
+
+## Run on SAP Cloud Platform - Kyma Environment
+
+### Create Docker Image
+
+If you want to build your own docker image replace *gregorwolf* in *package.json* and *deployment/beershop.yaml* with your own hub.docker.com account. Then run:
+
+`cds run build:docker`
+
+and publish the created image with:
+
+`cds run push:docker`
+
+### Deploy to Kyma
+
+Download the kubeconfig from your Kyma instance via the menu behind the account Icon in the upper right corner. Save it in *~/.kube/kubeconfig-kyma.yml*. Then run:
+
+`export KUBECONFIG=~/.kube/kubeconfig-kyma.yml`
+
+Please note that the token in the kubeconfig is only valid for 24 hours. So you might have to redo the download whenever you want to run the commands again.
+
+To keep this project separate from your other deployments I would suggest to create a namespace:
+
+`kubectl create namespace pg-bookshop`
+
+Deploy the configuration:
+
+`kubectl -n pg-bookshop apply -f deployment/beershop.yaml`
+
+To create the beershop database a port forwarding must be started:
+
+`kubectl -n pg-bookshop port-forward service/beershop-postgresql 5432:5432`
+
+Then you can connect with the psql client. The password is *postgres*:
+
+`psql -h localhost -U postgres --password`
+
+Run the SQL command from *db/init/beershop.sql*. 
+
+If you want to delete the deployment, then run:
+
+`kubectl -n pg-bookshop delete -f deployment/beershop.yaml`
 
 ## Run on Microsoft Azure
 
