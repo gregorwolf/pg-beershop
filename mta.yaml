@@ -17,23 +17,54 @@ build-parameters:
       - npx -p @sap/cds-dk cds build --production
 
 modules:
- # --------------------- SERVER MODULE ------------------------
- - name: pg-beershop-srv
- # ------------------------------------------------------------
-   type: nodejs
-   path: gen/srv
-   parameters:
-     memory: 256M
-     disk-quota: 1024M
-   provides:
+  # --------------------- SERVER MODULE ------------------------
+  - name: pg-beershop-srv
+  # ------------------------------------------------------------
+    type: nodejs
+    path: gen/srv
+    build-parameters:
+      ignore: ["node_modules/"]
+    parameters:
+      memory: 256M
+      disk-quota: 1024M
+    provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
         srv-url: ${default-url}
-   requires:
-    - name: pg-beershop-database
+    requires:
+#    - name: pg-beershop-database
+    - name: pg-beershop-uaa
+
+  - name: pg-beershop-app
+    type: nodejs
+    path: app
+    build-parameters:
+      ignore: ["node_modules/"]
+    parameters:
+      memory: 256M
+      disk-quota: 1024M
+    requires:
+     - name: pg-beershop-destination-service
+     - name: pg-beershop-uaa
+     - name: srv-api
+       group: destinations
+       properties:
+          forwardAuthToken: true
+          strictSSL: false
+          name: srv_api
+          url: ~{srv-url}
 
 resources:
-  - name: pg-beershop-database
-    type: org.cloudfoundry.existing-service
+#  - name: pg-beershop-database
+#    type: org.cloudfoundry.existing-service
+#    parameters:
+#      service-name: beershop-database
+  - name: pg-beershop-uaa
     parameters:
-      service-name: beershop-database
+      path: ./xs-security.json
+    type: com.sap.xs.uaa
+  - name: pg-beershop-destination-service
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

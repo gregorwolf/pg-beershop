@@ -11,7 +11,7 @@
     "start": "cds run",
     "stop:docker": "docker-compose -f stack.yml down",
     "build": "cds build",
-    "build:mta": "mbt build",
+    "build:cf": "mbt build",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
     "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "build:docker": "run-s build build:docker:image",
@@ -20,6 +20,11 @@
     "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
     "create-service:pg:dbms": "cf create-service azure-postgresql-9-6-dbms basic azure-postgresql -c azure-pg-dbms.json",
     "create-service:pg:db": "cf create-service azure-postgresql-9-6-database database beershop-database -c azure-pg-db.json",
+    "xsuaa:build": "cds compile srv/ --to xsuaa > xs-security.json",
+    "xsuaa:create": "cf create-service xsuaa application pg-beershop-uaa -c gen/xs-security.json",
+    "xsuaa:update": "cf update-service pg-beershop-uaa -c gen/xs-security.json",
+    "xsuaa:create:key": " cf create-service-key pg-beershop-uaa  pg-beershop-uaa-key",
+    "xsuaa:download:key": "cf service-key  pg-beershop-uaa pg-beershop-uaa-key",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
     "test:db": "node test/test-db.js"
   },
@@ -31,10 +36,12 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
+    "@sap/audit-logging": "^3.2.0",
     "@sap/cds": "^4.1.9",
     "@sap/cds-dk": "^3.0.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.4.46",
     "@sap/xsenv": "^3.0.0",
+    "@sap/xssec": "^3.0.10",
     "cds-pg": "^0.0.18",
     "express": "^4.17.1",
     "passport": "^0.4.1",
@@ -57,6 +64,9 @@
         "model": [
           "srv"
         ]
+      },
+      "uaa": {
+        "kind": "xsuaa"
       }
     }
   }

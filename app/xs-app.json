@@ -1,0 +1,31 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "routes": [
+      {
+        "source": "/beershop-admin/(.*)$",
+        "target": "/beershop-admin/$1",
+        "authenticationType": "xsuaa",
+        "destination": "srv_api",
+        "csrfProtection": true
+      },
+      {
+        "source": "/beershop/(.*)$",
+        "target": "/beershop/$1",
+        "authenticationType": "xsuaa",
+        "destination": "srv_api",
+        "csrfProtection": true
+      },
+      {
+        "source": "/kyma/(.*)$",
+        "target": "/$1",
+        "authenticationType": "xsuaa",
+        "destination": "KYMA"
+      },
+      {
+        "source": "^/(.*)$",
+        "target": "$1",
+        "localDir": "webapp"
+      }
+    ]
+  }
