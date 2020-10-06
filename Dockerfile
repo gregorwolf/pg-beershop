@@ -1,8 +1,10 @@
 FROM node:12-slim
 
 WORKDIR /usr/src/app
-COPY gen/srv .
+COPY gen/srv/package.json .
+COPY package-lock.json .
 RUN npm install
+COPY gen/srv .
 COPY app app/
 RUN find app -name '*.cds' | xargs rm -f
 
