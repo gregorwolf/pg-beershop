@@ -154,7 +154,7 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - image: gregorwolf/pg-beershop:amd64
+      - image: gregorwolf/pg-beershop:latest
         name: beershop
         ports:
         - containerPort: 4004
