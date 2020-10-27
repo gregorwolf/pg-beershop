@@ -156,6 +156,7 @@ spec:
       containers:
       - image: gregorwolf/pg-beershop:latest
         name: beershop
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 4004
           name: beershop
