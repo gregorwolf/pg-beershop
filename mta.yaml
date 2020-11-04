@@ -19,7 +19,7 @@ build-parameters:
 modules:
   # - name: pg-beershop-db
   #   type: nodejs
-  #   path: cds-dbm
+  #   path: db-deployer
   #   build-parameters:
   #     ignore: ["node_modules/"]
   #   parameters:

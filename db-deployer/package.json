@@ -7,7 +7,7 @@
     "start": "cds-dbm deploy"
   },
   "dependencies": {
-    "cds-dbm": "mikezaschka/cds-dbm#main"
+    "cds-dbm": "0.0.10"
   },
   "keywords": [],
   "author": "",

@@ -37,23 +37,24 @@
   "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/audit-logging": "^3.2.0",
-    "@sap/cds": "^4.2.8",
-    "@sap/cds-dk": "^3.1.4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.4.50",
-    "@sap/xsenv": "^3.0.0",
+    "@sap/cds": "^4.3.0",
+    "@sap/cds-dk": "^3.2.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.4.53",
+    "@sap/xsenv": "^3.1.0",
     "@sap/xssec": "^3.0.10",
-    "applicationinsights": "^1.8.7",
+    "applicationinsights": "^1.8.8",
     "cds-pg": "^0.0.20",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "pg": "^8.4.2"
   },
   "devDependencies": {
+    "cds-dbm": "0.0.10",
     "npm-run-all": "^4.1.5",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
-    "jest": "^26.6.1"
+    "jest": "^26.6.3"
   },
   "cds": {
     "requires": {
@@ -68,6 +69,19 @@
       },
       "uaa": {
         "kind": "xsuaa"
+      }
+    },
+    "migrations": {
+      "db": {
+        "schema": {
+          "default": "public",
+          "clone": "_cdsdbm_clone",
+          "reference": "_cdsdbm_ref"
+        },
+        "deploy": {
+          "tmpFile": "tmp/_autodeploy.json",
+          "undeployFile": "db/undeploy.json"
+        }
       }
     }
   }
