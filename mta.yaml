@@ -21,7 +21,7 @@ modules:
     type: custom
     path: db-deployer
     parameters:
-      buildpacks: [nodejs_buildpack] # , java_buildpack
+      buildpacks: [nodejs_buildpack, sap_java_buildpack] # Java Buildpack does only support to be last
       no-route: true
       no-start: true
       disk-quota: 2GB
@@ -30,6 +30,8 @@ modules:
       - name: deploy_to_postgresql
         command: npm start
         memory: 512MB
+    properties:
+      JAVA_HOME: "/home/vcap/app/.java-buildpack/open_jdk_jre"
     build-parameters:
       ignore: ["node_modules/"]
     requires:
@@ -44,6 +46,7 @@ modules:
     parameters:
       memory: 256M
       disk-quota: 1024M
+    #  enable-ssh: true # allows to `cf ssh pg-beershop-srv`
     provides:
     - name: srv-api      # required by consumers of CAP services (e.g. approuter)
       properties:
