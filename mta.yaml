@@ -82,3 +82,8 @@ resources:
       service-plan: lite
       service: destination
     type: org.cloudfoundry.managed-service
+# User Provided Service for CSN
+  - name: csn-json-for-db-deploy
+    type: org.cloudfoundry.user-provided-service
+    parameters:  
+      path: ./gen/srv/srv/csn.json
