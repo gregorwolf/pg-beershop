@@ -1,0 +1,7 @@
+_schema-version: '3.1'
+ID: pg-beershop.extension
+extends: pg-beershop
+
+resources:
+  - name: pg-beershop-database
+    type: existing-service

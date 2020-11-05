@@ -35,3 +35,5 @@ cp.project.properties.json
 .cds_gen.log
 .env
 env_variables.yaml
+db-deployer/db
+db-deployer/srv
