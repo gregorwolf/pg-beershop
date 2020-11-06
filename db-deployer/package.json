@@ -1,5 +1,5 @@
 {
-  "name": "db-deployer",
+  "name": "pg-beershop-db-deployer",
   "engines": {
     "node": "12"
   },
@@ -7,10 +7,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx cds-dbm deploy"
+    "start": "node server.js",
+    "start:deploy": "npx cds-dbm deploy"
   },
   "dependencies": {
-    "cds-dbm": "^0.0.10"
+    "cds-dbm": "^0.0.10",
+    "cds-pg": "^0.0.20",
+    "express": "^4.17.1"
   },
   "keywords": [],
   "author": "",

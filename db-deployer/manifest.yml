@@ -1,0 +1,9 @@
+---
+applications:
+- name: pg-beershop-db-deployer
+  memory: 512M
+  disk_quota: 2G
+  instances: 1
+  buildpack: nodejs_buildpack
+  path: .
+  random-route: true
