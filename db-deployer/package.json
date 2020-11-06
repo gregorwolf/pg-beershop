@@ -8,7 +8,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "start:deploy": "npx cds-dbm deploy"
+    "start:deploy": "npx cds-dbm deploy",
+    "copycds": "run-s copycds:clear:db copycds:clear:srv copycds:db copycds:srv",
+    "copycds:clear:db": "rimraf db",
+    "copycds:clear:srv": "rimraf srv",
+    "copycds:db": "copyfiles -a ../db/* ../db/**/* db",
+    "copycds:srv": "copyfiles -a ../srv/* ../srv/**/* srv"
   },
   "dependencies": {
     "cds-dbm": "^0.0.10",
@@ -46,5 +51,10 @@
         }
       }
     }
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
