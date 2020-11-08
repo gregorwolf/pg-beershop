@@ -26,9 +26,9 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "PostgreSQL"
+        "kind": "database"
       },
-      "PostgreSQL": {
+      "database": {
         "impl": "cds-pg",
         "model": [
           "srv"

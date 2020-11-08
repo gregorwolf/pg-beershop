@@ -25,17 +25,31 @@ wget https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.9.1/sap
 tar xfz sapmachine-jdk-11.0.9.1_linux-x64_bin.tar.gz
 export JAVA_HOME=/home/vcap/sapmachine-jdk-11.0.9.1
 export PATH=$PATH:/home/vcap/deps/0/bin
-cd app
+npm i -g tsc
+git clone https://github.com/gregorwolf/cds-dbm.git
+cd cds-dbm/
+git checkout adjust-for-sapcp-postgresql-hyperscaler
+npm i
+npm run build
+cd ../app
+vi package.json 
+# Replace cds-dbm version with ../cds-dbm to point to the local installation
+rm -rf node_modules
+npm i
 npm run start:deploy
 ```
 
 the last command currently fails with this error message:
 
 ```
-TypeError: Cannot read property 'user' of undefined
-    at PostgresAdapter._synchronizeCloneDatabase (/home/vcap/app/node_modules/cds-dbm/dist/adapter/PostgresAdapter.js:116:31)
-    at PostgresAdapter.deploy (/home/vcap/app/node_modules/cds-dbm/dist/adapter/BaseAdapter.js:139:20)
-    at async Object.exports.handler (/home/vcap/app/node_modules/cds-dbm/dist/cli/deploy.js:34:9)
+Error: connect ETIMEDOUT 10.16.47.76:1267
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1141:16) {
+  errno: 'ETIMEDOUT',
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '10.16.47.76',
+  port: 1267
+}
 ```
 
 I think that's because VCAP_SERVICES is filled with:
@@ -62,8 +76,8 @@ I think that's because VCAP_SERVICES is filled with:
           "dbname": "beershop",
           "port": "1237",
           "uri": "postgres://postgres-server.amazonaws.com:1237/beershop",
-          "sslcert": "",
-          "sslrootcert": "",
+          "sslcert": "-----BEGIN CERTIFICATE-----...",
+          "sslrootcert": "-----BEGIN CERTIFICATE-----...",
         },
         "syslog_drain_url": null,
         "volume_mounts": []
@@ -83,4 +97,17 @@ after deploying this service:
       service-plan: trial
 ```
 
-So to make it work we have to map hostname, dbname and username to the connect in cds-pg or cds-dbm.
+According to the node-postgres documentation for connecting via [ssl](https://node-postgres.com/features/ssl) the credentials must look like that:
+
+```JSON
+{
+  "database": "database-name",
+  "host": "host-or-ip",
+  "ssl": {
+    "rejectUnauthorized": false,
+    "ca": "-----BEGIN CERTIFICATE-----..."
+  }
+}
+```
+
+For Liquibase it seems that `&ssl=true` must be added to the connection string.
