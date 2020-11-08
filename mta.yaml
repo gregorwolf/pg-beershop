@@ -35,6 +35,19 @@ modules:
       ignore: ["node_modules/"]
     requires:
     - name: pg-beershop-database
+  # ----------------- DB-UI with adminer -----------------------
+  - name: pg-beershop-adminer
+    type: application
+    build-parameters:
+      no-source: true
+    parameters:
+      disk-quota: 256MB
+      memory: 128MB
+      docker:
+        image: dockette/adminer:pgsql
+      instances: 1
+    requires:
+    - name: pg-beershop-database
   # --------------------- SERVER MODULE ------------------------
   - name: pg-beershop-srv
   # ------------------------------------------------------------

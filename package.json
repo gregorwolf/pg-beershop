@@ -30,6 +30,7 @@
     "xsuaa:download:key": "cf service-key  pg-beershop-uaa pg-beershop-uaa-key",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
     "deploy:cf:deployer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer",
+    "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer",
     "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv",
     "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext",
     "test:db": "node test/test-db.js",
