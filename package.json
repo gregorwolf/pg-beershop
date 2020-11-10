@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "docker:start:pg": "docker-compose -f stack.yml up -d",
-    "deploy:pg": "node node_modules/cds-pg/bin/cds-pg deploy srv --to db",
+    "deploy:pg": "npx cds-dbm deploy",
     "docker:start:cds": "docker run --env-file .env --network='host' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
     "start": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
