@@ -25,12 +25,12 @@ modules:
 #      no-start: true
       disk-quota: 2GB
       memory: 512MB
-      tasks:
-      - name: deploy_to_postgresql
-        command: npm start
-        memory: 512MB
-    properties:
-      JAVA_HOME: "/home/vcap/app/.java-buildpack/open_jdk_jre"
+#      tasks:
+#      - name: deploy_to_postgresql
+#        command: npm start
+#        memory: 512MB
+#    properties:
+#      JAVA_HOME: "/home/vcap/app/.java-buildpack/open_jdk_jre"
     build-parameters:
       ignore: ["node_modules/"]
     requires:
@@ -102,6 +102,7 @@ resources:
     type: org.cloudfoundry.user-provided-service
     parameters:
       path: ./pg-azure-env.json
+      service-tags: ["relational", "database"]
   - name: pg-beershop-uaa
     parameters:
       path: ./xs-security.json
