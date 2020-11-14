@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "cds-dbm": "^0.0.10",
-    "cds-pg": "^0.0.20",
+    "cds-pg": "^0.0.22",
     "express": "^4.17.1"
   },
   "keywords": [],

@@ -51,10 +51,10 @@
     "@sap/xsenv": "^3.1.0",
     "@sap/xssec": "^3.0.10",
     "applicationinsights": "^1.8.8",
-    "cds-pg": "^0.0.20",
+    "cds-pg": "^0.0.22",
     "express": "^4.17.1",
     "passport": "^0.4.1",
-    "pg": "^8.4.2"
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "cds-dbm": "^0.0.10",
