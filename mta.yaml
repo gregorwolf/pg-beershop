@@ -34,7 +34,8 @@ modules:
     build-parameters:
       ignore: ["node_modules/"]
     requires:
-    - name: pg-beershop-database
+#    - name: pg-beershop-database
+    - name: pg-beershop-external-database
   # ----------------- DB-UI with adminer -----------------------
   - name: pg-beershop-adminer
     type: application
@@ -47,7 +48,8 @@ modules:
         image: dockette/adminer:pgsql
       instances: 1
     requires:
-    - name: pg-beershop-database
+#    - name: pg-beershop-database
+    - name: pg-beershop-external-database
   # --------------------- SERVER MODULE ------------------------
   - name: pg-beershop-srv
   # ------------------------------------------------------------
@@ -64,7 +66,8 @@ modules:
       properties:
         srv-url: ${default-url}
     requires:
-    - name: pg-beershop-database
+#    - name: pg-beershop-database
+    - name: pg-beershop-external-database
     - name: pg-beershop-uaa
 
   - name: pg-beershop-app
@@ -87,11 +90,18 @@ modules:
           url: ~{srv-url}
 
 resources:
-  - name: pg-beershop-database
-    type: org.cloudfoundry.managed-service
+# Until the issue with connecting to PostgreSQL on SAP CP Trial, Hyperscaler Option is solved:
+# https://answers.sap.com/questions/13182819/cant-connect-to-postgresql-on-sap-cp-trial-hypersc.html
+#  - name: pg-beershop-database
+#    type: org.cloudfoundry.managed-service
+#    parameters:
+#      service: postgresql-db
+#      service-plan: trial
+# Let's use a User-Provided Service Instance
+  - name: pg-beershop-external-database
+    type: org.cloudfoundry.user-provided-service
     parameters:
-      service: postgresql-db
-      service-plan: trial
+      path: ./pg-azure-env.json
   - name: pg-beershop-uaa
     parameters:
       path: ./xs-security.json
