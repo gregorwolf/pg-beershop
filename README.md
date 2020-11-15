@@ -69,7 +69,15 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-## Run on SAP Cloud Platform - Cloud Foundry Environment
+## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option (Work in progress)
+
+I'm trying to get the PostgreSQL on SAP CP Trial, Hyperscaler Option to work. But unfortunately in the moment I [can't connect to PostgreSQL on SAP CP Trial, Hyperscaler Option](https://answers.sap.com/questions/13182819/cant-connect-to-postgresql-on-sap-cp-trial-hypersc.html). First I've tried the Azure PostgreSQL but here the [ERROR: function pg_buffercache_pages() does not exist](https://github.com/gregorwolf/pg-beershop/tree/master/db-deployer#azure) occurs. So I moved on to the AWS PostgreSQL service. With it the first sucessfull deploy using [cds-dbm](https://github.com/mikezaschka/cds-dbm) was possible. But not yet very smooth. Unfortunately the [Service Tags defined for User Provided Service do not appear in VCAP_SERVICES](https://answers.sap.com/questions/13187009/service-tags-defined-for-user-provided-service-do.html) when defining the User Provided Service in mta.yaml. So let's switch and create the service manually with this command:
+
+```
+cf cups pg-beershop-external-database -p pg-azure-env.json -t "database"
+```
+
+## Run on SAP Cloud Platform - Cloud Foundry Environment with Service Broker
 
 Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
 

@@ -1,6 +1,6 @@
 # DB Deployment using cds-dbm
 
-This folder contains the experiments for the database deployment using cds-dbm. To be able to debug I've added a express server instance serving a static website. Before you deploy thismodule you have to copy the db and srv folder of the main project into this folder. The models are needed for cds-dbm. You can achieve that by running:
+This folder contains the experiments for the database deployment using [cds-dbm](https://github.com/mikezaschka/cds-dbm). To be able to debug I've added a express server instance serving a static website. Before you deploy thismodule you have to copy the db and srv folder of the main project into this folder. The models are needed for cds-dbm. You can achieve that by running:
 
 ```bash
 npm run copycds
