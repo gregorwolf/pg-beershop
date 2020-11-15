@@ -1,6 +1,8 @@
 #!/bin/bash
 # Add tag database to VCAP_SERVICES
 export VCAP_SERVICES=`echo $VCAP_SERVICES | jq '."user-provided"[0].tags[0] |= .+ "database"'`
+export JAVA_HOME=/home/vcap/sapmachine-jdk-11.0.9.1
+export PATH=$PATH:/home/vcap/deps/0/bin
 # Save Certificate from Environment where liquibase expects it
 mkdir -p /home/vcap/.postgresql
 export POSTGRESQL_ROOT_CERT="/home/vcap/.postgresql/root.crt"
@@ -11,8 +13,6 @@ sed -i 's/-----END/\n-----END/g' $POSTGRESQL_ROOT_CERT
 cd ..
 wget https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.9.1/sapmachine-jdk-11.0.9.1_linux-x64_bin.tar.gz
 tar xfz sapmachine-jdk-11.0.9.1_linux-x64_bin.tar.gz
-export JAVA_HOME=/home/vcap/sapmachine-jdk-11.0.9.1
-export PATH=$PATH:/home/vcap/deps/0/bin
 # Install forked cds-dbm version
 git clone https://github.com/gregorwolf/cds-dbm.git
 cd cds-dbm/
@@ -21,7 +21,8 @@ npm i
 npm run build
 #
 cd ../app
-# npm i 
+# Use local version of cds-dbm
+cat package.json | jq --raw-output '.dependencies."cds-dbm" |= "../cds-dbm"' > package-local-cds-dbm.json
 cp package-local-cds-dbm.json package.json
 # Replace cds-dbm version with ../cds-dbm to point to the local installation
 rm -rf node_modules

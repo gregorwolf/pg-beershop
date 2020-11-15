@@ -100,6 +100,8 @@ For Liquibase it seems that `&ssl=true` must be added to the connection string.
 
 Actually the problem is caused by an issue in the SAP Cloud Platform trial. Check out the Q&A Post: [Can't connect to PostgreSQL on SAP CP Trial, Hyperscaler Option](https://answers.sap.com/questions/13182819/cant-connect-to-postgresql-on-sap-cp-trial-hypersc.html).
 
+## Azure
+
 Until this issue is solved I've continued with my PostgreSQL Database on Azure. But here I run into the following error when running `npm run start:deploy`:
 
 ```
@@ -282,3 +284,7 @@ beershop=> SELECT * FROM pg_extension;
  pg_buffercache     |       10 |         2200 | t              | 1.3        |           | 
 (3 rows)
 ```
+
+## AWS
+
+This is the first working deploy.
