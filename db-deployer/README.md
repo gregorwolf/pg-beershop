@@ -18,7 +18,11 @@ and run
 
 `cf restage pg-beershop-db-deployer`
 
-you can SSH into the running application. There I've executed:
+you can SSH into the running application with:
+
+`cf ssh pg-beershop-db-deployer`
+
+There I've executed:
 
 ```bash
 cd app
