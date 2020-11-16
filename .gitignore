@@ -2,6 +2,7 @@
 gen/
 .gen/
 node_modules/
+data.zip
 target/
 *.db
 .DS_Store

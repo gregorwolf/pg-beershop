@@ -15,6 +15,7 @@
     "docker:stop:pg": "docker-compose -f stack.yml down",
     "build": "cds build",
     "build:cf": "mbt build",
+    "build:cf:deployer": "mbt module-build -m=pg-beershop-db-deployer",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
     "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "build:docker": "run-s build build:docker:image",
