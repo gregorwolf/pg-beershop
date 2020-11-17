@@ -1,0 +1,65 @@
+_schema-version: "3.1"
+ID: pg-beershop
+description: Sample project to demonstrate the use of cds-pg
+version: 1.0.0
+modules:
+- name: pg-beershop-db-deployer
+  type: custom
+  path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer/pg-beershop-db-deployer-1.0.0.jar
+  requires:
+  - name: pg-beershop-external-database
+  parameters:
+    buildpacks:
+    - nodejs_buildpack
+    - java_buildpack
+    disk-quota: 3GB
+    memory: 1G
+- name: pg-beershop-srv
+  type: javascript.nodejs
+  path: .pg-beershop_mta_build_tmp/pg-beershop-srv/data.zip
+  requires:
+  - name: pg-beershop-external-database
+  - name: pg-beershop-uaa
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    disk-quota: 1024M
+    memory: 256M
+- name: pg-beershop-app
+  type: javascript.nodejs
+  path: .pg-beershop_mta_build_tmp/pg-beershop-app/data.zip
+  requires:
+  - name: pg-beershop-destination-service
+  - name: pg-beershop-uaa
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv_api
+      strictSSL: false
+      url: ~{srv-url}
+  parameters:
+    disk-quota: 1024M
+    memory: 256M
+resources:
+- name: pg-beershop-external-database
+  type: org.cloudfoundry.existing-service
+- name: pg-beershop-uaa
+  type: com.sap.xs.uaa
+  parameters:
+    path: ./xs-security.json
+- name: pg-beershop-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install --production
+    - npx -p @sap/cds-dk cds build --production

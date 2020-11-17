@@ -38,3 +38,5 @@ cp.project.properties.json
 env_variables.yaml
 db-deployer/db
 db-deployer/srv
+db-deployer-java/src/main/resources/db
+db-deployer-java/src/main/resources/srv
