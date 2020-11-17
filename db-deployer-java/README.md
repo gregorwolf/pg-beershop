@@ -8,6 +8,25 @@ mvn clean package
 
 in the *db-deployer-java* folder.
 
+When you then enable ssh using
+
+`cf enable-ssh pg-beershop-db-deployer`
+
+and run
+
+`cf restage pg-beershop-db-deployer`
+
+you can SSH into the running application with:
+
+`cf ssh pg-beershop-db-deployer`
+
+There I've executed:
+
+```bash
+cd /home/vcap/app/BOOT-INF/classes
+./deploy.sh
+```
+
 ## SAP Cloud Platform Trial, PostgreSQL Hyperscaler Option
 
 Currently the deployment fails with this error:

@@ -26,7 +26,7 @@ There I've executed:
 
 ```bash
 cd app
-./setup.sh
+./deploy.sh
 ```
 
 the last command currently fails with this error message:
