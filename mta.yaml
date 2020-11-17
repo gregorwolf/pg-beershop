@@ -18,23 +18,45 @@ build-parameters:
 
 modules:
   - name: pg-beershop-db-deployer
-    type: nodejs
-    path: db-deployer
+    type: custom
+    path: db-deployer-java
     parameters:
-      no-route: true
-      no-start: true
+      buildpacks: [nodejs_buildpack, java_buildpack] 
+#      no-route: true
+#      no-start: true
       disk-quota: 3GB
       memory: 512MB
-      tasks:
-      - name: deploy_to_postgresql
-        command: ./deploy.sh
-        disk-quota: 3GB
-        memory: 512MB
+      command: java -jar WebServerLite.jar ./ $PORT
+#      tasks:
+#      - name: deploy_to_postgresql
+#        command: ./deploy.sh
+#        disk-quota: 3GB
+#        memory: 512MB
     build-parameters:
       ignore: ["node_modules/"]
     requires:
 #    - name: pg-beershop-database
     - name: pg-beershop-external-database
+
+# With Node.JS buildpack
+#  - name: pg-beershop-db-deployer
+#    type: nodejs
+#    path: db-deployer
+#    parameters:
+#      no-route: true
+#      no-start: true
+#      disk-quota: 3GB
+#      memory: 512MB
+#      tasks:
+#      - name: deploy_to_postgresql
+#        command: ./deploy.sh
+#        disk-quota: 3GB
+#        memory: 512MB
+#    build-parameters:
+#      ignore: ["node_modules/"]
+#    requires:
+##    - name: pg-beershop-database
+#    - name: pg-beershop-external-database
 #  # ----------------- DB-UI with adminer -----------------------
 #  - name: pg-beershop-adminer
 #    type: application
