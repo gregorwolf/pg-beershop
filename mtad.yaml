@@ -14,6 +14,13 @@ modules:
     - java_buildpack
     disk-quota: 3GB
     memory: 1G
+    no-route: true
+    no-start: true
+    tasks:
+    - command: cd /home/vcap/app/BOOT-INF/classes && chmod +x deploy.sh && ./deploy.sh
+      disk-quota: 3GB
+      memory: 512MB
+      name: deploy_to_postgresql
 - name: pg-beershop-srv
   type: javascript.nodejs
   path: .pg-beershop_mta_build_tmp/pg-beershop-srv/data.zip
