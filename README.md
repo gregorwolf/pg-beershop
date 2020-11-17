@@ -103,11 +103,11 @@ The created database is empty. As currently no deploy script is available the ne
 
 If you want to build your own docker image replace *gregorwolf* in *package.json* and *deployment/beershop.yaml* with your own hub.docker.com account. Then run:
 
-`cds run build:docker`
+`npm run build:docker`
 
 and publish the created image with:
 
-`cds run push:docker`
+`npm run push:docker`
 
 ### Deploy to Kyma
 
@@ -119,15 +119,15 @@ Please note that the token in the kubeconfig is [only valid for 8 hours](https:/
 
 To keep this project separate from your other deployments I would suggest to create a namespace:
 
-`kubectl create namespace pg-bookshop`
+`kubectl create namespace pg-beershop`
 
 Deploy the configuration:
 
-`kubectl -n pg-bookshop apply -f deployment/beershop.yaml`
+`kubectl -n pg-beershop apply -f deployment/beershop.yaml`
 
 To create the beershop database a port forwarding must be started:
 
-`kubectl -n pg-bookshop port-forward service/beershop-postgresql 5432:5432`
+`kubectl -n pg-beershop port-forward service/beershop-postgresql 5432:5432`
 
 Then you can connect with the psql client. The password is *postgres*:
 
@@ -137,7 +137,7 @@ Run the SQL command from *db/init/beershop.sql*.
 
 If you want to delete the deployment, then run:
 
-`kubectl -n pg-bookshop delete -f deployment/beershop.yaml`
+`kubectl -n pg-beershop delete -f deployment/beershop.yaml`
 
 ## Run on Microsoft Azure
 
