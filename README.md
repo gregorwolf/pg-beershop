@@ -20,7 +20,7 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
         "name": "postgres",
         "label": "postgres",
         "tags": [
-          "PostgreSQL"
+          "database"
         ],
         "credentials": {
           "host": "localhost",
@@ -37,9 +37,13 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
 
 Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 
-`npm run start:docker`
+`docker:start:pg`
 
-Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. Create a new database *beershop* using the *Create database* link. Then execute the SQL commands you find in *beershop.sql*.
+Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. The database *beershop* should already exist as it was provided via the /db/init folder. Otherwise chreate it using the *Create database* link. Then try to deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm):
+
+`npm run deploy:pg`
+
+after that you should see tables and views in the adminer UI. If you have issues with the deployment you can run the SQL commands via adminer. You find them in the file *beershop.sql*.
 
 Now you can start the CAP application by using:
 

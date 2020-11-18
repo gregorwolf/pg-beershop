@@ -9,10 +9,12 @@
   "scripts": {
     "test": "jest",
     "docker:start:pg": "docker-compose -f stack.yml up -d",
+    "docker:start:pg:11": "docker-compose -f stack-pg-11.yml up -d",
     "deploy:pg": "npx cds-dbm deploy --load-via delta",
     "docker:start:cds": "docker run --env-file .env --network='host' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
     "start": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
+    "docker:stop:pg:11": "docker-compose -f stack-pg-11.yml down",
     "prepare:db-deployer-java:mvn": "cd db-deployer-java && mvn clean package",
     "prepare:db-deployer-java:zip": "mkdir -p cd db-deployer-java/target && cd db-deployer-java/src/main/resources/ && zip -r ../../../target/pg-beershop-db-deployer-1.0.0.jar *",
     "build": "cds build",
