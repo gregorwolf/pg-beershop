@@ -39,6 +39,10 @@ Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 
 `docker:start:pg`
 
+It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 11 then run:
+
+`docker:start:pg:11`
+
 Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. The database *beershop* should already exist as it was provided via the /db/init folder. Otherwise chreate it using the *Create database* link. Then try to deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm):
 
 `npm run deploy:pg`
@@ -72,6 +76,8 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
   ]
 }
 ```
+
+To stop the docker containers run either `docker:start:pg` or `docker:start:pg:11`.
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option (Work in progress)
 
