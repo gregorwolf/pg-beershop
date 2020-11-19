@@ -15,6 +15,8 @@ build-parameters:
      commands:
       - npm install --production
       - npx -p @sap/cds-dk cds build --production
+      - npm run copycds:db
+      - npm run copycds:srv
 
 modules:
 ## DB Deploy with combined Node.JS and Java buildpack
