@@ -1,0 +1,8 @@
+---
+keys:
+- https://dist.sapmachine.io/debian/sapmachine.old.key
+- https://dist.sapmachine.io/debian/sapmachine.key
+repos:
+- deb http://dist.sapmachine.io/ stable main
+packages:
+- sapmachine-11-jdk

@@ -14,6 +14,19 @@ modules:
     - java_buildpack
     disk-quota: 3GB
     memory: 1G
+    no-route: true
+- name: pg-beershop-db-deployer-apt
+  type: custom
+  path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer-apt/data.zip
+  requires:
+  - name: pg-beershop-database
+  parameters:
+    buildpacks:
+    - https://github.com/cloudfoundry/apt-buildpack#v0.2.2
+    - nodejs_buildpack
+    disk-quota: 3GB
+    memory: 512MB
+    no-route: true
 - name: pg-beershop-db-deployer-nodejs
   type: javascript.nodejs
   path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer-nodejs/data.zip
@@ -22,6 +35,7 @@ modules:
   parameters:
     disk-quota: 3GB
     memory: 512MB
+    no-route: true
 - name: pg-beershop-adminer
   type: application
   requires:
