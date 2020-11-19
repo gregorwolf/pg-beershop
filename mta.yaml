@@ -137,15 +137,17 @@ resources:
     parameters:
       path: ./xs-security.json
     type: com.sap.xs.uaa
-# Until the issue with connecting to PostgreSQL on SAP CP Trial, Hyperscaler Option is solved:
-# https://answers.sap.com/questions/13182819/cant-connect-to-postgresql-on-sap-cp-trial-hypersc.html
+# First deployment using this definition works
   - name: pg-beershop-database
     type: org.cloudfoundry.managed-service
     parameters:
       path: ./pg-options.json
       service: postgresql-db
       service-plan: trial
-#
+## Second full deployment must be done with this definition
+#  - name: pg-beershop-database
+#    type: org.cloudfoundry.user-provided-service
+
 # Let's use a User-Provided Service Instance
 # Which doesn't work either as the service-tags are not have an effect see:
 # https://answers.sap.com/questions/13187009/service-tags-defined-for-user-provided-service-do.html
