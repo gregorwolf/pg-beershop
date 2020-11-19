@@ -79,13 +79,27 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 
 To stop the docker containers run either `docker:start:pg` or `docker:start:pg:11`.
 
-## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option (Work in progress)
+## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
 
-I'm trying to get the PostgreSQL on SAP CP Trial, Hyperscaler Option to work. But unfortunately in the moment I [can't connect to PostgreSQL on SAP CP Trial, Hyperscaler Option](https://answers.sap.com/questions/13182819/cant-connect-to-postgresql-on-sap-cp-trial-hypersc.html). First I've tried the Azure PostgreSQL but here the [ERROR: function pg_buffercache_pages() does not exist](https://github.com/gregorwolf/pg-beershop/tree/master/db-deployer#azure) occurs. So I moved on to the AWS PostgreSQL service. With it the first sucessfull deploy using [cds-dbm](https://github.com/mikezaschka/cds-dbm) was possible. But not yet very smooth. Unfortunately the [Service Tags defined for User Provided Service do not appear in VCAP_SERVICES](https://answers.sap.com/questions/13187009/service-tags-defined-for-user-provided-service-do.html) when defining the User Provided Service in mta.yaml. So let's switch and create the service manually with this command:
+An on the SAP CP Trial, the PostgreSQL Hyperscaler Option does not allow a service update we have to create the service instance using this command:
 
 ```
-cf cups pg-beershop-external-database -p pg-azure-env.json -t "database"
+cf create-service postgresql-db trial pg-beershop-database -c pg-options.json
 ```
+
+Then run:
+
+```
+npm run build:cf
+```
+
+to build the MTAR file and finally:
+
+```
+npm run deploy:cf
+```
+
+to deploy the application.
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Service Broker
 
