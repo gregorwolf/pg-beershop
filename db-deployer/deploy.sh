@@ -9,26 +9,13 @@ export NODE_ENV=development
 # Save Certificate from Environment where liquibase expects it
 mkdir -p /home/vcap/.postgresql
 export POSTGRESQL_ROOT_CERT="/home/vcap/.postgresql/root.crt"
-echo $VCAP_SERVICES | jq --raw-output '."user-provided"[0].credentials.sslrootcert' > $POSTGRESQL_ROOT_CERT
-sed -i 's/BEGIN CERTIFICATE-----/BEGIN CERTIFICATE-----\n/g' $POSTGRESQL_ROOT_CERT
-sed -i 's/-----END/\n-----END/g' $POSTGRESQL_ROOT_CERT
+echo $VCAP_SERVICES | jq --raw-output '."postgresql-db"[0].credentials.sslrootcert' > $POSTGRESQL_ROOT_CERT
 # Install SAP Machine
 cd /home/vcap/
 wget -q https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.9.1/sapmachine-jdk-11.0.9.1_linux-x64_bin.tar.gz
 tar xfz sapmachine-jdk-11.0.9.1_linux-x64_bin.tar.gz
-# Install forked cds-dbm version
-git clone https://github.com/gregorwolf/cds-dbm.git
-cd /home/vcap/cds-dbm/
-git checkout adjust-for-sapcp-postgresql-hyperscaler
-npm i
-npm run build
-#
 cd /home/vcap/app
-# Use local version of cds-dbm
-cat package.json | jq --raw-output '.dependencies."cds-dbm" |= "../cds-dbm"' > package-local-cds-dbm.json
-cp package-local-cds-dbm.json package.json
-# Replace cds-dbm version with ../cds-dbm to point to the local installation
-rm -rf node_modules
+# Install dependencies
 npm i
 # env
 npx cds-dbm deploy
