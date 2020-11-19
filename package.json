@@ -19,7 +19,7 @@
     "prepare:db-deployer-java:zip": "mkdir -p cd db-deployer-java/target && cd db-deployer-java/src/main/resources/ && zip -r ../../../target/pg-beershop-db-deployer-1.0.0.jar *",
     "build": "cds build",
     "build:cf": "mbt build",
-    "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-nodejs,pg-beershop-db-deployer-apt,pg-beershop-db-deployer,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
+    "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-apt,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
     "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
     "build:docker": "run-s build build:docker:image",

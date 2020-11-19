@@ -14,4 +14,4 @@ echo $VCAP_SERVICES | jq --raw-output '."postgresql-db"[0].credentials.sslrootce
 # Install dependencies
 npm i
 # env
-npx cds-dbm deploy
+npx cds-dbm deploy --load-via delta

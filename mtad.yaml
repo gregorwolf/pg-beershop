@@ -3,18 +3,6 @@ ID: pg-beershop
 description: Sample project to demonstrate the use of cds-pg
 version: 1.0.0
 modules:
-- name: pg-beershop-db-deployer
-  type: custom
-  path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer/pg-beershop-db-deployer-1.0.0.jar
-  requires:
-  - name: pg-beershop-database
-  parameters:
-    buildpacks:
-    - nodejs_buildpack
-    - java_buildpack
-    disk-quota: 3GB
-    memory: 1G
-    no-route: true
 - name: pg-beershop-db-deployer-apt
   type: custom
   path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer-apt/data.zip
@@ -27,15 +15,12 @@ modules:
     disk-quota: 3GB
     memory: 512MB
     no-route: true
-- name: pg-beershop-db-deployer-nodejs
-  type: javascript.nodejs
-  path: .pg-beershop_mta_build_tmp/pg-beershop-db-deployer-nodejs/data.zip
-  requires:
-  - name: pg-beershop-database
-  parameters:
-    disk-quota: 3GB
-    memory: 512MB
-    no-route: true
+    no-start: true
+    tasks:
+    - command: ./deploy.sh
+      disk-quota: 3GB
+      memory: 512MB
+      name: deploy_to_postgresql
 - name: pg-beershop-adminer
   type: application
   requires:
