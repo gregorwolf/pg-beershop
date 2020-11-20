@@ -13,6 +13,11 @@ entity Brewery : cuid {
   beers : Association to many Beers on beers.brewery = $self;
 }
 
+// Workaround for the pop-up during creation
+annotate Brewery with {
+  ID @Core.Computed;
+}
+
 entity TypeChecks : cuid {
   type_Boolean     : Boolean;
   type_Int32       : Integer;
