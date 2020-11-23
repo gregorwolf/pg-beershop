@@ -19,25 +19,6 @@ build-parameters:
       - npm run copycds:srv
 
 modules:
-## DB Deploy with combined Node.JS and Java buildpack
-#  - name: pg-beershop-db-deployer
-#    type: custom
-#    path: db-deployer-java/target/pg-beershop-db-deployer-1.0.0.jar
-#    parameters:
-#      buildpacks: [nodejs_buildpack, java_buildpack] 
-#      no-route: true
-##      no-start: true
-#      disk-quota: 3GB
-#      memory: 1G
-##      tasks:
-##        - name: deploy_to_postgresql
-##          command: cd /home/vcap/app/BOOT-INF/classes && chmod +x deploy.sh && ./deploy.sh
-##          disk-quota: 3GB
-##          memory: 512MB
-#    requires:
-#      - name: pg-beershop-database
-##      - name: pg-beershop-external-database
-
 # DB Deploy with combined apt and Node.JS buildpack
   - name: pg-beershop-db-deployer-apt
     type: custom
@@ -58,26 +39,6 @@ modules:
     requires:
     - name: pg-beershop-database
 #    - name: pg-beershop-external-database
-
-## DB Deploy with Node.JS buildpack
-#  - name: pg-beershop-db-deployer-nodejs
-#    type: nodejs
-#    path: db-deployer
-#    parameters:
-#      no-route: true
-##      no-start: true
-#      disk-quota: 3GB
-#      memory: 512MB
-##      tasks:
-##      - name: deploy_to_postgresql
-##        command: ./deploy.sh
-##        disk-quota: 3GB
-##        memory: 512MB
-#    build-parameters:
-#      ignore: ["node_modules/"]
-#    requires:
-#    - name: pg-beershop-database
-##    - name: pg-beershop-external-database
 
   # ----------------- DB-UI with adminer -----------------------
   - name: pg-beershop-adminer
@@ -137,31 +98,17 @@ resources:
     parameters:
       path: ./xs-security.json
     type: com.sap.xs.uaa
-## In SAP CP Trial only the first deployment using this definition works
-#  - name: pg-beershop-database
-#    type: org.cloudfoundry.managed-service
-#    parameters:
-#      path: ./pg-options.json
-#      service: postgresql-db
-#      service-plan: trial
-
-# To avoid changes on this file we use this option
-# Second full deployment must be done with this definition
+# In SAP CP Trial only the first deployment using this definition works
   - name: pg-beershop-database
-    type: org.cloudfoundry.user-provided-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./pg-options.json
+      service: postgresql-db
+      service-plan: trial
 
-# Let's use a User-Provided Service Instance
-# Which doesn't work either as the service-tags are not have an effect see:
-# https://answers.sap.com/questions/13187009/service-tags-defined-for-user-provided-service-do.html
-#  - name: pg-beershop-external-database
-#    type: org.cloudfoundry.user-provided-service
-#    parameters:
-#      path: ./pg-azure-env.json
-#      service-tags: ["relational", "database"]
-#
-# So the last resort is creating the service via the cf command line and define it as an existing-service
-#  - name: pg-beershop-external-database
-#    type: org.cloudfoundry.existing-service
+# For a second deploy use
+# npm run deploy:cf:update
+# this will use the update.mtaext
 
   - name: pg-beershop-destination-service
     parameters:

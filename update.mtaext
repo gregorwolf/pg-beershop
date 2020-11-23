@@ -4,4 +4,4 @@ extends: pg-beershop
 
 resources:
   - name: pg-beershop-database
-    type: existing-service
+    type: org.cloudfoundry.existing-service
