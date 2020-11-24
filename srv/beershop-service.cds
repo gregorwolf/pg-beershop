@@ -15,5 +15,7 @@ service BeershopService {
   @readonly
   entity Breweries as projection on csw.Brewery;
   @readonly
+  entity BreweryAnalytics as projection on csw.BreweryAnalytics;
+  @readonly
   entity TypeChecks as projection on csw.TypeChecks;
 }
