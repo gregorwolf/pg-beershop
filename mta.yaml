@@ -29,6 +29,8 @@ modules:
       no-start: true
       disk-quota: 3GB
       memory: 512MB
+      skip-service-updates:
+        parameters: true
       tasks:
       - name: deploy_to_postgresql
         command: ./deploy.sh
