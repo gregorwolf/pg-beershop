@@ -81,25 +81,23 @@ To stop the docker containers run either `docker:start:pg` or `docker:start:pg:1
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
 
-An on the SAP CP Trial, the PostgreSQL Hyperscaler Option does not allow a service update we have to create the service instance using this command:
-
-```
-cf create-service postgresql-db trial pg-beershop-database -c pg-options.json
-```
-
-Then run:
+We're using the mbt build to create a mtar that can be deployed to the SAP CP Cloud Foundry. The build ist started with:
 
 ```
 npm run build:cf
 ```
 
-to build the MTAR file and finally:
+then you can deploy with:
 
 ```
 npm run deploy:cf
 ```
 
-to deploy the application.
+If you make any adjustments you have to repeat the build step. But as the PostgreSQL Hyperscaler Option does not allow a service update you have to use the follwing command deploy the application after a new build when it was already deployed before:
+
+```
+npm run deploy:cf:update
+```
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Service Broker
 
