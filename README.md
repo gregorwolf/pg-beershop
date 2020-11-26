@@ -93,12 +93,6 @@ then you can deploy with:
 npm run deploy:cf
 ```
 
-If you make any adjustments you have to repeat the build step. But as the PostgreSQL Hyperscaler Option does not allow a service update you have to use the follwing command deploy the application after a new build when it was already deployed before:
-
-```
-npm run deploy:cf:update
-```
-
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Service Broker
 
 Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
