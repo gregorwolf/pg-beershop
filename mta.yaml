@@ -14,9 +14,7 @@ build-parameters:
    - builder: custom
      commands:
       - npm install --production
-      - npx -p @sap/cds-dk cds build --production
-      - npm run copycds:db
-      - npm run copycds:srv
+      - npx cds-dbm build --production
 
 modules:
 # DB Deploy with combined apt and Node.JS buildpack
@@ -29,10 +27,8 @@ modules:
       no-start: true
       disk-quota: 3GB
       memory: 512MB
-      skip-service-updates:
-        parameters: true
       tasks:
-      - name: deploy_to_postgresql
+      - name: gen/db
         command: ./deploy.sh
         disk-quota: 3GB
         memory: 512MB
@@ -107,6 +103,8 @@ resources:
       path: ./pg-options.json
       service: postgresql-db
       service-plan: trial
+      skip-service-updates:
+        parameters: true
 
 # For a second deploy use
 # npm run deploy:cf:update
