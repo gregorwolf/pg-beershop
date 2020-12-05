@@ -20,7 +20,7 @@ modules:
 # DB Deploy with combined apt and Node.JS buildpack
   - name: pg-beershop-db-deployer-apt
     type: custom
-    path: db-deployer-apt
+    path: gen/db
     parameters:
       buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.2, nodejs_buildpack] 
       no-route: true
@@ -28,7 +28,7 @@ modules:
       disk-quota: 3GB
       memory: 512MB
       tasks:
-      - name: gen/db
+      - name: deploy-to-postgresql
         command: ./deploy.sh
         disk-quota: 3GB
         memory: 512MB
