@@ -58,8 +58,5 @@ jobs:
         id: publish_readme
         uses: meeDamian/sync-readme@v1.0.6
         with:
-          user: ${{ secrets.DOCKERHUB_USERNAME }}
           pass: ${{ secrets.DOCKERHUB_TOKEN }}
-          slug: gregorwolf/pg-beershop
-          readme: ./docker/description.md
           description: CAP Beershop using PostgreSQL for persistence
