@@ -1,5 +1,5 @@
 {
-    "_version": "1.15.0",
+    "_version": "1.8.0",
     "sap.app": {
         "id": "Breweries.manage",
         "type": "application",
@@ -28,6 +28,7 @@
     },
     "sap.ui": {
         "technology": "UI5",
+        "fullWidth": true,
         "icons": {
             "icon": "",
             "favIcon": "",
@@ -43,16 +44,15 @@
         }
     },
     "sap.ui5": {
-        "resources": {
-            "js": [],
-            "css": []
-        },
         "dependencies": {
-            "minUI5Version": "",
+            "minUI5Version": "1.84.0",
             "libs": {
-                "sap.fe.templates": {},
-                "sap.ui.fl": {}
+                "sap.fe.templates": {}
             }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         },
         "models": {
             "i18n": {
@@ -65,67 +65,79 @@
                     "synchronizationMode": "None",
                     "operationMode": "Server",
                     "autoExpandSelect": true,
-                    "earlyRequests": true
+                    "earlyRequests": true,
+                    "groupProperties": {
+                        "default": {
+                            "submit": "Auto"
+                        }
+                    }
                 }
             }
         },
         "routing": {
             "routes": [
                 {
-                    "pattern": ":?query:",
-                    "name": "BreweriesList",
-                    "target": "BreweriesList"
+                    "name": "BreweriesListRoute",
+                    "target": "BreweriesListTarget",
+                    "pattern": ":?query:"
                 },
                 {
-                    "pattern": "Breweries({key}):?query:",
-                    "name": "BreweriesObjectPage",
-                    "target": "BreweriesObjectPage"
+                    "name": "BreweriesDetailsRoute",
+                    "target": "BreweriesDetailsTarget",
+                    "pattern": "Breweries({key}):?query:"
+                },
+                {
+                    "name": "breweryRoute",
+                    "target": "breweryTarget",
+                    "pattern": "Breweries({key})/brewery({key2}):?query:"
                 }
             ],
             "targets": {
-                "BreweriesList": {
+                "BreweriesListTarget": {
                     "type": "Component",
-                    "id": "BreweriesList",
+                    "id": "BreweriesListTarget",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
                             "entitySet": "Breweries",
-                            "variantManagement": "Page",
                             "navigation": {
                                 "Breweries": {
                                     "detail": {
-                                        "route": "BreweriesObjectPage"
+                                        "route": "BreweriesDetailsRoute"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "BreweriesObjectPage": {
+                "BreweriesDetailsTarget": {
                     "type": "Component",
-                    "id": "BreweriesObjectPage",
+                    "id": "BreweriesDetailsTarget",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
                             "entitySet": "Breweries",
-                            "navigation": {},
-                            "controlConfiguration": {
-                                "Assigned Beers": {
-                                    "tableSettings": {
-                                        "creationMode": {
-                                            "name": "Inline"
-                                        }
+                            "navigation": {
+                                "brewery": {
+                                    "detail": {
+                                        "route": "breweryRoute"
                                     }
                                 }
                             }
                         }
                     }
+                },
+                "breweryTarget": {
+                    "type": "Component",
+                    "id": "breweryTarget",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Breweries"
+                        }
+                    }
                 }
             }
-        },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
         }
     },
     "sap.platform.abap": {
@@ -137,7 +149,6 @@
         "uri": ""
     },
     "sap.fiori": {
-        "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
     }
