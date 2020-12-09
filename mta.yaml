@@ -47,6 +47,9 @@ modules:
     build-parameters:
       no-source: true
     parameters:
+      # Only needed to track down issues in the PostgreSQL Database deployment
+      no-route: true
+      no-start: true 
       disk-quota: 256MB
       memory: 128MB
       docker:
