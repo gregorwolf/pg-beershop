@@ -37,11 +37,11 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
 
 Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 
-`docker:start:pg`
+`npm run docker:start:pg`
 
 It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 11 then run:
 
-`docker:start:pg:11`
+`npm run docker:start:pg:11`
 
 Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. The database *beershop* should already exist as it was provided via the /db/init folder. Otherwise chreate it using the *Create database* link. Then try to deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm):
 
@@ -77,7 +77,7 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-To stop the docker containers run either `docker:start:pg` or `docker:start:pg:11`.
+To stop the docker containers run either `npm run docker:start:pg` or `npm run docker:start:pg:11`.
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
 
@@ -121,7 +121,15 @@ If you want to build your own docker image replace *gregorwolf* in *package.json
 
 `npm run build:docker`
 
-and publish the created image with:
+To test the image locally you have to create a *.env* file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
+
+`VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["database"],"credentials":{"host":"beershopdb","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
+
+Then run:
+
+`npm run docker:start:cds`
+
+to start the image *gregorwolf/pg-beershop:latest* from hub.docker.com. If you want to run your own image run che command you find in *package.json* with your image. Finally publish the created image with:
 
 `npm run push:docker`
 
