@@ -60,7 +60,8 @@
     "cds-pg": "^0.0.39",
     "express": "^4.17.1",
     "passport": "^0.4.1",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "copyfiles": "^2.4.1"
   },
   "devDependencies": {
     "cds-dbm": "^0.0.20",
@@ -68,8 +69,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
-    "jest": "^26.6.3",
-    "copyfiles": "^2.4.1"
+    "jest": "^26.6.3"
   },
   "cds": {
     "requires": {
