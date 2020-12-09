@@ -53,10 +53,14 @@ jobs:
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      - 
-        name: Publish Readme
-        id: publish_readme
-        uses: meeDamian/sync-readme@v1.0.6
-        with:
-          pass: ${{ secrets.DOCKERHUB_TOKEN }}
-          description: CAP Beershop using PostgreSQL for persistence
+## Not possible until https://github.com/docker/roadmap/issues/115 is solved
+#      - 
+#        name: Publish Readme
+#        id: publish_readme
+#        uses: meeDamian/sync-readme@v1.0.6
+#        with:
+#          user: ${{ secrets.DOCKERHUB_USERNAME }}
+#          pass: ${{ secrets.DOCKERHUB_TOKEN }}
+#          slug: gregorwolf/pg-beershop
+#          readme: ./docker/description.md
+#          description: CAP Beershop using PostgreSQL for persistence
