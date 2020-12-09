@@ -15,12 +15,15 @@ build-parameters:
      commands:
       - npm install --production
       - npx cds-dbm build --production
+      - mkdir -p gen/db-with-express
+      - npm run copy:db:gen
+      - npm run copy:db:template
 
 modules:
 # DB Deploy with combined apt and Node.JS buildpack
   - name: pg-beershop-db-deployer-apt
     type: custom
-    path: gen/db
+    path: gen/db-with-express
     parameters:
       buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.2, nodejs_buildpack] 
       no-route: true

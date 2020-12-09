@@ -32,14 +32,15 @@
     "xsuaa:create:key": " cf create-service-key pg-beershop-uaa  pg-beershop-uaa-key",
     "xsuaa:download:key": "cf service-key  pg-beershop-uaa pg-beershop-uaa-key",
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
+    "deploy:cf:bg": "cf bg-deploy mta_archives/pg-beershop_1.0.0.mtar -f --no-confirm",
     "deploy:cf:deployer:apt": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer-apt",
     "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer",
     "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv",
     "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext",
     "test:db": "node test/test-db.js",
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
-    "copycds:db": "copyfiles -a ./db/* ./db/**/* db-deployer-apt",
-    "copycds:srv": "copyfiles -a ./srv/* ./srv/**/* db-deployer-apt"
+    "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
+    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express"
   },
   "repository": {
     "type": "git",
