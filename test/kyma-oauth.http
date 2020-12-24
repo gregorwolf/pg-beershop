@@ -1,0 +1,41 @@
+### Following the Blogpost
+### https://blogs.sap.com/2020/12/14/kyma-for-dymmies-3-calling-secured-service-with-rest-client/
+### Store the kymaBaseURL, clientId and clientSecret in a .env file in the same folder as this file
+
+### Get Token
+# @name getToken
+POST https://oauth2.{{$dotenv kymaBaseURL}}/oauth2/token
+Authorization: Basic {{$dotenv clientId}}:{{$dotenv clientSecret}}
+Content-type : application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=admin
+
+### Map to variable
+@access_token={{getToken.response.body.access_token}}
+
+### Introspect Token
+POST https://oauth2.{{$dotenv kymaBaseURL}}/oauth2/introspect
+Content-Type:application/x-www-form-urlencoded
+Accept:application/json
+
+token={{access_token}}
+
+### Beershop Root
+GET https://beershop.{{$dotenv kymaBaseURL}}/
+### Beershop Public
+GET https://beershop.{{$dotenv kymaBaseURL}}/beershop/
+### Beershop Admin using access_token
+GET https://beershop.{{$dotenv kymaBaseURL}}/beershop-admin/
+Authorization: Bearer {{access_token}}
+### Beershop Admin using jwt issued by dex
+GET https://beershop.{{$dotenv kymaBaseURL}}/beershop-admin/
+Authorization: Bearer {{$dotenv dexjwt}}
+### Beershop Admin using jwt issued by azure
+### For this the JWKS URL must be provided in Kyma
+### Documentation: https://docs.microsoft.com/de-de/azure/active-directory-b2c/tokens-overview#validate-signature
+### Contoso Sample URL:
+### https://contoso.b2clogin.com/contoso.onmicrosoft.com/B2C_1_SignUpAndSignInV2/discovery/v2.0/keys
+### CSW Azure AD B2C:
+### https://cswb2b.b2clogin.com/fd18cc3e-9960-4e35-9076-dba588896ff3/B2C_1_SignUpAndSignInV2/discovery/v2.0/keys
+GET https://beershop.{{$dotenv kymaBaseURL}}/beershop-admin/
+Authorization: Bearer {{$dotenv azurejwt}}
