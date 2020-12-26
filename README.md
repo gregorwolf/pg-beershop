@@ -304,7 +304,6 @@ when running the standalone script `node test/test-db.js` that uses the same way
 
 ## Ideas
 
-### Schema Migrations
+### Use Init Containers to deploy schema in Kyma
 
-- <https://flywaydb.org/>
-- <https://www.liquibase.org/>
+Right now for the Kyma deployment the schema must be updated manually. [Using Liquibase in Kubernetes](https://www.liquibase.org/blog/using-liquibase-in-kubernetes) describes the use of Init Containers in K8n. I think the Docker image [timbru31/java-node:11-erbium](https://hub.docker.com/r/timbru31/java-node) shoul be a good basis.
