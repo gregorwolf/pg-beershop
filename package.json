@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop",
   "engines": {
-    "node": "12"
+    "node": ">=10 <=14"
   },
   "version": "1.0.0",
   "description": "Sample project to demonstrate the use of cds-pg",
