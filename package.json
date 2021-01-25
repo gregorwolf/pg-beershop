@@ -63,7 +63,7 @@
     "copyfiles": "^2.4.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.84.0",
+    "@sap/ux-specification": "^1.84.1",
     "cds-dbm": "^0.0.23",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
