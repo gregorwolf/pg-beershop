@@ -63,9 +63,9 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.84.1",
+    "@sap/ux-specification": "^1.84.2",
     "cds-dbm": "^0.0.23",
-    "chai": "^4.2.0",
+    "chai": "^4.3.0",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "jest": "^26.6.3",
