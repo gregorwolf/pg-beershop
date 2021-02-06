@@ -1,7 +1,9 @@
 ### Read Available Entities
 GET http://localhost:4004/beershop/
 ### Read Beers
-GET http://localhost:4004/beershop/Beers
+GET http://localhost:4004/beershop/Beers?$count=true
+### Read Beers - $count
+GET http://localhost:4004/beershop/Beers/$count
 ### Read Beers and expand to Brewery
 GET http://localhost:4004/beershop/Beers?$expand=brewery
 ### Read Available Entities for admin endpoint

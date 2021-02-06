@@ -1,7 +1,9 @@
 ### Read Available Entities
 GET http://localhost:4004/v2/beershop/
 ### Read Beers
-GET http://localhost:4004/v2/beershop/Beers
+GET http://localhost:4004/v2/beershop/Beers?$inlinecount=allpages&$top=2
+### Read Beers $count
+GET http://localhost:4004/v2/beershop/Beers/$count
 ### Read Beers only ID and name
 GET http://localhost:4004/v2/beershop/Beers?$select=ID,name
 ### Read Beers skip first and read only one
