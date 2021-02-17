@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop-db-deployer",
   "engines": {
-    "node": "12"
+    "node": "^10 || ^12"
   },
   "version": "1.0.0",
   "description": "",
