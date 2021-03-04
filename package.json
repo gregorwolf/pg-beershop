@@ -51,10 +51,10 @@
   "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/audit-logging": "^4.2.0",
-    "@sap/cds": "^4.5.3",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.5.7",
+    "@sap/cds": "^4.6.4",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.5.9",
     "@sap/xsenv": "^3.1.0",
-    "@sap/xssec": "^3.1.1",
+    "@sap/xssec": "^3.1.2",
     "applicationinsights": "^1.8.10",
     "cds-pg": "^0.0.41",
     "copyfiles": "^2.4.1",
@@ -65,7 +65,7 @@
   "devDependencies": {
     "@sap/ux-specification": "^1.84.4",
     "cds-dbm": "^0.0.23",
-    "chai": "^4.3.0",
+    "chai": "^4.3.3",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "jest": "^26.6.3",
