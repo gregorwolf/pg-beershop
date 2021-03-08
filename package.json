@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.84.5",
-    "cds-dbm": "^0.0.23",
+    "cds-dbm": "^0.0.24",
     "chai": "^4.3.3",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
