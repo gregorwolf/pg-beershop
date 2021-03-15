@@ -51,7 +51,7 @@
   "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/audit-logging": "^4.2.0",
-    "@sap/cds": "^4.6.4",
+    "@sap/cds": "^4.6.5",
     "@sap/cds-odata-v2-adapter-proxy": "^1.5.9",
     "@sap/xsenv": "^3.1.0",
     "@sap/xssec": "^3.1.2",
