@@ -50,8 +50,8 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^4.2.0",
-    "@sap/cds": "^4.6.4",
+    "@sap/audit-logging": "^5.0.0",
+    "@sap/cds": "^4.6.5",
     "@sap/cds-odata-v2-adapter-proxy": "^1.5.9",
     "@sap/xsenv": "^3.1.0",
     "@sap/xssec": "^3.1.2",
@@ -64,8 +64,8 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.84.5",
-    "cds-dbm": "^0.0.23",
-    "chai": "^4.3.3",
+    "cds-dbm": "^0.0.24",
+    "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
     "jest": "^26.6.3",
