@@ -52,18 +52,18 @@
   "dependencies": {
     "@sap/audit-logging": "^5.0.0",
     "@sap/cds": "^4.6.5",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.5.10",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.6.1",
     "@sap/xsenv": "^3.1.0",
     "@sap/xssec": "^3.1.2",
     "applicationinsights": "^1.8.10",
-    "cds-pg": "^0.0.41",
+    "cds-pg": "^0.0.44",
     "copyfiles": "^2.4.1",
     "express": "^4.17.1",
     "passport": "^0.4.1",
-    "pg": "^8.5.1"
+    "pg": "^8.6.0"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.84.6",
+    "@sap/ux-specification": "^1.84.7",
     "cds-dbm": "^0.0.24",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
