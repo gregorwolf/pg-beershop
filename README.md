@@ -123,7 +123,7 @@ If you want to build your own docker image replace *gregorwolf* in *package.json
 
 To test the image locally you have to create a *.env* file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
 
-`VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["database"],"credentials":{"host":"beershopdb","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
+`VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["database"],"credentials":{"host":"beershop-postgresql","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
 
 Then run:
 
@@ -158,6 +158,10 @@ Then you can connect with the psql client. The password is *postgres*:
 `psql -h localhost -U postgres --password`
 
 Run the SQL command from *db/init/beershop.sql*. 
+
+For troubleshooting you can SSH into the CAP container:
+
+`kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash`
 
 If you want to delete the deployment, then run:
 
