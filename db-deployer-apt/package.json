@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop-db-deployer",
   "engines": {
-    "node": "^10 || ^12"
+    "node": "^12 || ^14"
   },
   "version": "1.0.0",
   "description": "",
@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "npm-run-all": "^4.1.5",
-    "@sap/cds": "^4.6.5",
+    "@sap/cds": "^5.1.3",
     "cds-dbm": "~0.0.24",
-    "cds-pg": "~0.0.41",
+    "cds-pg": "~0.0.49",
     "express": "^4.17.1"
  },
   "devDependencies": {
