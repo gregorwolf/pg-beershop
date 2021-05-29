@@ -14,7 +14,7 @@
     "docker:start:cds": "docker run --env-file .env --name pg-beershop --network='pg-beershop_default' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
     "docker:restart:cds": "docker start -ai pg-beershop",
     "docker:shell": "docker exec -it pg-beershop /bin/bash",
-    "start": "run-s start:cds",
+    "start": "cds run",
     "start:issue": "run-s deploy:pg start:cds",
     "start:cds": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
