@@ -43,11 +43,11 @@ It will use the latest available PostgreSQL Docker container. If you want to tes
 
 `npm run docker:start:pg:11`
 
-Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System *PostgreSQL*, Username *postgres* and Password *postgres*. The database *beershop* should already exist as it was provided via the /db/init folder. Otherwise chreate it using the *Create database* link. Then try to deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm):
+Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm) with the command:
 
 `npm run deploy:pg`
 
-after that you should see tables and views in the adminer UI. If you have issues with the deployment you can run the SQL commands via adminer. You find them in the file *beershop.sql*.
+Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System _PostgreSQL_, Server: _beershop-postgresql_, Username _postgres_ and Password _postgres_. The database _beershop_ should already exist as you've just deployed it. If you have issues with the deployment you can run the SQL commands via adminer. You find them in the file _beershop.sql_.
 
 Now you can start the CAP application by using:
 
@@ -111,17 +111,17 @@ That MTA can be deployed using:
 
 `npm run deploy:cf`
 
-The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in *beershop.sql*. To fill the database with data also execute the ones in *beershop-data.sql*. Now try out the URL you find in the Overview of the pg-beershop-srv application.
+The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
 
 ## Run on SAP Cloud Platform - Kyma Environment
 
 ### Create Docker Image
 
-If you want to build your own docker image replace *gregorwolf* in *package.json* and *deployment/beershop.yaml* with your own hub.docker.com account. Then run:
+If you want to build your own docker image replace _gregorwolf_ in _package.json_ and _deployment/beershop.yaml_ with your own hub.docker.com account. Then run:
 
 `npm run build:docker`
 
-To test the image locally you have to create a *.env* file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
+To test the image locally you have to create a _.env_ file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
 
 `VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["database"],"credentials":{"host":"beershop-postgresql","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
 
@@ -129,13 +129,13 @@ Then run:
 
 `npm run docker:start:cds`
 
-to start the image *gregorwolf/pg-beershop:latest* from hub.docker.com. If you want to run your own image run che command you find in *package.json* with your image. Finally publish the created image with:
+to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you want to run your own image run che command you find in _package.json_ with your image. Finally publish the created image with:
 
 `npm run push:docker`
 
 ### Deploy to Kyma
 
-Download the kubeconfig from your Kyma instance via the menu behind the account Icon in the upper right corner. Save it in *~/.kube/kubeconfig-kyma.yml*. Then run:
+Download the kubeconfig from your Kyma instance via the menu behind the account Icon in the upper right corner. Save it in _~/.kube/kubeconfig-kyma.yml_. Then run:
 
 `export KUBECONFIG=~/.kube/kubeconfig-kyma.yml`
 
@@ -153,11 +153,11 @@ To create the beershop database a port forwarding must be started:
 
 `kubectl -n pg-beershop port-forward service/beershop-postgresql 5432:5432`
 
-Then you can connect with the psql client. The password is *postgres*:
+Then you can connect with the psql client. The password is _postgres_:
 
 `psql -h localhost -U postgres --password`
 
-Run the SQL command from *db/init/beershop.sql*. 
+Run the SQL command from _db/init/beershop.sql_.
 
 For troubleshooting you can SSH into the CAP container:
 
@@ -192,7 +192,7 @@ If you want to use this database from your own location or from SAP Cloud Platfo
 
 `az postgres server firewall-rule create -g beershop -s $postgreservername -n cfeu10 --start-ip-address 3.122.0.0 --end-ip-address 3.124.255.255`
 
-Store the DB connection information in *default-env.json*. It must contain the certificate for the TLS connection documented in [Configure TLS connectivity in Azure Database for PostgreSQL - Single Server](https://docs.microsoft.com/de-de/azure/postgresql/concepts-ssl-connection-security). The format must be the following:
+Store the DB connection information in _default-env.json_. It must contain the certificate for the TLS connection documented in [Configure TLS connectivity in Azure Database for PostgreSQL - Single Server](https://docs.microsoft.com/de-de/azure/postgresql/concepts-ssl-connection-security). The format must be the following:
 
 ```json
 {
@@ -203,9 +203,7 @@ Store the DB connection information in *default-env.json*. It must contain the c
         "provider": null,
         "plan": "database",
         "name": "beershop-database",
-        "tags": [
-          "PostgreSQL"
-        ],
+        "tags": ["PostgreSQL"],
         "instance_name": "beershop-database",
         "binding_name": null,
         "credentials": {
@@ -214,14 +212,12 @@ Store the DB connection information in *default-env.json*. It must contain the c
           "database": "beershop",
           "password": "<yourAdminPassword>",
           "username": "beershop@<yourServerName>",
-          "ssl":  {
+          "ssl": {
             "rejectUnauthorized": false,
             "ca": "-----BEGIN CERTIFICATE-----MIIDdzCCAl+gAwIBAgIEAgAAuTANBgkqhkiG9w0BAQUFADBaMQswCQYDVQQGEwJJRTESMBAGA1UEChMJQmFsdGltb3JlMRMwEQYDVQQLEwpDeWJlclRydXN0MSIwIAYDVQQDExlCYWx0aW1vcmUgQ3liZXJUcnVzdCBSb290MB4XDTAwMDUxMjE4NDYwMFoXDTI1MDUxMjIzNTkwMFowWjELMAkGA1UEBhMCSUUxEjAQBgNVBAoTCUJhbHRpbW9yZTETMBEGA1UECxMKQ3liZXJUcnVzdDEiMCAGA1UEAxMZQmFsdGltb3JlIEN5YmVyVHJ1c3QgUm9vdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKMEuyKrmD1X6CZymrV51Cni4eiVgLGw41uOKymaZN+hXe2wCQVt2yguzmKiYv60iNoS6zjrIZ3AQSsBUnuId9Mcj8e6uYi1agnnc+gRQKfRzMpijS3ljwumUNKoUMMo6vWrJYeKmpYcqWe4PwzV9/lSEy/CG9VwcPCPwBLKBsua4dnKM3p31vjsufFoREJIE9LAwqSuXmD+tqYF/LTdB1kC1FkYmGP1pWPgkAx9XbIGevOF6uvUA65ehD5f/xXtabz5OTZydc93Uk3zyZAsuT3lySNTPx8kmCFcB5kpvcY67Oduhjprl3RjM71oGDHweI12v/yejl0qhqdNkNwnGjkCAwEAAaNFMEMwHQYDVR0OBBYEFOWdWTCCR1jMrPoIVDaGezq1BE3wMBIGA1UdEwEB/wQIMAYBAf8CAQMwDgYDVR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBBQUAA4IBAQCFDF2O5G9RaEIFoN27TyclhAO992T9Ldcw46QQF+vaKSm2eT929hkTI7gQCvlYpNRhcL0EYWoSihfVCr3FvDB81ukMJY2GQE/szKN+OMY3EU/t3WgxjkzSswF07r51XgdIGn9w/xZchMB5hbgF/X++ZRGjD8ACtPhSNzkE1akxehi/oCr0Epn3o0WC4zxe9Z2etciefC7IpJ5OCBRLbf1wbWsaY71k5h+3zvDyny67G7fyUIhzksLi4xaNmjICq44Y3ekQEe5+NauQrz4wlHrQMz2nZQ/1/I6eYs9HRCwBXbsdtTLSR9I4LtD+gdwyah617jzV/OeBHRnDJELqYzmp-----END CERTIFICATE-----"
           },
           "sslRequired": true,
-          "tags": [
-            "postgresql"
-          ]
+          "tags": ["postgresql"]
         },
         "syslog_drain_url": null,
         "volume_mounts": []
@@ -231,7 +227,7 @@ Store the DB connection information in *default-env.json*. It must contain the c
 }
 ```
 
-Connect to the database as described in the last paragraph of *Run on SAP Cloud Platform*.
+Connect to the database as described in the last paragraph of _Run on SAP Cloud Platform_.
 
 Store the file content in the environment variable VCAP_SERVICES (jq must be installed):
 
@@ -259,7 +255,7 @@ To delete the database you can run:
 
 `az postgres server delete --resource-group beershop --name beershop`
 
-You have to confirm the execution with *y*.
+You have to confirm the execution with _y_.
 
 ## Run on Google Cloud Platform (GCP)
 
@@ -267,14 +263,14 @@ Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/downloads-interacti
 
 `gcloud app create`
 
-Store the environment variable in *env_variables.yaml*:
+Store the environment variable in _env_variables.yaml_:
 
 ```YAML
 env_variables:
     VCAP_SERVICES: '{}'
 ```
 
-This file is included in *app.yaml*.
+This file is included in _app.yaml_.
 
 ## Features
 
@@ -284,11 +280,11 @@ When you run:
 
 `npm run compile:tosql`
 
-the CDS model will be compiled to the *beershop-cds.sql* file. Using the script *cdssql2pgsql.js* this SQL is converted to support PostgreSQL. Currently only the datatype NVARCHAR must be replaced with VARCHAR.
+the CDS model will be compiled to the _beershop-cds.sql_ file. Using the script _cdssql2pgsql.js_ this SQL is converted to support PostgreSQL. Currently only the datatype NVARCHAR must be replaced with VARCHAR.
 
 ### Import CDS files from db/data into the beershop database
 
-The path db/data is mounted to the docker container at /tmp/data. That allows to run the COPY commands generated at the end of *beershop.sql*.
+The path db/data is mounted to the docker container at /tmp/data. That allows to run the COPY commands generated at the end of _beershop.sql_.
 
 ## Limitations
 
