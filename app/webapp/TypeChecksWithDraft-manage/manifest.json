@@ -91,6 +91,7 @@
                         "settings": {
                             "entitySet": "TypeChecksWithDraft",
                             "variantManagement": "Page",
+                            "initialLoad": true,
                             "navigation": {
                                 "TypeChecksWithDraft": {
                                     "detail": {
