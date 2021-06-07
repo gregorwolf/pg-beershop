@@ -77,7 +77,7 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-To stop the docker containers run either `npm run docker:start:pg` or `npm run docker:start:pg:11`.
+To stop the docker containers run either `npm run docker:stop:pg` or `npm run docker:stop:pg:11`.
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
 
