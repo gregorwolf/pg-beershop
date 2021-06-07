@@ -5,34 +5,41 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node", 
+      "type": "node",
       "request": "launch",
-      "name": "cds run", 
-      "args": [ "run" ],
-      "env": {"DEBUG":"yes"},
-      "program": "${workspaceFolder}/.vscode/cds", 
+      "name": "cds run",
+      "args": ["run"],
+      "env": { "DEBUG": "yes" },
+      "program": "${workspaceFolder}/.vscode/cds",
       "skipFiles": [
-          "<node_internals>/**/*.js",
-          "**/cds-reflect/lib/index.js",
-          "**/cds/lib/index.js",
-          "**/.vscode/cds.js",
+        "<node_internals>/**/*.js",
+        "**/cds-reflect/lib/index.js",
+        "**/cds/lib/index.js",
+        "**/.vscode/cds.js"
       ],
       "console": "integratedTerminal"
     },
     {
-      "type": "node", 
+      "type": "node",
       "request": "launch",
-      "name": "deploy:pg", 
-      "args": [ "deploy", "srv", "--to", "db" ],
-      "env": {"DEBUG":"yes"},
-      "program": "${workspaceFolder}/node_modules/cds-pg/bin/cds-pg", 
+      "name": "deploy:pg",
+      "args": ["deploy", "srv", "--to", "db"],
+      "env": { "DEBUG": "yes" },
+      "program": "${workspaceFolder}/node_modules/cds-pg/bin/cds-pg",
       "skipFiles": [
-          "<node_internals>/**/*.js",
-          "**/cds-reflect/lib/index.js",
-          "**/cds/lib/index.js",
-          "**/.vscode/cds.js",
+        "<node_internals>/**/*.js",
+        "**/cds-reflect/lib/index.js",
+        "**/cds/lib/index.js",
+        "**/.vscode/cds.js"
       ],
       "console": "integratedTerminal"
+    },
+    {
+      "command": "cds-dbm deploy --load-via delta",
+      "name": "cds-dbm deploy",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": ["<node_internals>/**"]
     }
   ]
 }
