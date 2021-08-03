@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop",
   "engines": {
-    "node": "^12 || ^14"
+    "node": "^14"
   },
   "version": "1.0.0",
   "description": "Sample project to demonstrate the use of cds-pg",
@@ -57,19 +57,19 @@
   "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/audit-logging": "^5.0.0",
-    "@sap/cds": "^5.1.5",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.7.6",
+    "@sap/cds": "5.1.x",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.7.8",
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.2",
-    "applicationinsights": "^2.1.3",
-    "cds-pg": "^0.1.6",
+    "applicationinsights": "^2.1.4",
+    "cds-pg": "0.1.6",
     "copyfiles": "^2.4.1",
     "express": "^4.17.1",
     "passport": "^0.4.1",
-    "pg": "^8.6.0"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.4",
+    "@sap/ux-specification": "^1.90.5",
     "cds-dbm": "^0.0.27",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
