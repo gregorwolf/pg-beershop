@@ -12,14 +12,13 @@
     {
       "name": "admin",
       "description": "generated",
-      "scope-references": [
-        "$XSAPPNAME.admin"
-      ],
+      "scope-references": ["$XSAPPNAME.admin"],
       "attribute-references": []
     }
   ],
   "oauth2-configuration": {
     "redirect-uris": [
+      "https://*.ondemand.com/**",
       "https://*.computerservice-wolf.com/**",
       "http://*.computerservice-wolf.com/**"
     ]
