@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "npm-run-all": "^4.1.5",
-    "@sap/cds": "5.3.x",
+    "@sap/cds": "5.1.x",
     "cds-dbm": "~0.0.27",
-    "cds-pg": "~0.1.10",
+    "cds-pg": "0.0.x",
     "express": "^4.17.1"
   },
   "devDependencies": {
