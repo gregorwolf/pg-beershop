@@ -1,6 +1,6 @@
 #!/bin/bash
-export JAVA_HOME=/home/vcap/deps/0/apt/opt/sapmachine-11-jre/
-export PATH=$PATH:/home/vcap/deps/1/bin
+export JAVA_HOME=/home/vcap/deps/1/apt/usr/lib/jvm/sapmachine-11/
+export PATH=$PATH:/home/vcap/deps/2/bin
 # Save Certificate from Environment where liquibase expects it
 mkdir -p /home/vcap/.postgresql
 export POSTGRESQL_ROOT_CERT="/home/vcap/.postgresql/root.crt"
