@@ -6,4 +6,5 @@ mkdir -p /home/vcap/.postgresql
 export POSTGRESQL_ROOT_CERT="/home/vcap/.postgresql/root.crt"
 echo $VCAP_SERVICES | jq --raw-output '."postgresql-db"[0].credentials.sslrootcert' > $POSTGRESQL_ROOT_CERT
 # env
+npm install @sap/cds@5.1.5
 npx cds-dbm deploy --load-via delta
