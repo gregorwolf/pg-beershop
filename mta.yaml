@@ -25,7 +25,7 @@ modules:
     type: custom
     path: gen/db-with-express
     parameters:
-      buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.2, nodejs_buildpack] 
+      buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.7, nodejs_buildpack] 
       no-route: true
       no-start: true
       disk-quota: 3GB
