@@ -1,11 +1,15 @@
 ### Read Available Entities
 GET http://localhost:4004/beershop/
+Authorization: Basic bob:
 ### Read Beers
 GET http://localhost:4004/beershop/Beers?$count=true
+Authorization: Basic bob:
 ### Read Beers - $count
 GET http://localhost:4004/beershop/Beers/$count
+Authorization: Basic bob:
 ### Read Beers and expand to Brewery
 GET http://localhost:4004/beershop/Beers?$expand=brewery
+Authorization: Basic bob:
 ### Read Available Entities for admin endpoint
 GET http://localhost:4004/beershop-admin/
 Authorization: Basic alice:
@@ -30,12 +34,12 @@ Authorization: Basic alice:
 ### Delete the new Beer
 DELETE http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
 Authorization: Basic alice:
-
 ### Read Breweries
 GET http://localhost:4004/beershop/Breweries
+Authorization: Basic bob:
 ### Read Breweries with $count
 GET http://localhost:4004/beershop/Breweries?$count=true&$select=ID,name&$skip=0&$top=30
-
+Authorization: Basic bob:
 ### Read TypeChecks
 GET http://localhost:4004/beershop-admin/TypeChecks
 Authorization: Basic alice:
