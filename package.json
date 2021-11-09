@@ -80,9 +80,9 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "plain"
+        "kind": "database"
       },
-      "plain": {
+      "database": {
         "impl": "cds-pg",
         "model": [
           "srv"
