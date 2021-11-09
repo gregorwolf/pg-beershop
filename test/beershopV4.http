@@ -5,7 +5,7 @@ Authorization: Basic bob:
 GET http://localhost:4004/beershop/Beers?$count=true
 Authorization: Basic bob:
 ### Read Beers - $count
-GET http://localhost:4004/beershop/Beers/$count
+GET http://localhost:4004/beershop/Beers/$count=true
 Authorization: Basic bob:
 ### Read Beers and expand to Brewery
 GET http://localhost:4004/beershop/Beers?$expand=brewery
