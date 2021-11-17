@@ -19,7 +19,7 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
       {
         "name": "postgres",
         "label": "postgres",
-        "tags": ["plain"],
+        "tags": ["plain", "database"],
         "credentials": {
           "host": "localhost",
           "port": "5432",
