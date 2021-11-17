@@ -35,7 +35,7 @@
       "console": "integratedTerminal"
     },
     {
-      "command": "cds-dbm deploy --load-via delta",
+      "command": "node_modules/cds-dbm/dist/cli.js deploy --load-via delta",
       "name": "cds-dbm deploy",
       "request": "launch",
       "type": "node-terminal",
