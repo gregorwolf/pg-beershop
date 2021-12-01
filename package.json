@@ -60,7 +60,7 @@
     "@sap/cds": "5.1.x",
     "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
     "@sap/xsenv": "^3.1.1",
-    "@sap/xssec": "^3.2.10",
+    "@sap/xssec": "^3.2.11",
     "applicationinsights": "^2.1.9",
     "cds-pg": "0.0.x",
     "copyfiles": "^2.4.1",
