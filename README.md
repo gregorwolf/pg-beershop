@@ -287,7 +287,7 @@ When correctly issued this command logs the name of the newly created db instanc
 
 You can find information about plans and pricing at [this link](https://devcenter.heroku.com/articles/heroku-postgres-plans).
 
-The best way to deploy the database schema to your heroku app db is to create it locally, using the procedure provided in the local setup section of this guide command, and then push it on the remote db using the following commands:
+The best way to deploy the database schema to your heroku app db is to create it locally, using the procedure provided in the local setup section of this guide, and then push it on the remote db using the following commands:
 
 ```
 PGHOST=localhost PGUSER=postgres PGPASSWORD=postgres heroku pg:push beershop <remote_db_name>;     
