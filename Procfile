@@ -1,1 +1,1 @@
-web: heroku-run.sh
+web: ./heroku-run.sh
