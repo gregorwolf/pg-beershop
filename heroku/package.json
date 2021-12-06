@@ -7,46 +7,7 @@
   "description": "Sample project to demonstrate the use of cds-pg",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "docker:start:pg": "docker-compose -f stack.yml up -d",
-    "docker:start:pg:11": "docker-compose -f stack-pg-11.yml up -d",
-    "deploy:pg": "npx cds-dbm deploy --create-db --load-via delta",
-    "docker:start:cds": "docker run --env-file .env --name pg-beershop --network='pg-beershop_default' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
-    "docker:start:ui": "docker run --name pg-beershop-ui --network='pg-beershop_default' -p 5000:5000 -t gregorwolf/pg-beershop-ui:latest",
-    "docker:restart:cds": "docker start -ai pg-beershop",
-    "docker:shell": "docker exec -it pg-beershop /bin/bash",
-    "start": "cds run",
-    "start:issue": "run-s deploy:pg start:cds",
-    "start:cds": "cds run",
-    "docker:stop:pg": "docker-compose -f stack.yml down",
-    "docker:stop:pg:11": "docker-compose -f stack-pg-11.yml down",
-    "build": "npx cds-dbm build --production",
-    "build:cf": "mbt build",
-    "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-apt,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
-    "build:ElasticBeanstalk": "run-s build build:zipsrv",
-    "build:zipsrv": "cd gen/srv && zip -r ../srv.zip .",
-    "build:docker": "run-s build build:docker:image",
-    "build:docker:image": "docker build -t gregorwolf/pg-beershop:latest .",
-    "build:docker:ui": "docker build -t gregorwolf/pg-beershop-ui:latest app",
-    "push:docker": "docker push gregorwolf/pg-beershop:latest",
-    "compile:tosql": "cds c srv -2 sql > beershop-cds.sql && node cdssql2pgsql.js > beershop.sql",
-    "create-service:pg:dbms": "cf create-service azure-postgresql-9-6-dbms basic azure-postgresql -c azure-pg-dbms.json",
-    "create-service:pg:db": "cf create-service azure-postgresql-9-6-database database beershop-database -c azure-pg-db.json",
-    "xsuaa:build": "cds compile srv/ --to xsuaa > xs-security.json",
-    "xsuaa:create": "cf create-service xsuaa application pg-beershop-uaa -c xs-security.json",
-    "xsuaa:update": "cf update-service pg-beershop-uaa -c xs-security.json",
-    "xsuaa:create:key": " cf create-service-key pg-beershop-uaa  pg-beershop-uaa-key",
-    "xsuaa:download:key": "cf service-key  pg-beershop-uaa pg-beershop-uaa-key",
-    "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
-    "deploy:cf:bg": "cf bg-deploy mta_archives/pg-beershop_1.0.0.mtar -f --no-confirm",
-    "deploy:cf:deployer:apt": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer-apt",
-    "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer",
-    "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv",
-    "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext",
-    "test:db": "node test/test-db.js",
-    "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
-    "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
-    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express"
+    "build": "npx cds-dbm build --production"
   },
   "repository": {
     "type": "git",
@@ -56,29 +17,22 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^5.3.0",
-    "@sap/cds": "5.1.x",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
-    "applicationinsights": "^2.1.9",
-    "cds-pg": "0.0.x",
-    "copyfiles": "^2.4.1",
-    "express": "^4.17.1",
-    "passport": "^0.5.0",
-    "pg": "^8.7.1"
+    "@sap/cds": "<5.4.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.2",
+    "cds-dbm": "0.0.27",
+    "cds-pg": "^0.1.15",
+    "express": "^4",
+    "passport": "^0.5.0"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.13",
-    "cds-dbm": "^0.0.27",
-    "chai": "^4.3.4",
-    "chai-as-promised": "^7.1.1",
-    "chai-subset": "^1.6.0",
-    "jest": "^27.3.1",
-    "npm-run-all": "^4.1.5"
   },
   "cds": {
     "requires": {
       "db": {
         "kind": "database"
+      },
+      "auth": {
+        "impl": ".heroku/mock-auth-handler.js"
       },
       "database": {
         "impl": "cds-pg",
