@@ -1,0 +1,1 @@
+web: export cds_requires_postgres_credentials_connectionString=false && cds serve
