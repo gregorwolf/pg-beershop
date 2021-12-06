@@ -1,1 +1,1 @@
-web: ./heroku-run.sh
+web: cds_requires_database_credentials_connectionString=$DATABASE_URL && cds serve

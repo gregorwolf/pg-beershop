@@ -1,4 +1,0 @@
-export cds_requires_database_credentials_connectionString=false
-export cds_requires_database_credentials_connectionString=$DATABASE_URL
-export cds_requires_uaa="{}"
-cds serve
