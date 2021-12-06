@@ -278,7 +278,7 @@ You can also create a new pipeline or application from the Heroku website and bo
 The entry point of every heroku application is the Procfile. Through this file you can specify the starting script of your application.
 
 ```
-web: cds serve
+web: export cds_requires_postgres_credentials_connectionString=false && cds serve
 ```
 
 ### setup the HEROKU POSTGRES Service
