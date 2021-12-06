@@ -270,6 +270,44 @@ env_variables:
 
 This file is included in _app.yaml_.
 
+## Run on HEROKU
+Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your respective OS. Then follow the instruction provided in the [Deploying with Git](https://devcenter.heroku.com/articles/git) guide to deploy from this repository.
+
+You can also create a new pipeline or application from the Heroku website and bound it to an existing git repository. This should enable you to deploy directly from your repository on every completed pull requests on the main branch.
+
+### setup the HEROKU POSTGRES Service
+[Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql) is a managed SQL database service provided directly by Heroku. You can access a Heroku Postgres database from any language with a PostgreSQL driver, including all languages officially supported by Heroku.
+
+In order to provision your application with an Heroku Postgres db you have to run the following command from the CLI
+
+```
+heroku addons:create heroku-postgresql:<your_plan>
+```
+When correctly issued this command logs the name of the newly created db instance in the console.
+
+You can find information about plans and pricing at [this link](https://devcenter.heroku.com/articles/heroku-postgres-plans).
+
+The best way to deploy the database schema to your heroku app db is to create it locally, using the procedure provided in the local setup section of this guide command, and then push it on the remote db using the following commands:
+
+```
+PGHOST=localhost PGUSER=postgres PGPASSWORD=postgres heroku pg:push beershop <remote_db_name>;     
+```
+
+In order for this method to work you need to install psql locally. You can find more informations on this topic following you'll need to setup the psql command line as stated in [this link](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+
+Note that you don't need a running pgsql instance on your machine for this to work. You can use the psql client with the dockerized instance provided in this repository.
+
+
+### Configure app for running on Heroku
+
+The entry point of every heroku application is the Procfile. Through this file you can specify the starting script of your application.
+
+Credentials for Heroku Postgres are periodically rotated by the system. An environment variable, called DATABASE_URL is provided to your application and is automatically updated on each credentials change. For this reason, you cannot use the static xml configuration provided in the package.json file, but you need to inject the connection string at runtime through the Procfile start command. 
+
+```
+web: export cds_requires_database_credentials_connectionString=false && cds serve
+```
+
 ## Features
 
 ### Convert SQL generated from cds compile to PostgreSQL

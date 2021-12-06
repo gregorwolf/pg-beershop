@@ -1,0 +1,90 @@
+{
+  "name": "pg-beershop",
+  "engines": {
+    "node": "^14"
+  },
+  "version": "1.0.0",
+  "description": "Sample project to demonstrate the use of cds-pg",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx cds-dbm build --production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregorwolf/pg-beershop.git"
+  },
+  "keywords": [],
+  "author": "Gregor Wolf",
+  "license": "derived Beer-Ware",
+  "dependencies": {
+    "@sap/audit-logging": "^5.3.0",
+    "@sap/cds": "5.1.x",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
+    "@sap/xsenv": "^3.1.1",
+    "@sap/xssec": "^3.2.10",
+    "applicationinsights": "^2.1.9",
+    "cds-pg": "0.0.x",
+    "copyfiles": "^2.4.1",
+    "express": "^4.17.1",
+    "passport": "^0.5.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.90.13",
+    "cds-dbm": "^0.0.27",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-subset": "^1.6.0",
+    "jest": "^27.3.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "database"
+      },
+      "auth": {
+        "impl": "./heroku/mock-auth-handler.js"
+      },
+      "database": {
+        "impl": "cds-pg",
+        "model": [
+          "srv"
+        ],
+        "credentials": {
+          "ssl": {
+            "rejectUnauthorized": false
+          }
+        }
+      }
+    },
+    "migrations": {
+      "db": {
+        "schema": {
+          "default": "public",
+          "clone": "_cdsdbm_clone",
+          "reference": "_cdsdbm_ref"
+        },
+        "deploy": {
+          "tmpFile": "tmp/_autodeploy.json",
+          "undeployFile": "db/undeploy.json"
+        }
+      }
+    },
+    "build": {
+      "tasks": [
+        {
+          "use": "node-cf",
+          "src": "srv"
+        },
+        {
+          "use": "postgres-cf",
+          "src": "db"
+        }
+      ]
+    }
+  },
+  "sapux": [
+    "app/beers-manage"
+  ]
+}
