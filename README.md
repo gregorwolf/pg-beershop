@@ -308,6 +308,9 @@ Credentials for Heroku Postgres are periodically rotated by the system. An envir
 web: export cds_requires_database_credentials_connectionString=false && cds serve
 ```
 
+We also added a new script called 'heroku-prebuild' to the package.json file, in order to copy a cleaner version of the package.json without the XSUAA enabled.
+See the Heroku folder for more details.
+
 ## Features
 
 ### Convert SQL generated from cds compile to PostgreSQL
