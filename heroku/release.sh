@@ -1,1 +1,1 @@
-cp package.json ../package.json
+cat package.json > ../package.json 
