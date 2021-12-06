@@ -17,8 +17,8 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/cds": "<5.4.0",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.2",
+    "@sap/cds": "5.1.x",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
     "cds-dbm": "0.0.27",
     "cds-pg": "^0.1.15",
     "express": "^4",
@@ -32,7 +32,7 @@
         "kind": "database"
       },
       "auth": {
-        "impl": ".heroku/mock-auth-handler.js"
+        "impl": "./heroku/mock-auth-handler.js"
       },
       "database": {
         "impl": "cds-pg",
