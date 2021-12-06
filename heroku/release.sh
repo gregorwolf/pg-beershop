@@ -1,1 +1,0 @@
-cat package.json > ../package.json 
