@@ -82,6 +82,11 @@
       "db": {
         "kind": "database"
       },
+      "auth": {
+        "passport": {
+            "strategy": "JWT"
+        }
+      },
       "database": {
         "impl": "cds-pg",
         "model": [

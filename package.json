@@ -47,7 +47,7 @@
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
     "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
     "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express",
-    "heroku-postbuild": "cp ./heroku/package.json package.json && rm xs-security.json" 
+    "heroku-postbuild": "cp ./heroku/package.json package.json" 
   },
   "repository": {
     "type": "git",
