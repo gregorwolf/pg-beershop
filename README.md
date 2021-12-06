@@ -308,13 +308,6 @@ Credentials for Heroku Postgres are periodically rotated by the system. An envir
 web: export cds_requires_database_credentials_connectionString=false && cds serve
 ```
 
-In order for this example to work, you'll also need to setup a couple of [Config Vars](https://devcenter.heroku.com/articles/config-vars) by using the web interface or the following commands from CLI:
-
-```
-heroku config:set cds_requires_uaa={}
-
-```
-
 ## Features
 
 ### Convert SQL generated from cds compile to PostgreSQL
