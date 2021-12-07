@@ -47,6 +47,7 @@
         "impl": "./heroku/mock-auth-handler.js"
       },
       "database": {
+        "dialect": "plain",
         "impl": "cds-pg",
         "model": [
           "srv"
