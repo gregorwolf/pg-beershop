@@ -311,7 +311,7 @@ The entry point of every heroku application is the Procfile. Through this file y
 Credentials for Heroku Postgres are periodically rotated by the system. An environment variable, called DATABASE_URL is provided to your application and is automatically updated on each credentials change. For this reason, you cannot use the static xml configuration provided in the package.json file, but you need to inject the connection string at runtime through the Procfile start command. 
 
 ```
-web: export cds_requires_database_credentials_connectionString=false && cds serve
+web: export cds_requires_database_credentials_connectionString=$DATABASE_URL && cds serve
 ```
 
 We also added a new script called 'heroku-prebuild' to the package.json file, in order to copy a cleaner version of the package.json without the XSUAA enabled.
