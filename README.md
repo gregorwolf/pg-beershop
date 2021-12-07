@@ -275,7 +275,14 @@ Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your 
 
 You can also create a new pipeline or application from the Heroku website and bound it to an existing git repository. This should enable you to deploy directly from your repository on every completed pull requests on the main branch.
 
-### setup the HEROKU POSTGRES Service
+### Create a new app
+Start by creating a new app and remote repository on heroku by issuing this command:
+
+```
+heroku create
+```
+
+### Setup the HEROKU POSTGRES Service
 [Heroku Postgres](https://devcenter.heroku.com/articles/heroku-postgresql) is a managed SQL database service provided directly by Heroku. You can access a Heroku Postgres database from any language with a PostgreSQL driver, including all languages officially supported by Heroku.
 
 In order to provision your application with an Heroku Postgres db you have to run the following command from the CLI
@@ -299,7 +306,6 @@ Note that you don't need a running pgsql instance on your machine for this to wo
 
 
 ### Configure app for running on Heroku
-
 The entry point of every heroku application is the Procfile. Through this file you can specify the starting script of your application.
 
 Credentials for Heroku Postgres are periodically rotated by the system. An environment variable, called DATABASE_URL is provided to your application and is automatically updated on each credentials change. For this reason, you cannot use the static xml configuration provided in the package.json file, but you need to inject the connection string at runtime through the Procfile start command. 
@@ -310,6 +316,15 @@ web: export cds_requires_database_credentials_connectionString=false && cds serv
 
 We also added a new script called 'heroku-prebuild' to the package.json file, in order to copy a cleaner version of the package.json without the XSUAA enabled.
 See the Heroku folder for more details.
+
+### Deploy the application
+To deploy the application on heroku run the command:
+
+```
+git push heroku main
+```
+
+You should now be able to open the beershop example from the heroku website.
 
 ## Features
 
