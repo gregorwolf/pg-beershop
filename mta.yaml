@@ -14,7 +14,7 @@ build-parameters:
    - builder: custom
      commands:
       - npm install --production
-      - npx cds-dbm build --production
+      - node node_modules/cds-dbm/dist/cli.js build --production
       - mkdir -p gen/db-with-express
       - npm run copy:db:gen
       - npm run copy:db:template

@@ -10,7 +10,8 @@
     "test": "jest",
     "docker:start:pg": "docker-compose -f stack.yml up -d",
     "docker:start:pg:11": "docker-compose -f stack-pg-11.yml up -d",
-    "deploy:pg": "npx cds-dbm deploy --create-db --load-via delta",
+    "deploy:pg": "node_modules/cds-dbm/dist/cli.js deploy --create-db",
+    "deploy:pg:load": "node_modules/cds-dbm/dist/cli.js deploy --create-db --load-via delta",
     "docker:start:cds": "docker run --env-file .env --name pg-beershop --network='pg-beershop_default' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
     "docker:start:ui": "docker run --name pg-beershop-ui --network='pg-beershop_default' -p 5000:5000 -t gregorwolf/pg-beershop-ui:latest",
     "docker:restart:cds": "docker start -ai pg-beershop",
@@ -20,7 +21,7 @@
     "start:cds": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
     "docker:stop:pg:11": "docker-compose -f stack-pg-11.yml down",
-    "build": "npx cds-dbm build --production",
+    "build": "node_modules/cds-dbm/dist/cli.js build --production",
     "build:cf": "mbt build",
     "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-apt,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
@@ -46,7 +47,8 @@
     "test:db": "node test/test-db.js",
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
     "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
-    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express"
+    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express",
+    "heroku-postbuild": "echo heroku postbuild skipped"
   },
   "repository": {
     "type": "git",
@@ -56,20 +58,20 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^5.3.0",
-    "@sap/cds": "5.1.x",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
+    "@sap/audit-logging": "^5.1.0",
+    "@sap/cds": "^5.7.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.7.11",
     "@sap/xsenv": "^3.1.1",
-    "@sap/xssec": "^3.2.10",
-    "applicationinsights": "^2.1.9",
-    "cds-pg": "0.0.x",
+    "@sap/xssec": "^3.2.11",
+    "applicationinsights": "^2.2.0",
+    "cds-pg": "0.1.16",
     "copyfiles": "^2.4.1",
     "express": "^4.17.1",
     "passport": "^0.5.0",
     "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.13",
+    "@sap/ux-specification": "^1.90.10",
     "cds-dbm": "^0.0.27",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
@@ -82,13 +84,27 @@
       "db": {
         "kind": "database"
       },
+      "auth": {
+        "[heroku]": {
+          "impl": "./heroku/mock-auth-handler.js"
+        }
+      },
       "database": {
+        "dialect": "plain",
         "impl": "cds-pg",
         "model": [
           "srv"
-        ]
+        ],
+        "credentials": {
+          "[heroku]": {
+            "ssl": {
+              "rejectUnauthorized": false
+            }
+          }
+        }
       },
       "uaa": {
+        "[heroku]": {},
         "kind": "xsuaa"
       }
     },
