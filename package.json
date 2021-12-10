@@ -47,7 +47,8 @@
     "test:db": "node test/test-db.js",
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
     "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
-    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express"
+    "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express",
+    "heroku-postbuild": "echo heroku postbuild skipped" 
   },
   "repository": {
     "type": "git",
@@ -58,8 +59,8 @@
   "license": "derived Beer-Ware",
   "dependencies": {
     "@sap/audit-logging": "^5.3.0",
-    "@sap/cds": "5.6.4",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.2",
+    "@sap/cds": "^5.7.1",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.11",
     "applicationinsights": "^2.1.9",
@@ -83,14 +84,27 @@
       "db": {
         "kind": "database"
       },
+      "auth": {
+        "[heroku]": {
+          "impl": "./heroku/mock-auth-handler.js"
+        }
+      },
       "database": {
         "dialect": "plain",
         "impl": "cds-pg",
         "model": [
           "srv"
-        ]
+        ],
+        "credentials": {
+          "[heroku]": {
+            "ssl": {
+              "rejectUnauthorized": false
+            }
+          }
+        }
       },
       "uaa": {
+        "[heroku]": {},
         "kind": "xsuaa"
       }
     },
