@@ -48,7 +48,7 @@
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
     "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
     "copy:db:gen": "copyfiles -u 2 -a ./gen/db/* ./gen/db/**/* gen/db-with-express",
-    "heroku-postbuild": "echo heroku postbuild skipped" 
+    "heroku-postbuild": "echo heroku postbuild skipped"
   },
   "repository": {
     "type": "git",
@@ -58,25 +58,25 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^5.3.0",
-    "@sap/cds": "^5.7.1",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.8.1",
+    "@sap/audit-logging": "^5.1.0",
+    "@sap/cds": "^5.7.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.7.11",
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.11",
-    "applicationinsights": "^2.1.9",
-    "cds-pg": "0.1.15",
+    "applicationinsights": "^2.2.0",
+    "cds-pg": "0.1.16",
     "copyfiles": "^2.4.1",
     "express": "^4.17.1",
     "passport": "^0.5.0",
     "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.15",
+    "@sap/ux-specification": "^1.90.10",
     "cds-dbm": "^0.0.27",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
-    "jest": "^27.4.3",
+    "jest": "^27.4.4",
     "npm-run-all": "^4.1.5"
   },
   "cds": {
