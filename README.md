@@ -316,6 +316,8 @@ web: export cds_requires_database_credentials_connectionString=$DATABASE_URL && 
 
 We used the [profile feature](https://cap.cloud.sap/docs/node.js/cds-env#profiles) in order to provide specific information for the heroku environment and suppress unwanted features from the package.json file (eg. xsuaa).
 
+We also created a heroku-postbuild script to override the default build command when deployed to heroku (not required in this version).
+
 ```json
       "database": {
         "dialect": "plain",
@@ -331,6 +333,10 @@ We used the [profile feature](https://cap.cloud.sap/docs/node.js/cds-env#profile
           }
         }
       },
+```
+
+```json
+    "heroku-postbuild": "echo heroku postbuild skipped" 
 ```
 
 ### Authentication
