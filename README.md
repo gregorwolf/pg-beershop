@@ -311,11 +311,39 @@ The entry point of every heroku application is the Procfile. Through this file y
 Credentials for Heroku Postgres are periodically rotated by the system. An environment variable, called DATABASE_URL is provided to your application and is automatically updated on each credentials change. For this reason, you cannot use the static xml configuration provided in the package.json file, but you need to inject the connection string at runtime through the Procfile start command. 
 
 ```
-web: export cds_requires_database_credentials_connectionString=$DATABASE_URL && cds serve
+web: export cds_requires_database_credentials_connectionString=$DATABASE_URL && cds run --profile heroku
 ```
 
-We also added a new script called 'heroku-prebuild' to the package.json file, in order to copy a cleaner version of the package.json without the XSUAA enabled.
-See the Heroku folder for more details.
+We used the [profile feature](https://cap.cloud.sap/docs/node.js/cds-env#profiles) in order to provide specific information for the heroku environment and suppress unwanted features from the package.json file (eg. xsuaa).
+
+```json
+      "database": {
+        "dialect": "plain",
+        "impl": "cds-pg",
+        "model": [
+          "srv"
+        ],
+        "credentials": {
+          "[heroku]": {
+            "ssl": {
+              "rejectUnauthorized": false
+            }
+          }
+        }
+      },
+```
+
+### Authentication
+In this example, we used a [custom handler](https://cap.cloud.sap/docs/node.js/authentication#custom) to mock the user authentication in the heroku environment. You can follow the guides regarding authentication on the capire website to implement your own method, or reuse the built-in jwt or basic authentication.
+
+```javascript
+// XSUAA doesn't work in heroku environment, so you should provide your own authentication handler and strategy
+// in this example, no auth method is provided
+module.exports = (req, res, next) => {
+      req.user = new cds.User.Privileged()
+      return next()
+}
+```
 
 ### Deploy the application
 To deploy the application on heroku run the command:
@@ -325,6 +353,9 @@ git push heroku main
 ```
 
 You should now be able to open the beershop example from the heroku website.
+
+### Open points
+Right now, due to limitations in the current cds-dbm library, is not possible to use the [heroku release phase](https://devcenter.heroku.com/articles/release-phase) to automatically update the database schema on release. Will fix this when the new version of the deployer library is released.
 
 ## Features
 
