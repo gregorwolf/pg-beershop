@@ -66,7 +66,7 @@
     "applicationinsights": "^2.2.0",
     "cds-pg": "0.1.16",
     "copyfiles": "^2.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "passport": "^0.5.1",
     "pg": "^8.7.1"
   },
