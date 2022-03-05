@@ -17,7 +17,7 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
   "VCAP_SERVICES": {
     "postgres": [
       {
-        "name": "postgres",
+        "name": "db",
         "label": "postgres",
         "tags": ["plain", "database"],
         "credentials": {
