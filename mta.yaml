@@ -14,7 +14,7 @@ build-parameters:
    - builder: custom
      commands:
       - npm install --production
-      - node node_modules/cds-dbm/dist/cli.js build --production
+      - cds build --production
       - mkdir -p gen/db-with-express
       - npm run copy:db:gen
       - npm run copy:db:template
@@ -25,7 +25,7 @@ modules:
     type: custom
     path: gen/db-with-express
     parameters:
-      buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.7, nodejs_buildpack] 
+      buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.10, nodejs_buildpack] 
       no-route: true
       no-start: true
       disk-quota: 3GB
@@ -121,3 +121,13 @@ resources:
       service-plan: lite
       service: destination
     type: org.cloudfoundry.managed-service
+
+## Test if tags work for user provided service
+#  - name: pg-beershop-external-database
+#    type: org.cloudfoundry.user-provided-service
+#    parameters:
+#      path: ./pg-env.json
+#      service-tags: 
+#        - plain
+#        - relational
+#        - database
