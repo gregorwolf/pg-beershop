@@ -42,12 +42,12 @@
     "xsuaa:update": "cf update-service pg-beershop-uaa -c xs-security.json",
     "xsuaa:create:key": " cf create-service-key pg-beershop-uaa  pg-beershop-uaa-key",
     "xsuaa:download:key": "cf service-key  pg-beershop-uaa pg-beershop-uaa-key",
-    "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar",
+    "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar --retries 0",
     "deploy:cf:bg": "cf bg-deploy mta_archives/pg-beershop_1.0.0.mtar -f --no-confirm",
-    "deploy:cf:deployer:apt": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer-apt",
-    "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer",
-    "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv",
-    "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext",
+    "deploy:cf:deployer:apt": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer-apt --retries 0",
+    "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer --retries 0",
+    "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv --retries 0",
+    "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext --retries 0",
     "test:db": "node test/test-db.js",
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
     "copy:db:template": "copyfiles -u 1 -a ./db-deployer-apt/* ./db-deployer-apt/**/* gen/db-with-express",
@@ -86,7 +86,10 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "database"
+        "kind": "database",
+        "vcap": {
+          "name": "pg-beershop-database"
+        }
       },
       "auth": {
         "[heroku]": {
@@ -128,12 +131,23 @@
     "build": {
       "tasks": [
         {
-          "use": "node-cf",
-          "src": "srv"
+          "for": "node-cf",
+          "src": "srv",
+          "options": {
+            "model": [
+              "db",
+              "srv",
+              "app"
+            ]
+          }
         },
         {
-          "use": "postgres-cf",
-          "src": "db"
+          "use": "cds-dbm/dist/build/postgres-cf",
+          "for": "postgres-cf",
+          "src": "db",
+          "options": {
+            "deployCmd": "npx cds-dbm deploy --load-via delta --auto-undeploy"
+          }
         }
       ]
     }
