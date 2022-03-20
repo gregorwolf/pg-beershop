@@ -68,7 +68,7 @@
     "@sap/xsenv": "^3.2.1",
     "@sap/xssec": "^3.2.13",
     "applicationinsights": "^2.2.2",
-    "cds-pg": "0.1.25",
+    "cds-pg": "0.1.26",
     "copyfiles": "^2.4.1",
     "express": "^4.17.3",
     "passport": "^0.5.2",
