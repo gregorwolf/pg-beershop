@@ -15,15 +15,15 @@ build-parameters:
      commands:
       - npm install --production
       - cds build --production
-      - mkdir -p gen/db-with-express
-      - npm run copy:db:gen
-      - npm run copy:db:template
+#      - mkdir -p gen/db-with-express
+#      - npm run copy:db:gen
+#      - npm run copy:db:template
 
 modules:
 # DB Deploy with combined apt and Node.JS buildpack
   - name: pg-beershop-db-deployer-apt
     type: custom
-    path: gen/db-with-express
+    path: gen/db
     parameters:
       buildpacks: [https://github.com/cloudfoundry/apt-buildpack#v0.2.10, nodejs_buildpack] 
       no-route: true
@@ -39,7 +39,6 @@ modules:
       ignore: ["node_modules/"]
     requires:
     - name: pg-beershop-database
-#    - name: pg-beershop-external-database
 
   # ----------------- DB-UI with adminer -----------------------
   - name: pg-beershop-adminer
@@ -111,6 +110,8 @@ resources:
       service-plan: trial
       skip-service-updates:
         parameters: true
+      service-tags:
+        - plain        
 
 # For a second deploy use
 # npm run deploy:cf:update
@@ -121,13 +122,3 @@ resources:
       service-plan: lite
       service: destination
     type: org.cloudfoundry.managed-service
-
-## Test if tags work for user provided service
-#  - name: pg-beershop-external-database
-#    type: org.cloudfoundry.user-provided-service
-#    parameters:
-#      path: ./pg-env.json
-#      service-tags: 
-#        - plain
-#        - relational
-#        - database

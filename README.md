@@ -19,7 +19,7 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
       {
         "name": "pg-beershop-database",
         "label": "postgres",
-        "tags": ["plain", "database"],
+        "tags": ["plain", "db", "relational", "database"],
         "credentials": {
           "host": "localhost",
           "port": "5432",
