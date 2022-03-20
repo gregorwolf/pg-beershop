@@ -32,10 +32,7 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "database",
-        "vcap": {
-          "name": "pg-beershop-database"
-        }
+        "kind": "database"
       },
       "database": {
         "dialect": "plain",
