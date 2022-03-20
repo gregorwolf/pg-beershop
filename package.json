@@ -25,7 +25,7 @@
     "start:cds": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
     "docker:stop:pg:11": "docker-compose -f stack-pg-11.yml down",
-    "build": "node_modules/cds-dbm/dist/cli.js build --production",
+    "build": "cds build --production",
     "build:cf": "mbt build",
     "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-apt,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
     "build:ElasticBeanstalk": "run-s build build:zipsrv",
