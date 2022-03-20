@@ -151,11 +151,9 @@ To create the beershop database a port forwarding must be started:
 
 `kubectl -n pg-beershop port-forward service/beershop-postgresql 5432:5432`
 
-Then you can connect with the psql client. The password is _postgres_:
+Now you can deploy the database content:
 
-`psql -h localhost -U postgres --password`
-
-Run the SQL command from _db/init/beershop.sql_.
+`npm run deploy:pg:load`
 
 For troubleshooting you can SSH into the CAP container:
 
