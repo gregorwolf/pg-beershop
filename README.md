@@ -121,7 +121,7 @@ If you want to build your own docker image replace _gregorwolf_ in _package.json
 
 To test the image locally you have to create a _.env_ file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
 
-`VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["database"],"credentials":{"host":"beershop-postgresql","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
+`VCAP_SERVICES={"docker-postgres":[{"name":"postgres","label":"postgres","tags":["plain", "db", "relational", "database"],"credentials":{"host":"beershop-postgresql","port":"5432","database":"beershop","user":"postgres","password":"postgres"}}]}`
 
 Then run:
 
