@@ -59,7 +59,7 @@ jobs:
         with:
           context: app
           push: true
-          tags: gregorwolf/pg-beershop:latest
+          tags: gregorwolf/pg-beershop-ui:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
