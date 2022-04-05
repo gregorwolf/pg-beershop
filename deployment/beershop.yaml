@@ -119,7 +119,9 @@ spec:
                 "name": "postgres",
                 "label": "postgres",
                 "tags": [
-                  "plain"
+                  "plain",
+                  "relational",
+                  "database"
                 ],
                 "credentials": {
                   "host": "beershop-postgresql",
@@ -164,9 +166,14 @@ spec:
         - secretRef:
             name: beershop-postgresql-secret
       initContainers:
-      - image: gregorwolf/pg-beershop-db:latest
+      - name: init-service-beershop-postgresql
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nslookup beershop-postgresql; do echo waiting for service beershop-postgresql; sleep 2; done;']
+      - image: gregorwolf/pg-beershop-db:latest        
         name: beershop-db-init
         command: ['sh', '-c', "echo $VCAP_SERVICES && echo $JAVA_HOME && npm -v && jq --version && npx cds-dbm --version"]
+        # Fails with Error: read ECONNRESET
+        # command: ['sh', '-c', "echo $VCAP_SERVICES && echo $JAVA_HOME && npm -v && jq --version && npx cds-dbm --version && npx cds-dbm deploy -l delta -a"]
         imagePullPolicy: "Always"
         envFrom:
         - secretRef:
