@@ -1,4 +1,4 @@
-FROM node:14-buster-slim
+FROM node:17-buster-slim
 
 RUN apt-get update && apt-get upgrade -y && nodejs -v && npm -v
 # causes an error with node:14-buster-slim
