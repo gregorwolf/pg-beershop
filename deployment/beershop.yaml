@@ -163,3 +163,11 @@ spec:
         envFrom:
         - secretRef:
             name: beershop-postgresql-secret
+      initContainers:
+      - image: gregorwolf/pg-beershop-db:latest
+        name: beershop-db-init
+        command: ['sh', '-c', "echo $VCAP_SERVICES && echo $JAVA_HOME && npm -v && jq --version && npx cds-dbm --version"]
+        imagePullPolicy: "Always"
+        envFrom:
+        - secretRef:
+            name: beershop-postgresql-secret

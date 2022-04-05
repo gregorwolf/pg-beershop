@@ -143,6 +143,10 @@ To keep this project separate from your other deployments I would suggest to cre
 
 `kubectl create namespace pg-beershop`
 
+To avoid `-n pg-beershop` with each kubectl command you can run:
+
+`kubectl config set-context --current --namespace=pg-beershop`
+
 Deploy the configuration:
 
 `kubectl -n pg-beershop apply -f deployment/beershop.yaml`
@@ -158,6 +162,10 @@ Now you can deploy the database content:
 For troubleshooting you can SSH into the CAP container:
 
 `kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash`
+
+Update the container:
+
+`kubectl -n pg-beershop rollout restart deployment/beershop`
 
 If you want to delete the deployment, then run:
 
