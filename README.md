@@ -151,19 +151,13 @@ Deploy the configuration:
 
 `kubectl -n pg-beershop apply -f deployment/beershop.yaml`
 
-To create the beershop database a port forwarding must be started:
-
-`kubectl -n pg-beershop port-forward service/beershop-postgresql 5432:5432`
-
-Now you can deploy the database content:
-
-`npm run deploy:pg:load`
+To create the beershop database a Job is used that starts once when you dun the apply.
 
 For troubleshooting you can SSH into the CAP container:
 
 `kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash`
 
-Update the container:
+Before you can update the container you have to delete the beershop-db-init. Then you can run:
 
 `kubectl -n pg-beershop rollout restart deployment/beershop`
 
