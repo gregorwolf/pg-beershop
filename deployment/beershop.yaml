@@ -154,6 +154,8 @@ spec:
         tier: frontend
       annotations:
         sidecar.istio.io/inject: "true"
+#        traffic.sidecar.istio.io/excludeOutboundPorts: '5432'
+#        traffic.sidecar.istio.io/excludeOutboundIPRanges: 0.0.0.0/0
     spec:
       containers:
       - image: gregorwolf/pg-beershop:latest
@@ -168,10 +170,31 @@ spec:
       initContainers:
       - name: init-service-beershop-postgresql
         image: busybox:1.28
-        command: ['sh', '-c', 'until nslookup beershop-postgresql; do echo waiting for service beershop-postgresql; sleep 2; done;']
+        command: ['sh', '-c', 
+          '
+          until nslookup beershop-postgresql; 
+            do echo waiting for service beershop-postgresql; 
+            sleep 2; 
+          done;
+          ']
+#      - name: check-db-ready
+#        image: postgres:alpine
+#        securityContext:
+#          runAsUser: 1337
+#        command: ['sh', '-c', 
+#          'until pg_isready -h beershop-postgresql -p 5432; 
+#          do echo waiting for database; 
+#          sleep 2; 
+#          done;']
       - image: gregorwolf/pg-beershop-db:latest        
         name: beershop-db-init
-        command: ['sh', '-c', "echo $VCAP_SERVICES && echo $JAVA_HOME && npm -v && jq --version && npx cds-dbm --version"]
+        command: ['sh', '-c', 
+          "echo $VCAP_SERVICES && 
+          echo $JAVA_HOME && 
+          npm -v && 
+          jq --version && 
+          npx cds-dbm --version
+          "]
         # Fails with Error: read ECONNRESET
         # command: ['sh', '-c', "echo $VCAP_SERVICES && echo $JAVA_HOME && npm -v && jq --version && npx cds-dbm --version && npx cds-dbm deploy -l delta -a"]
         imagePullPolicy: "Always"
