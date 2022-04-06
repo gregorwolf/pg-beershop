@@ -134,6 +134,33 @@ spec:
           ]
         }
 ---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: beershop-db-init
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
+    spec:
+      containers:
+        - name: beershop-db-init
+          image: gregorwolf/pg-beershop-db:latest
+          imagePullPolicy: IfNotPresent
+          command: ['sh', '-c', 
+            "echo $JAVA_HOME && 
+            npm -v && 
+            jq --version && 
+            npx cds-dbm --version &&
+            npx cds-dbm deploy -l delta -a
+            "]
+          envFrom:
+            - secretRef:
+                name: beershop-postgresql-secret
+      restartPolicy: OnFailure
+
+---
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
