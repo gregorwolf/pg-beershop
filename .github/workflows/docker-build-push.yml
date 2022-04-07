@@ -63,7 +63,7 @@ jobs:
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-## Not possible until https://github.com/docker/roadmap/issues/115 is solved
+## Not possible until https://github.com/docker/hub-tool/issues/172 is solved
 #      - 
 #        name: Publish Readme
 #        id: publish_readme
