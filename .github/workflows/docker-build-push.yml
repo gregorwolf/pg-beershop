@@ -53,6 +53,19 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
       -
+        name: Build and push db deployer
+        id: docker_build_db
+        uses: docker/build-push-action@v2.10.0
+        with:
+          context: .
+          file: db-deployer-kubernetes/Dockerfile
+          push: true
+          tags: gregorwolf/pg-beershop-db:latest
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build_db.outputs.digest }}
+
+      -
         name: Build and push UI
         id: docker_build_ui
         uses: docker/build-push-action@v2.10.0
@@ -62,7 +75,7 @@ jobs:
           tags: gregorwolf/pg-beershop-ui:latest
       -
         name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ steps.docker_build_ui.outputs.digest }}
 ## Not possible until https://github.com/docker/hub-tool/issues/172 is solved
 #      - 
 #        name: Publish Readme
