@@ -144,6 +144,17 @@ spec:
       annotations:
         sidecar.istio.io/inject: 'true'
     spec:
+      initContainers:
+      - name: init-service-beershop-postgresql
+        image: busybox:1.28
+        command: ['sh', '-c', 
+          '
+          until nslookup beershop-postgresql; 
+            do echo waiting for service beershop-postgresql; 
+            sleep 2; 
+          done;
+          sleep 5;
+          ']
       containers:
         - name: beershop-db-init
           image: gregorwolf/pg-beershop-db:latest
@@ -153,7 +164,7 @@ spec:
             npm -v && 
             jq --version && 
             npx cds-dbm --version &&
-            npx cds-dbm deploy -l delta -a
+            npx cds-dbm deploy --create-db -l delta -a
             "]
           envFrom:
             - secretRef:
