@@ -133,7 +133,7 @@ to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you w
 
 ### Deploy to Kyma
 
-Download the kubeconfig from your Kyma instance via the menu behind the account Icon in the upper right corner. Save it in _~/.kube/kubeconfig-kyma.yml_. Then run:
+Download the kubeconfig from your Kyma instance via the download icon in the cluster overview. Save it in _~/.kube/kubeconfig-kyma.yml_. Then run:
 
 `export KUBECONFIG=~/.kube/kubeconfig-kyma.yml`
 
