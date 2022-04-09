@@ -5,6 +5,14 @@ metadata:
   name: postgresql-pass
 stringData:
   password: postgres
+# ---
+# apiVersion: servicecatalog.k8s.io/v1beta1
+# kind: ServiceInstance
+# metadata:
+#   name: beershop-identity
+# spec:
+#   clusterServiceClassExternalName: identity
+#   clusterServicePlanExternalName: application
 ---
 apiVersion: v1
 kind: Service
