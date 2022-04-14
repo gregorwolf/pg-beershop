@@ -151,13 +151,19 @@ Deploy the configuration:
 
 `kubectl -n pg-beershop apply -f deployment/beershop.yaml`
 
-To create the beershop database a Job is used that starts once when you dun the apply.
+To create the beershop database a Job is used that starts once when you run the apply. Afterward you can delete the job with:
+
+`kubectl -n pg-beershop delete job beershop-db-init`
 
 For troubleshooting you can SSH into the CAP container:
 
 `kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash`
 
-Before you can update the container you have to delete the beershop-db-init. Then you can run:
+Before you can update the container you have to delete the beershop-db-init.
+
+`kubectl -n pg-beershop delete job beershop-db-init`
+
+Then you can run:
 
 `kubectl -n pg-beershop rollout restart deployment/beershop`
 
