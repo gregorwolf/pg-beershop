@@ -16,7 +16,7 @@
     "copycds:srv": "copyfiles -a ../srv/* ../srv/**/* srv"
   },
   "dependencies": {
-    "@sap/cds": "5.9.1",
+    "@sap/cds": "5.9.2",
     "cds-dbm": "0.0.36",
     "cds-pg": "0.1.28",
     "express": "^4.17.3",
