@@ -147,6 +147,7 @@ kind: Job
 metadata:
   name: beershop-db-init
 spec:
+  ttlSecondsAfterFinished: 100
   template:
     metadata:
       annotations:
@@ -166,7 +167,7 @@ spec:
       containers:
         - name: beershop-db-init
           image: gregorwolf/pg-beershop-db:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: "Always"
           command: ['sh', '-c', 
             "echo $JAVA_HOME && 
             npm -v && 
