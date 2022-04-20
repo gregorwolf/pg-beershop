@@ -1,21 +1,16 @@
-FROM node:14-buster-slim
-
-RUN apt-get update && apt-get upgrade -y && nodejs -v && npm -v
-# causes an error with node:14-buster-slim
-# RUN apt-get --no-install-recommends -y install openjdk-11-jre 
-WORKDIR /usr/src/app
+FROM node:14 AS build-env
+WORKDIR /app
 COPY gen/srv/package.json .
 COPY package-lock.json .
-RUN npm ci
+
+RUN npm ci --only=production
+
 COPY gen/srv .
 COPY app app/
 RUN find app -name '*.cds' | xargs rm -f
 
+FROM gcr.io/distroless/nodejs:14
+COPY --from=build-env /app /app
+WORKDIR /app
 EXPOSE 4004
-# Not needed with node:14-buster-slim
-#RUN groupadd --gid 1000 node \
-#  && useradd --uid 1000 --gid node --shell /bin/bash --create-home node \
-#  && mkdir tmp \
-#  && chown node -R tmp
-USER node
-CMD [ "npm", "start" ]
+CMD ["node_modules/@sap/cds/bin/cds.js", "run"]
