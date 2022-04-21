@@ -45,13 +45,25 @@ Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cd
 
 `npm run deploy:pg`
 
-Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System _PostgreSQL_, Server: _beershop-postgresql_, Username _postgres_ and Password _postgres_. The database _beershop_ should already exist as you've just deployed it. If you have issues with the deployment you can run the SQL commands via adminer. You find them in the file _beershop.sql_.
+The deploy will not automatically load any data which is made available via local CSV files. We need to perform an additional step for that to happen. 
+
+In order to perform a full data load you can execute the command:
+
+`npm run deploy:pg:data:full`
+
+Later on you can perform delta data loads with the command:
+
+`npm run deploy:pg:data:delta`
+
+So perform an initial full data load with the above command. This action should upload 3 CSV files with data.
+
+Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System _PostgreSQL_, Server: _beershop-postgresql_, Username _postgres_ and Password _postgres_. The database _beershop_ should already exist as you've just deployed it and the tables should contain data. If you have issues with the deployment you can run the SQL commands via adminer. You find them in the file _beershop.sql_.
 
 Now you can start the CAP application by using:
 
 `cds run`
 
-Then open <http://localhost:4004/beershop/Beers> in the browser and you should see:
+Then open <http://localhost:4004/beershop/Beers> in the browser and you should see an ODATA response with 11 beers:
 
 ```JSON
 {
@@ -70,7 +82,8 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
       "abv": 5,
       "ibu": 20,
       "brewery_ID": "fa6b959e-3a01-40ef-872e-6030ee4de4e5"
-    }
+    },
+    ...
   ]
 }
 ```
