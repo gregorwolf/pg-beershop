@@ -142,6 +142,10 @@ To test the image locally you have to create a _.env_ file that provides the env
 
 Then run:
 
+`npm run docker:run:cds`
+
+If you stopped this docker container you can start it again with
+
 `npm run docker:start:cds`
 
 to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you want to run your own image run che command you find in _package.json_ with your image. Finally publish the created image with:
@@ -152,41 +156,59 @@ to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you w
 
 Download the kubeconfig from your Kyma instance via the download icon in the cluster overview. Save it in _~/.kube/kubeconfig-kyma.yml_. Then run:
 
-`export KUBECONFIG=~/.kube/kubeconfig-kyma.yml`
+```
+export KUBECONFIG=~/.kube/kubeconfig-kyma.yml
+```
 
 Please note that the token in the kubeconfig is [only valid for 8 hours](https://kyma-project.io/docs/components/security#details-iam-kubeconfig-service). So you might have to redo the download whenever you want to run the commands again.
 
 To keep this project separate from your other deployments I would suggest to create a namespace:
 
-`kubectl create namespace pg-beershop`
+```
+kubectl create namespace pg-beershop
+```
 
 To avoid `-n pg-beershop` with each kubectl command you can run:
 
-`kubectl config set-context --current --namespace=pg-beershop`
+```
+kubectl config set-context --current --namespace=pg-beershop
+```
 
 Deploy the configuration:
 
-`kubectl -n pg-beershop apply -f deployment/beershop.yaml`
+```
+kubectl -n pg-beershop apply -f deployment/beershop.yaml
+```
 
 To create the beershop database a Job is used that starts once when you run the apply. Afterward you can delete the job with:
 
-`kubectl -n pg-beershop delete job beershop-db-init`
+```
+kubectl -n pg-beershop delete job beershop-db-init
+```
 
 For troubleshooting you can SSH into the CAP container:
 
-`kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash`
+```
+kubectl -n pg-beershop exec $(kubectl -n pg-beershop get pods -l tier=frontend -o jsonpath='{.items[0].metadata.name}') -t -i /bin/bash
+```
 
 Before you can update the container you have to delete the beershop-db-init.
 
-`kubectl -n pg-beershop delete job beershop-db-init`
+```
+kubectl -n pg-beershop delete job beershop-db-init
+```
 
 Then you can run:
 
-`kubectl -n pg-beershop rollout restart deployment/beershop`
+```
+kubectl -n pg-beershop rollout restart deployment/beershop
+```
 
 If you want to delete the deployment, then run:
 
-`kubectl -n pg-beershop delete -f deployment/beershop.yaml`
+```
+kubectl -n pg-beershop delete -f deployment/beershop.yaml
+```
 
 ## Run on Microsoft Azure
 
