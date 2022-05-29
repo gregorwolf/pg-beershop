@@ -10,6 +10,10 @@ To get started quickly you need docker and docker-compose.
 
 ### Setup
 
+Before you start please install all required dependencies using:
+
+`npm ci`
+
 To run the example with a local PostgreSQL DB in docker create a `default-env.json` file with the following content:
 
 ```JSON
@@ -45,7 +49,7 @@ Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cd
 
 `npm run deploy:pg`
 
-The deploy will not automatically load any data which is made available via local CSV files. We need to perform an additional step for that to happen. 
+The deploy will not automatically load any data which is made available via local CSV files. We need to perform an additional step for that to happen.
 
 In order to perform a full data load you can execute the command:
 
