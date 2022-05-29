@@ -212,13 +212,43 @@ kubectl -n pg-beershop delete -f deployment/beershop.yaml
 
 ## Run on Microsoft Azure
 
-Install [Azure CLI](https://docs.microsoft.com/cli/azure/) for your resprective OS. With the comand:
+Install [Azure CLI](https://docs.microsoft.com/cli/azure/) for your resprective OS.
 
-`az account list-locations -o table`
+Before you can use the CLI you have to login:
 
-you can retrieve the list of locations and select the one fitting your needs best. To deploy a PostgreSQL the extension db-up needs to be installed:
+```
+az login
+```
 
-`az extension add --name db-up`
+If you have multiple account you have to list them:
+
+```
+az account list
+```
+
+and then set the one you want to use:
+
+```
+az account set --subscription <Your-Subscription-ID>
+```
+
+With the comand:
+
+```
+az account list-locations -o table
+```
+
+you can retrieve the list of locations and select the one fitting your needs best. You can configure the default settings for location and groups:
+
+```
+az config set defaults.location=germanywestcentral defaults.group=beershop
+```
+
+To deploy a PostgreSQL the extension db-up needs to be installed:
+
+```
+az extension add --name db-up
+```
 
 Set the environment variables:
 
@@ -229,11 +259,15 @@ export adminpassword=<yourAdminPassword>
 
 Then the PostgreSQL server and database can be created:
 
-`az postgres up --resource-group beershop --location germanywestcentral --sku-name B_Gen5_1 --server-name $postgreservername --database-name beershop --admin-user beershop --admin-password $adminpassword --ssl-enforcement Enabled --version 11`
+```
+az postgres up --resource-group beershop --location germanywestcentral --sku-name B_Gen5_1 --server-name $postgreservername --database-name beershop --admin-user beershop --admin-password $adminpassword --ssl-enforcement Enabled --version 11
+```
 
 If you want to use this database from your own location or from SAP Cloud Platform Trial in eu10 then you have to add a firewall rule. Based on the information found in [SAP Cloud Platform Connectivity - Network](https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/e23f776e4d594fdbaeeb1196d47bbcc0.html#loioe23f776e4d594fdbaeeb1196d47bbcc0__trial) I add the following rule:
 
-`az postgres server firewall-rule create -g beershop -s $postgreservername -n cfeu10 --start-ip-address 3.122.0.0 --end-ip-address 3.124.255.255`
+```
+az postgres server firewall-rule create -g beershop -s $postgreservername -n cfeu10 --start-ip-address 3.122.0.0 --end-ip-address 3.124.255.255
+```
 
 Store the DB connection information in _default-env.json_. It must contain the certificate for the TLS connection documented in [Configure TLS connectivity in Azure Database for PostgreSQL - Single Server](https://docs.microsoft.com/de-de/azure/postgresql/concepts-ssl-connection-security). The format must be the following:
 
@@ -274,29 +308,41 @@ Connect to the database as described in the last paragraph of _Run on SAP Cloud 
 
 Store the file content in the environment variable VCAP_SERVICES (jq must be installed):
 
-`export VCAP_SERVICES="$(cat default-env.json | jq .VCAP_SERVICES)"`
+```
+export VCAP_SERVICES="$(cat default-env.json | jq .VCAP_SERVICES)"
+```
 
 Now create the app service plan:
 
-`az appservice plan create --name beershop --resource-group beershop --sku F1 --is-linux`
+```
+az appservice plan create --name beershop --resource-group beershop --sku F1 --is-linux
+```
 
 Check out what Node.JS runtimes are available:
 
-`az webapp list-runtimes --linux`
+```
+az webapp list-runtimes --linux
+```
 
 Then create the web app:
 
-`az webapp create --resource-group beershop --plan beershop --name beershop --runtime "NODE|12.9"`
+```
+az webapp create --resource-group beershop --plan beershop --name beershop --runtime "NODE:14-lts"
+```
 
 Configure an environment variable the variable created before:
 
-`az webapp config appsettings set --name beershop --resource-group beershop --settings VCAP_SERVICES="$VCAP_SERVICES"`
+```
+az webapp config appsettings set --name beershop --resource-group beershop --settings VCAP_SERVICES="$VCAP_SERVICES"
+```
 
 Now you can publish the app using the Azure DevOps Pipeline.
 
 To delete the database you can run:
 
-`az postgres server delete --resource-group beershop --name beershop`
+```
+az postgres server delete --resource-group beershop --name beershop
+```
 
 You have to confirm the execution with _y_.
 
