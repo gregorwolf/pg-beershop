@@ -372,7 +372,7 @@ You can also create a new pipeline or application from the Heroku website and bo
 Start by creating a new app and remote repository on heroku by issuing this command:
 
 ```
-heroku create
+heroku create -a pg-beershop
 ```
 
 ### Setup the HEROKU POSTGRES Service
@@ -383,6 +383,12 @@ In order to provision your application with an Heroku Postgres db you have to ru
 
 ```
 heroku addons:create heroku-postgresql:<your_plan>
+```
+
+For the first test use
+
+```
+heroku addons:create heroku-postgresql:hobby-dev
 ```
 
 When correctly issued this command logs the name of the newly created db instance in the console.
