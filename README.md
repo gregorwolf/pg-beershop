@@ -12,7 +12,9 @@ To get started quickly you need docker and docker-compose.
 
 Before you start please install all required dependencies using:
 
-`npm ci`
+```
+npm ci
+```
 
 To run the example with a local PostgreSQL DB in docker create a `default-env.json` file with the following content:
 
@@ -39,7 +41,9 @@ To run the example with a local PostgreSQL DB in docker create a `default-env.js
 
 Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 
-`npm run docker:start:pg`
+```
+npm run docker:start:pg
+```
 
 It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 11 then run:
 
@@ -47,17 +51,23 @@ It will use the latest available PostgreSQL Docker container. If you want to tes
 
 Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm) with the command:
 
-`npm run deploy:pg`
+```
+npm run deploy:pg
+```
 
 The deploy will not automatically load any data which is made available via local CSV files. We need to perform an additional step for that to happen.
 
 In order to perform a full data load you can execute the command:
 
-`npm run deploy:pg:data:full`
+```
+npm run deploy:pg:data:full
+```
 
 Later on you can perform delta data loads with the command:
 
-`npm run deploy:pg:data:delta`
+```
+npm run deploy:pg:data:delta
+```
 
 So perform an initial full data load with the above command. This action should upload 3 CSV files with data.
 
@@ -65,7 +75,9 @@ Then open [http://localhost:8080/](http://localhost:8080/) and login by selectin
 
 Now you can start the CAP application by using:
 
-`cds run`
+```
+cds run
+```
 
 Then open <http://localhost:4004/beershop/Beers> in the browser and you should see an ODATA response with 11 beers:
 
@@ -92,7 +104,13 @@ Then open <http://localhost:4004/beershop/Beers> in the browser and you should s
 }
 ```
 
-To stop the docker containers run either `npm run docker:stop:pg` or `npm run docker:stop:pg:11`.
+To stop the docker containers run either
+
+```
+npm run docker:stop:pg
+```
+
+or `npm run docker:stop:pg:11`.
 
 ## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
 
@@ -100,6 +118,12 @@ We're using the mbt build to create a mtar that can be deployed to the SAP CP Cl
 
 ```
 npm run build:cf
+```
+
+login to Cloud Foundry with:
+
+```
+cf login --sso
 ```
 
 then you can deploy with:
@@ -134,7 +158,9 @@ The created database is empty. As currently no deploy script is available the ne
 
 If you want to build your own docker image replace _gregorwolf_ in _package.json_ and _deployment/beershop.yaml_ with your own hub.docker.com account. Then run:
 
-`npm run build:docker`
+```
+npm run build:docker
+```
 
 To test the image locally you have to create a _.env_ file that provides the environment variable VCAP_SERVICES which contains the connection information. Fill it with the following content:
 
@@ -142,11 +168,15 @@ To test the image locally you have to create a _.env_ file that provides the env
 
 Then run:
 
-`npm run docker:run:cds`
+```
+npm run docker:run:cds
+```
 
 If you stopped this docker container you can start it again with
 
-`npm run docker:start:cds`
+```
+npm run docker:start:cds
+```
 
 to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you want to run your own image run che command you find in _package.json_ with your image. Finally publish the created image with:
 
