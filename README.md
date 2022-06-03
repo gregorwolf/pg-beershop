@@ -112,7 +112,7 @@ npm run docker:stop:pg
 
 or `npm run docker:stop:pg:11`.
 
-## Run on SAP Cloud Platform - Cloud Foundry Environment with Hyperscaler Option
+## Run on SAP Business Technology Platform - Cloud Foundry Environment with Hyperscaler Option
 
 We're using the mbt build to create a mtar that can be deployed to the SAP CP Cloud Foundry. The build ist started with:
 
@@ -132,7 +132,7 @@ then you can deploy with:
 npm run deploy:cf
 ```
 
-## Run on SAP Cloud Platform - Cloud Foundry Environment with Service Broker
+## Run on SAP Business Technology Platform - Cloud Foundry Environment with Service Broker
 
 Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/2020/02/11/consuming-hyper-scaler-backing-services-on-sap-cloud-platform-an-update/) you need to provide your on PostgreSQL DB. One way is to install a [Open Service Broker](https://www.openservicebrokerapi.org/). The page [Compliant Service Brokers](https://www.openservicebrokerapi.org/compliant-service-brokers) lists brokers supporting AWS, Azure and GCP. The SAP Developers Tutorial Mission [Use Microsoft Azure Services in SAP Cloud Platform](https://developers.sap.com/mission.cp-azure-services.html) describes in great detail how to setup the Service Broker for Azure. When you finished this setup you can run:
 
@@ -150,9 +150,9 @@ That MTA can be deployed using:
 
 `npm run deploy:cf`
 
-The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Cloud Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
+The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Business Technology Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
 
-## Run on SAP Cloud Platform - Kyma Environment
+## Run on SAP Business Technology Platform - Kyma Environment
 
 ### Create Docker Image
 
@@ -293,7 +293,7 @@ Then the PostgreSQL server and database can be created:
 az postgres up --resource-group beershop --location germanywestcentral --sku-name B_Gen5_1 --server-name $postgreservername --database-name beershop --admin-user beershop --admin-password $adminpassword --ssl-enforcement Enabled --version 11
 ```
 
-If you want to use this database from your own location or from SAP Cloud Platform Trial in eu10 then you have to add a firewall rule. Based on the information found in [SAP Cloud Platform Connectivity - Network](https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/e23f776e4d594fdbaeeb1196d47bbcc0.html#loioe23f776e4d594fdbaeeb1196d47bbcc0__trial) I add the following rule:
+If you want to use this database from your own location or from SAP Business Technology Platform Trial in eu10 then you have to add a firewall rule. Based on the information found in [SAP Business Technology Platform Connectivity - Network](https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/e23f776e4d594fdbaeeb1196d47bbcc0.html#loioe23f776e4d594fdbaeeb1196d47bbcc0__trial) I add the following rule:
 
 ```
 az postgres server firewall-rule create -g beershop -s $postgreservername -n cfeu10 --start-ip-address 3.122.0.0 --end-ip-address 3.124.255.255
@@ -334,7 +334,7 @@ Store the DB connection information in _default-env.json_. It must contain the c
 }
 ```
 
-Connect to the database as described in the last paragraph of _Run on SAP Cloud Platform_.
+Connect to the database as described in the last paragraph of _Run on SAP Business Technology Platform_.
 
 Store the file content in the environment variable VCAP_SERVICES (jq must be installed):
 
