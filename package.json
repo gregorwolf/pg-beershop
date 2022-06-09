@@ -69,7 +69,7 @@
     "@sap/audit-logging": "^5.5.3",
     "@sap/cds": "5.9.6",
     "@sap/cds-odata-v2-adapter-proxy": "^1.8.19",
-    "@sap/xsenv": "^3.2.2",
+    "@sap/xsenv": "^3.3.1",
     "@sap/xssec": "^3.2.13",
     "applicationinsights": "^2.3.3",
     "cds-pg": "0.1.28",
