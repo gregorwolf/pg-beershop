@@ -66,7 +66,7 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^5.5.3",
+    "@sap/audit-logging": "^5.5.4",
     "@sap/cds": "5.9.6",
     "@sap/cds-odata-v2-adapter-proxy": "^1.8.19",
     "@sap/xsenv": "^3.2.2",
