@@ -1,7 +1,7 @@
 {
     "_version": "1.8.0",
     "sap.app": {
-        "id": "Beers.display",
+        "id": "Breweries.manage",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -12,7 +12,7 @@
         "ach": "CA-UI5-FE",
         "dataSources": {
             "mainService": {
-                "uri": "/beershop/",
+                "uri": "/beershop-admin/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"
@@ -24,6 +24,21 @@
         "sourceTemplate": {
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "csw-breweriesmanage-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Breweries",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {
@@ -77,47 +92,47 @@
         "routing": {
             "routes": [
                 {
-                    "name": "BeersListRoute",
-                    "target": "BeersListTarget",
+                    "name": "BreweriesListRoute",
+                    "target": "BreweriesListTarget",
                     "pattern": ":?query:"
                 },
                 {
-                    "name": "BeersDetailsRoute",
-                    "target": "BeersDetailsTarget",
-                    "pattern": "Beers({key}):?query:"
+                    "name": "BreweriesDetailsRoute",
+                    "target": "BreweriesDetailsTarget",
+                    "pattern": "Breweries({key}):?query:"
                 },
                 {
                     "name": "breweryRoute",
                     "target": "breweryTarget",
-                    "pattern": "Beers({key})/brewery({key2}):?query:"
+                    "pattern": "Breweries({key})/brewery({key2}):?query:"
                 }
             ],
             "targets": {
-                "BeersListTarget": {
+                "BreweriesListTarget": {
                     "type": "Component",
-                    "id": "BeersListTarget",
+                    "id": "BreweriesListTarget",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Beers",
+                            "entitySet": "Breweries",
                             "initialLoad": true,
                             "navigation": {
-                                "Beers": {
+                                "Breweries": {
                                     "detail": {
-                                        "route": "BeersDetailsRoute"
+                                        "route": "BreweriesDetailsRoute"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "BeersDetailsTarget": {
+                "BreweriesDetailsTarget": {
                     "type": "Component",
-                    "id": "BeersDetailsTarget",
+                    "id": "BreweriesDetailsTarget",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Beers",
+                            "entitySet": "Breweries",
                             "navigation": {
                                 "brewery": {
                                     "detail": {
@@ -134,7 +149,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Beers"
+                            "entitySet": "Breweries"
                         }
                     }
                 }

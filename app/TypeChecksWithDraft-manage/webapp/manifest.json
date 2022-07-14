@@ -1,7 +1,7 @@
 {
-    "_version": "1.8.0",
+    "_version": "1.15.0",
     "sap.app": {
-        "id": "Breweries.manage",
+        "id": "TypeChecksWithDraft.manage",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -24,11 +24,25 @@
         "sourceTemplate": {
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "csw-TypeChecksWithDraft-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "TypeChecksWithDraft",
+                    "action": "manage",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {
         "technology": "UI5",
-        "fullWidth": true,
         "icons": {
             "icon": "",
             "favIcon": "",
@@ -44,15 +58,16 @@
         }
     },
     "sap.ui5": {
-        "dependencies": {
-            "minUI5Version": "1.84.0",
-            "libs": {
-                "sap.fe.templates": {}
-            }
+        "resources": {
+            "js": [],
+            "css": []
         },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
+        "dependencies": {
+            "minUI5Version": "",
+            "libs": {
+                "sap.fe.templates": {},
+                "sap.ui.fl": {}
+            }
         },
         "models": {
             "i18n": {
@@ -65,80 +80,68 @@
                     "synchronizationMode": "None",
                     "operationMode": "Server",
                     "autoExpandSelect": true,
-                    "earlyRequests": true,
-                    "groupProperties": {
-                        "default": {
-                            "submit": "Auto"
-                        }
-                    }
+                    "earlyRequests": true
                 }
             }
         },
         "routing": {
             "routes": [
                 {
-                    "name": "BreweriesListRoute",
-                    "target": "BreweriesListTarget",
-                    "pattern": ":?query:"
+                    "pattern": ":?query:",
+                    "name": "TypeChecksWithDraftList",
+                    "target": "TypeChecksWithDraftList"
                 },
                 {
-                    "name": "BreweriesDetailsRoute",
-                    "target": "BreweriesDetailsTarget",
-                    "pattern": "Breweries({key}):?query:"
-                },
-                {
-                    "name": "breweryRoute",
-                    "target": "breweryTarget",
-                    "pattern": "Breweries({key})/brewery({key2}):?query:"
+                    "pattern": "TypeChecksWithDraft({key}):?query:",
+                    "name": "TypeChecksWithDraftObjectPage",
+                    "target": "TypeChecksWithDraftObjectPage"
                 }
             ],
             "targets": {
-                "BreweriesListTarget": {
+                "TypeChecksWithDraftList": {
                     "type": "Component",
-                    "id": "BreweriesListTarget",
+                    "id": "TypeChecksWithDraftList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Breweries",
+                            "entitySet": "TypeChecksWithDraft",
+                            "variantManagement": "Page",
                             "initialLoad": true,
                             "navigation": {
-                                "Breweries": {
+                                "TypeChecksWithDraft": {
                                     "detail": {
-                                        "route": "BreweriesDetailsRoute"
+                                        "route": "TypeChecksWithDraftObjectPage"
                                     }
                                 }
                             }
                         }
                     }
                 },
-                "BreweriesDetailsTarget": {
+                "TypeChecksWithDraftObjectPage": {
                     "type": "Component",
-                    "id": "BreweriesDetailsTarget",
+                    "id": "TypeChecksWithDraftObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Breweries",
-                            "navigation": {
-                                "brewery": {
-                                    "detail": {
-                                        "route": "breweryRoute"
+                            "entitySet": "TypeChecksWithDraft",
+                            "navigation": {},
+                            "controlConfiguration": {
+                                "Assigned Beers": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "Inline"
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }
-                },
-                "breweryTarget": {
-                    "type": "Component",
-                    "id": "breweryTarget",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "Breweries"
                         }
                     }
                 }
             }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         }
     },
     "sap.platform.abap": {
@@ -150,6 +153,7 @@
         "uri": ""
     },
     "sap.fiori": {
+        "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
     }
