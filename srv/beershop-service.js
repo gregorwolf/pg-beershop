@@ -10,4 +10,9 @@ module.exports = async function (srv) {
     ];
     return users;
   });
+  srv.before("DELETE", "Breweries", async (req) => {
+    if (req.data.ID === "4aeebbed-90c2-4bdd-aa70-d8eecb8eaebb") {
+      return req.reject(400, "Not okay");
+    }
+  });
 };
