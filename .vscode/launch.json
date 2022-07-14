@@ -1,15 +1,20 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
   "configurations": [
+    {
+      "command": "cds watch",
+      "name": "cds watch",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
     {
       "type": "node",
       "request": "launch",
       "name": "cds run",
       "args": ["run"],
-      "env": { "DEBUG": "yes" },
+      "env": {
+        "DEBUG": "yes"
+      },
       "program": "${workspaceFolder}/.vscode/cds",
       "skipFiles": [
         "<node_internals>/**/*.js",
@@ -24,7 +29,9 @@
       "request": "launch",
       "name": "deploy:pg",
       "args": ["deploy", "srv", "--to", "db"],
-      "env": { "DEBUG": "yes" },
+      "env": {
+        "DEBUG": "yes"
+      },
       "program": "${workspaceFolder}/node_modules/cds-pg/bin/cds-pg",
       "skipFiles": [
         "<node_internals>/**/*.js",
@@ -41,5 +48,7 @@
       "type": "node-terminal",
       "skipFiles": ["<node_internals>/**"]
     }
-  ]
+  ],
+  "compounds": [],
+  "version": "0.2.0"
 }
