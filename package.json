@@ -23,6 +23,7 @@
     "docker:start:cds": "docker start -ai pg-beershop",
     "docker:shell": "docker exec -it pg-beershop /bin/bash",
     "start": "cds run",
+    "start:sqlite": "cds watch --profile sqlite",
     "start:issue": "run-s deploy:pg start:cds",
     "start:cds": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
@@ -81,6 +82,7 @@
   "devDependencies": {
     "@sap/ux-specification": "^1.100.4",
     "cds-dbm": "^0.0.36",
+    "cds-launchpad-plugin": "^1.0.7",
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "chai-subset": "^1.6.0",
@@ -90,12 +92,16 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "database"
+        "kind": "database",
+        "[sqlite]": {
+          "kind": "sql"
+        }
       },
       "auth": {
         "[heroku]": {
           "impl": "./heroku/mock-auth-handler.js"
-        }
+        },
+        "kind": "basic-auth"
       },
       "database": {
         "dialect": "plain",
@@ -154,6 +160,10 @@
     }
   },
   "sapux": [
-    "app/beers-manage"
+    "app/Beers-display",
+    "app/beers-manage",
+    "app/Breweries-manage",
+    "app/breweries-manage-v2",
+    "app/TypeChecksWithDraft-manage"
   ]
 }
