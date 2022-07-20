@@ -20,7 +20,7 @@
     "redirect-uris": [
       "https://*.ondemand.com/**",
       "https://*.computerservice-wolf.com/**",
-      "http://*.computerservice-wolf.com/**"
+      "http://*.localhost/**"
     ]
   }
 }
