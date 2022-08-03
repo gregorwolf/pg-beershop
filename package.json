@@ -69,7 +69,7 @@
   "dependencies": {
     "@sap/audit-logging": "^5.5.4",
     "@sap/cds": "5.9.7",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.4",
     "@sap/xsenv": "^3.3.2",
     "@sap/xssec": "^3.2.13",
     "applicationinsights": "^2.3.3",
