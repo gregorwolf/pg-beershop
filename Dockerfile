@@ -1,4 +1,4 @@
-FROM node:14 AS build-env
+FROM node:18 AS build-env
 WORKDIR /app
 COPY gen/srv/package.json .
 COPY package-lock.json .
