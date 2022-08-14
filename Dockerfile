@@ -13,4 +13,5 @@ FROM gcr.io/distroless/nodejs:14
 COPY --from=build-env /app /app
 WORKDIR /app
 EXPOSE 4004
+ENV NODE_ENV=production
 CMD ["node_modules/@sap/cds/bin/cds.js", "run"]
