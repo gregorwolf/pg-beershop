@@ -7,15 +7,18 @@ if(process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
 }
 */
 
+cds.on("bootstrap", (app) => app.use(proxy()));
+
 if (process.env.NODE_ENV !== "production") {
   const { cds_launchpad_plugin } = require("cds-launchpad-plugin");
 
   // Enable launchpad plugin
   cds.once("bootstrap", (app) => {
     const handler = new cds_launchpad_plugin();
-    app.use(handler.setup());
+    // Current 1.105.0 Version doesn't disply Fiori Elements
+    app.use(handler.setup({ version: "1.104.2" }));
+    // app.use(handler.setup());
   });
 }
 
-cds.on("bootstrap", (app) => app.use(proxy()));
 module.exports = cds.server;
