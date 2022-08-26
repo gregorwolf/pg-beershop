@@ -47,7 +47,9 @@ npm run docker:start:pg
 
 It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 11 then run:
 
-`npm run docker:start:pg:11`
+```
+npm run docker:start:pg:11
+```
 
 Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm) with the command:
 
@@ -188,7 +190,9 @@ npm run docker:start:cds
 
 to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you want to run your own image run che command you find in _package.json_ with your image. Finally publish the created image with:
 
-`npm run push:docker`
+```
+npm run push:docker
+```
 
 ### Deploy to Kyma
 
@@ -388,7 +392,9 @@ You have to confirm the execution with _y_.
 
 Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/downloads-interactive) for your resprective OS. Then work through the [Quickstart for Node.js in the standard environment](https://cloud.google.com/appengine/docs/standard/nodejs/quickstart) to deploy
 
-`gcloud app create`
+```
+gcloud app create
+```
 
 Store the environment variable in _env_variables.yaml_:
 
@@ -511,7 +517,9 @@ Right now, due to limitations in the current cds-dbm library, is not possible to
 
 When you run:
 
-`npm run compile:tosql`
+```
+npm run compile:tosql
+```
 
 the CDS model will be compiled to the _beershop-cds.sql_ file. Using the script _cdssql2pgsql.js_ this SQL is converted to support PostgreSQL. Currently only the datatype NVARCHAR must be replaced with VARCHAR.
 
