@@ -23,11 +23,13 @@
     "docker:start:cds": "docker start -ai pg-beershop",
     "docker:shell": "docker exec -it pg-beershop /bin/bash",
     "start": "cds run",
+    "start:app": "cds bind --profile hybrid --prefix app --exec npm start",
     "start:sqlite": "cds watch --profile sqlite",
     "start:issue": "run-s deploy:pg start:cds",
     "start:cds": "cds run",
     "docker:stop:pg": "docker-compose -f stack.yml down",
     "docker:stop:pg:11": "docker-compose -f stack-pg-11.yml down",
+    "bind:uaa": "cds bind uaa --to pg-beershop-uaa --kind xsuaa --profile hybrid",
     "build": "cds build --production",
     "build:cf": "mbt build",
     "build:cf:deployer": "mbt module-build -g -m=pg-beershop-db-deployer-apt,pg-beershop-srv,pg-beershop-app -a && mbt assemble",
@@ -52,6 +54,7 @@
     "deploy:cf:deployer:apt": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer-apt --retries 0",
     "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer --retries 0",
     "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv --retries 0",
+    "deploy:cf:app": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-app --retries 0",
     "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext --retries 0",
     "test:db": "node test/test-db.js",
     "undeploy:cf": "cf undeploy pg-beershop --delete-service-keys --delete-services --delete-service-brokers",
@@ -98,10 +101,13 @@
         }
       },
       "auth": {
+        "kind": "basic-auth",
         "[heroku]": {
           "impl": "./heroku/mock-auth-handler.js"
         },
-        "kind": "basic-auth"
+        "[production]": {
+          "kind": "xsuaa"
+        }
       },
       "database": {
         "dialect": "plain",
@@ -116,10 +122,6 @@
             }
           }
         }
-      },
-      "uaa": {
-        "[heroku]": {},
-        "kind": "xsuaa"
       }
     },
     "migrations": {
