@@ -23,7 +23,7 @@
     "docker:start:cds": "docker start -ai pg-beershop",
     "docker:shell": "docker exec -it pg-beershop /bin/bash",
     "start": "cds run",
-    "start:app": "cds bind --profile hybrid --prefix app --exec npm start",
+    "start:app": "cds bind --exec -- npm start --prefix app --profile hybrid",
     "start:sqlite": "cds watch --profile sqlite",
     "start:issue": "run-s deploy:pg start:cds",
     "start:cds": "cds run",
