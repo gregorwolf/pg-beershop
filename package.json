@@ -72,10 +72,10 @@
   "dependencies": {
     "@sap/audit-logging": "^5.5.5",
     "@sap/cds": "5.9.7",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.6",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.9",
     "@sap/xsenv": "^3.3.2",
     "@sap/xssec": "^3.2.13",
-    "applicationinsights": "^2.3.4",
+    "applicationinsights": "^2.3.5",
     "cds-pg": "0.1.30",
     "copyfiles": "^2.4.1",
     "express": "^4.18.1",
@@ -83,7 +83,7 @@
     "pg": "^8.8.0"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.4",
+    "@sap/ux-specification": "^1.102.9",
     "cds-dbm": "^0.0.36",
     "cds-launchpad-plugin": "^1.0.7",
     "chai": "^4.3.6",
