@@ -95,7 +95,8 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "database",
+        "kind": "postgres",
+        "dialect": "plain",
         "[sqlite]": {
           "kind": "sql"
         }
@@ -109,8 +110,7 @@
           "kind": "xsuaa"
         }
       },
-      "database": {
-        "dialect": "plain",
+      "postgres": {
         "impl": "cds-pg",
         "model": [
           "srv"
