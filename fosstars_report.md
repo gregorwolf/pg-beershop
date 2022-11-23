@@ -15,6 +15,11 @@ The rating is based on **security score for open-source projects**.
 It used the following sub-scores:
 
 1.  **[Security testing](#security-testing)**: **4.55** (weight is 1.0)
+    1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
+        1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
+            
+        1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
+            
     1.  **[Static analysis](#static-analysis)**: **0.0** (weight is 1.0)
         1.  **[LGTM score](#lgtm-score)**: **0.0** (weight is 1.0)
             
@@ -23,11 +28,6 @@ It used the following sub-scores:
         1.  **[How a project uses Bandit](#how-a-project-uses-bandit)**: **N/A** (weight is 0.5)
             
         1.  **[FindSecBugs score](#findsecbugs-score)**: **N/A** (weight is 0.5)
-            
-    1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
-        1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
-            
-        1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
             
     1.  **[Fuzzing](#fuzzing)**: **N/A** (weight is 1.0)
         
@@ -39,6 +39,11 @@ It used the following sub-scores:
     
 1.  **[Vulnerability discovery and security testing](#vulnerability-discovery-and-security-testing)**: **2.0** (weight is 0.6)
     1.  **[Security testing](#security-testing)**: **4.55** (weight is 1.0)
+        1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
+            1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
+                
+            1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
+                
         1.  **[Static analysis](#static-analysis)**: **0.0** (weight is 1.0)
             1.  **[LGTM score](#lgtm-score)**: **0.0** (weight is 1.0)
                 
@@ -47,11 +52,6 @@ It used the following sub-scores:
             1.  **[How a project uses Bandit](#how-a-project-uses-bandit)**: **N/A** (weight is 0.5)
                 
             1.  **[FindSecBugs score](#findsecbugs-score)**: **N/A** (weight is 0.5)
-                
-        1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
-            1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
-                
-            1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
                 
         1.  **[Fuzzing](#fuzzing)**: **N/A** (weight is 1.0)
             
@@ -139,6 +139,11 @@ This sub-score is based on the following sub-scores:
 
 
 
+1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
+    1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
+        
+    1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
+        
 1.  **[Static analysis](#static-analysis)**: **0.0** (weight is 1.0)
     1.  **[LGTM score](#lgtm-score)**: **0.0** (weight is 1.0)
         
@@ -147,11 +152,6 @@ This sub-score is based on the following sub-scores:
     1.  **[How a project uses Bandit](#how-a-project-uses-bandit)**: **N/A** (weight is 0.5)
         
     1.  **[FindSecBugs score](#findsecbugs-score)**: **N/A** (weight is 0.5)
-        
-1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
-    1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
-        
-    1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
         
 1.  **[Fuzzing](#fuzzing)**: **N/A** (weight is 1.0)
     
@@ -205,6 +205,11 @@ This sub-score is based on the following sub-score:
 
 
 1.  **[Security testing](#security-testing)**: **4.55** (weight is 1.0)
+    1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
+        1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
+            
+        1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
+            
     1.  **[Static analysis](#static-analysis)**: **0.0** (weight is 1.0)
         1.  **[LGTM score](#lgtm-score)**: **0.0** (weight is 1.0)
             
@@ -213,11 +218,6 @@ This sub-score is based on the following sub-score:
         1.  **[How a project uses Bandit](#how-a-project-uses-bandit)**: **N/A** (weight is 0.5)
             
         1.  **[FindSecBugs score](#findsecbugs-score)**: **N/A** (weight is 0.5)
-            
-    1.  **[Dependency testing](#dependency-testing)**: **10.0** (weight is 1.0)
-        1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
-            
-        1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
             
     1.  **[Fuzzing](#fuzzing)**: **N/A** (weight is 1.0)
         
@@ -314,6 +314,24 @@ This sub-score is based on 1 feature:
 1.  **Info about security reviews:** 0 security reviews
 
 
+### Dependency testing
+
+Score: **10.0**, confidence is 10.0 (max), weight is 1.0 (high)
+
+
+
+
+
+This sub-score is based on the following sub-scores:
+
+
+
+1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
+    
+1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
+    
+
+
 ### Static analysis
 
 Score: **0.0**, confidence is 8.33 (low), weight is 1.0 (high)
@@ -333,24 +351,6 @@ This sub-score is based on the following sub-scores:
 1.  **[How a project uses Bandit](#how-a-project-uses-bandit)**: **N/A** (weight is 0.5)
     
 1.  **[FindSecBugs score](#findsecbugs-score)**: **N/A** (weight is 0.5)
-    
-
-
-### Dependency testing
-
-Score: **10.0**, confidence is 10.0 (max), weight is 1.0 (high)
-
-
-
-
-
-This sub-score is based on the following sub-scores:
-
-
-
-1.  **[Dependabot score](#dependabot-score)**: **10.0** (weight is 1.0)
-    
-1.  **[OWASP Dependency Check score](#owasp-dependency-check-score)**: **N/A** (weight is 1.0)
     
 
 
@@ -402,6 +402,41 @@ This sub-score is based on 2 features:
 
 1.  **Does it use nohttp?** No
 1.  **Package managers:** NPM, YARN
+
+
+### Dependabot score
+
+Score: **10.0**, confidence is 10.0 (max), weight is 1.0 (high)
+
+
+
+
+
+This sub-score is based on 4 features:
+
+
+
+1.  **Does it use Dependabot?** Yes
+1.  **Does it use GitHub as the main development platform?** Yes
+1.  **Package managers:** NPM, YARN
+1.  **Programming languages:** JAVASCRIPT, OTHER
+
+
+### OWASP Dependency Check score
+
+Score: **N/A**, confidence is 10.0 (max), weight is 1.0 (high)
+
+
+
+
+
+This sub-score is based on 3 features:
+
+
+
+1.  **How is OWASP Dependency Check used?** Not used
+1.  **Package managers:** NPM, YARN
+1.  **What is the threshold for OWASP Dependency Check?** Not specified
 
 
 ### LGTM score
@@ -469,41 +504,6 @@ This sub-score is based on 2 features:
 
 1.  **Does it use FindSecBugs?** No
 1.  **Programming languages:** JAVASCRIPT, OTHER
-
-
-### Dependabot score
-
-Score: **10.0**, confidence is 10.0 (max), weight is 1.0 (high)
-
-
-
-
-
-This sub-score is based on 4 features:
-
-
-
-1.  **Does it use Dependabot?** Yes
-1.  **Does it use GitHub as the main development platform?** Yes
-1.  **Package managers:** NPM, YARN
-1.  **Programming languages:** JAVASCRIPT, OTHER
-
-
-### OWASP Dependency Check score
-
-Score: **N/A**, confidence is 10.0 (max), weight is 1.0 (high)
-
-
-
-
-
-This sub-score is based on 3 features:
-
-
-
-1.  **How is OWASP Dependency Check used?** Not used
-1.  **Package managers:** NPM, YARN
-1.  **What is the threshold for OWASP Dependency Check?** Not specified
 
 
 ## Known vulnerabilities
