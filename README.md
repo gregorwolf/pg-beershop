@@ -369,7 +369,7 @@ az webapp list-runtimes --linux
 Then create the web app:
 
 ```
-az webapp create --resource-group beershop --plan beershop --name beershop --runtime "NODE:14-lts"
+az webapp create --resource-group beershop --plan beershop --name beershop --runtime "NODE:16-lts"
 ```
 
 Configure an environment variable the variable created before:

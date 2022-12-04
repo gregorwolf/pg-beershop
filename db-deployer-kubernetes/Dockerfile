@@ -1,4 +1,4 @@
-FROM devxci/mbtci-java11-node14
+FROM devxci/mbtci-java11-node16
 
 WORKDIR /home/mta
 USER root

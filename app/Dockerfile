@@ -1,4 +1,4 @@
-FROM node:14-buster-slim
+FROM node:16-buster-slim
 
 RUN apt-get update && apt-get upgrade -y && nodejs -v && npm -v
 WORKDIR /usr/src/app

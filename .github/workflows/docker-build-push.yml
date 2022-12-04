@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x,16.x]
+        node-version: [16.x]
 
     steps:
       -
@@ -47,7 +47,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: gregorwolf/pg-beershop:latest-${{ matrix.node-version }}
+          tags:
+            gregorwolf/pg-beershop:latest-${{ matrix.node-version }}
+            gregorwolf/pg-beershop:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -60,7 +62,9 @@ jobs:
           context: .
           file: db-deployer-kubernetes/Dockerfile
           push: true
-          tags: gregorwolf/pg-beershop-db:latest-${{ matrix.node-version }}
+          tags:
+            gregorwolf/pg-beershop-db:latest-${{ matrix.node-version }}
+            gregorwolf/pg-beershop-db:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build_db.outputs.digest }}
@@ -72,7 +76,9 @@ jobs:
         with:
           context: app
           push: true
-          tags: gregorwolf/pg-beershop-ui:latest-${{ matrix.node-version }}
+          tags: 
+            gregorwolf/pg-beershop-ui:latest-${{ matrix.node-version }}
+            gregorwolf/pg-beershop-ui:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build_ui.outputs.digest }}
