@@ -51,7 +51,6 @@ jobs:
           platforms:
             ${{ matrix.docker_target }}
           tags:
-            gregorwolf/pg-beershop:latest-${{ matrix.node-version }}
             gregorwolf/pg-beershop:latest
       -
         name: Image digest
@@ -68,7 +67,6 @@ jobs:
           platforms:
             ${{ matrix.docker_target }}
           tags:
-            gregorwolf/pg-beershop-db:latest-${{ matrix.node-version }}
             gregorwolf/pg-beershop-db:latest
       -
         name: Image digest
@@ -84,7 +82,6 @@ jobs:
           platforms:
             ${{ matrix.docker_target }}
           tags: 
-            gregorwolf/pg-beershop-ui:latest-${{ matrix.node-version }}
             gregorwolf/pg-beershop-ui:latest
       -
         name: Image digest
