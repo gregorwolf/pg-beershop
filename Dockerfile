@@ -9,7 +9,7 @@ COPY gen/srv .
 COPY app app/
 RUN find app -name '*.cds' | xargs rm -f
 
-FROM gcr.io/distroless/nodejs:16
+FROM gcr.io/distroless/nodejs:18
 COPY --from=build-env /app /app
 WORKDIR /app
 EXPOSE 4004
