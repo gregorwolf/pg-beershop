@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        docker_target: ['x86_64:linux/amd64', 'arm:linux/arm64,linux/arm/v7,linux/arm/v8']
 
     steps:
       -
@@ -49,43 +48,43 @@ jobs:
           context: .
           push: true
           platforms:
-            ${{ matrix.docker_target }}
+            linux/amd64, linux/arm/v7, linux/arm/v8
           tags:
             gregorwolf/pg-beershop:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      -
-        name: Build and push db deployer
-        id: docker_build_db
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: db-deployer-kubernetes/Dockerfile
-          push: true
-          platforms:
-            ${{ matrix.docker_target }}
-          tags:
-            gregorwolf/pg-beershop-db:latest
-      -
-        name: Image digest
-        run: echo ${{ steps.docker_build_db.outputs.digest }}
+      # -
+      #   name: Build and push db deployer
+      #   id: docker_build_db
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: .
+      #     file: db-deployer-kubernetes/Dockerfile
+      #     push: true
+      #     platforms:
+      #       linux/amd64, linux/arm/v7, linux/arm/v8
+      #     tags:
+      #       gregorwolf/pg-beershop-db:latest
+      # -
+      #   name: Image digest
+      #   run: echo ${{ steps.docker_build_db.outputs.digest }}
 
-      -
-        name: Build and push UI
-        id: docker_build_ui
-        uses: docker/build-push-action@v3
-        with:
-          context: app
-          push: true
-          platforms:
-            ${{ matrix.docker_target }}
-          tags: 
-            gregorwolf/pg-beershop-ui:latest
-      -
-        name: Image digest
-        run: echo ${{ steps.docker_build_ui.outputs.digest }}
+      # -
+      #   name: Build and push UI
+      #   id: docker_build_ui
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: app
+      #     push: true
+      #     platforms:
+      #       linux/amd64, linux/arm/v7, linux/arm/v8
+      #     tags: 
+      #       gregorwolf/pg-beershop-ui:latest
+      # -
+      #   name: Image digest
+      #   run: echo ${{ steps.docker_build_ui.outputs.digest }}
 ## Not possible until https://github.com/docker/hub-tool/issues/172 is solved
 #      - 
 #        name: Publish Readme
