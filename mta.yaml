@@ -13,7 +13,7 @@ build-parameters:
   before-all:
    - builder: custom
      commands:
-      - npm install --production
+      - npm install
       - cds build --production
 #      - mkdir -p gen/db-with-express
 #      - npm run copy:db:gen
