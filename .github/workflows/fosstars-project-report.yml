@@ -1,8 +1,8 @@
 name: "Fosstars"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *"
+#  schedule:
+#    - cron: "0 0 * * *"
 
 jobs:
   create_fosstars_report:
