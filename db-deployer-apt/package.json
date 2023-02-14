@@ -16,15 +16,15 @@
     "copycds:srv": "copyfiles -a ../srv/* ../srv/**/* srv"
   },
   "dependencies": {
-    "@sap/cds": "5.9.7",
-    "cds-dbm": "0.0.36",
-    "cds-pg": "0.1.33",
-    "express": "^4.18.2",
-    "npm-run-all": "^4.1.5"
+    "@sap/cds": "^6",
+    "cds-dbm": "^0.1.1",
+    "cds-pg": "0",
+    "express": "^4",
+    "npm-run-all": "^4"
   },
   "devDependencies": {
-    "copyfiles": "^2.4.1",
-    "rimraf": "^3.0.2"
+    "copyfiles": "^2",
+    "rimraf": "^4"
   },
   "keywords": [],
   "author": "",
