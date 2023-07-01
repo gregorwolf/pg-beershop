@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop",
   "engines": {
-    "node": "^16"
+    "node": "^18"
   },
   "version": "1.0.0",
   "description": "Sample project to demonstrate the use of cds-pg",
@@ -70,27 +70,26 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
-    "@sap/audit-logging": "^5.6.3",
-    "@sap/cds": "5.9.7",
-    "@sap/cds-odata-v2-adapter-proxy": "^1.9.15",
-    "@sap/xsenv": "^3.4.0",
-    "@sap/xssec": "^3.2.14",
-    "applicationinsights": "^2.3.6",
-    "cds-pg": "0.1.33",
-    "copyfiles": "^2.4.1",
-    "express": "^4.18.2",
-    "passport": "^0.6.0",
-    "pg": "^8.8.0"
+    "@sap/audit-logging": "^5",
+    "@sap/cds": "^7",
+    "@cap-js-community/odata-v2-adapter": "^1",
+    "@sap/xsenv": "^3",
+    "@sap/xssec": "^3",
+    "applicationinsights": "^2",
+    "@cap-js/postgres": "^1",
+    "copyfiles": "^2",
+    "express": "^4",
+    "passport": "^0",
+    "pg": "^8"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.13",
-    "cds-dbm": "^0.0.36",
-    "cds-launchpad-plugin": "^1.0.8",
-    "chai": "^4.3.7",
-    "chai-as-promised": "^7.1.1",
-    "chai-subset": "^1.6.0",
-    "jest": "^29.3.1",
-    "npm-run-all": "^4.1.5"
+    "@sap/ux-specification": "^1",
+    "cds-launchpad-plugin": "^1",
+    "chai": "^4",
+    "chai-as-promised": "^7",
+    "chai-subset": "^1",
+    "jest": "^29",
+    "npm-run-all": "^4"
   },
   "cds": {
     "requires": {
