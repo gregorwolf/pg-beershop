@@ -70,13 +70,13 @@
   "author": "Gregor Wolf",
   "license": "derived Beer-Ware",
   "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1",
+    "@cap-js/postgres": "^1",
     "@sap/audit-logging": "^5",
     "@sap/cds": "^7",
-    "@cap-js-community/odata-v2-adapter": "^1",
     "@sap/xsenv": "^3",
     "@sap/xssec": "^3",
     "applicationinsights": "^2",
-    "@cap-js/postgres": "^1",
     "copyfiles": "^2",
     "express": "^4",
     "passport": "^0",
@@ -94,10 +94,11 @@
   "cds": {
     "requires": {
       "db": {
+        "impl": "@cap-js/postgres",
+        "dialect": "postgres",
         "kind": "postgres",
-        "dialect": "plain",
-        "[sqlite]": {
-          "kind": "sql"
+        "credentials": {
+          "host": "beershop-postgresql"
         }
       },
       "auth": {
@@ -108,56 +109,7 @@
         "[production]": {
           "kind": "xsuaa"
         }
-      },
-      "postgres": {
-        "impl": "cds-pg",
-        "model": [
-          "srv"
-        ],
-        "credentials": {
-          "[heroku]": {
-            "ssl": {
-              "rejectUnauthorized": false
-            }
-          }
-        }
       }
-    },
-    "migrations": {
-      "db": {
-        "schema": {
-          "default": "public",
-          "clone": "_cdsdbm_clone",
-          "reference": "_cdsdbm_ref"
-        },
-        "deploy": {
-          "tmpFile": "tmp/_autodeploy.json",
-          "undeployFile": "db/undeploy.json"
-        }
-      }
-    },
-    "build": {
-      "tasks": [
-        {
-          "for": "node-cf",
-          "src": "srv",
-          "options": {
-            "model": [
-              "db",
-              "srv",
-              "app"
-            ]
-          }
-        },
-        {
-          "use": "cds-dbm/dist/build/postgres-cf",
-          "for": "postgres-cf",
-          "src": "db",
-          "options": {
-            "deployCmd": "npx cds-dbm deploy --load-via delta --auto-undeploy"
-          }
-        }
-      ]
     }
   },
   "sapux": [
