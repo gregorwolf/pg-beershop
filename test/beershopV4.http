@@ -1,20 +1,20 @@
 ### Read Available Entities
-GET http://localhost:4004/beershop/
+GET http://localhost:4004/odata/v4/beershop/
 Authorization: Basic bob:
 ### Read Beers
-GET http://localhost:4004/beershop/Beers?$count=true
+GET http://localhost:4004/odata/v4/beershop/Beers?$count=true
 Authorization: Basic bob:
 ### Read Beers - $count
-GET http://localhost:4004/beershop/Beers/$count
+GET http://localhost:4004/odata/v4/beershop/Beers/$count
 Authorization: Basic bob:
 ### Read Beers and expand to Brewery
-GET http://localhost:4004/beershop/Beers?$expand=brewery
+GET http://localhost:4004/odata/v4/beershop/Beers?$expand=brewery
 Authorization: Basic bob:
 ### Read Available Entities for admin endpoint
-GET http://localhost:4004/beershop-admin/
+GET http://localhost:4004/odata/v4/beershop-admin/
 Authorization: Basic alice:
 ### Create new Beer
-POST http://localhost:4004/beershop-admin/Beers
+POST http://localhost:4004/odata/v4/beershop-admin/Beers
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
 
@@ -23,7 +23,7 @@ Authorization: Basic alice:
     "name": "Steiner Export"
 }
 ### Update the new Beer
-PATCH http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
+PATCH http://localhost:4004/odata/v4/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
 
@@ -32,20 +32,20 @@ Authorization: Basic alice:
     "abv": "5.3"
 }
 ### Delete the new Beer
-DELETE http://localhost:4004/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
+DELETE http://localhost:4004/odata/v4/beershop-admin/Beers(8489fdc3-63c8-4f23-b352-4c2d853a131b)
 Authorization: Basic alice:
 ### Read Breweries
-GET http://localhost:4004/beershop/Breweries
+GET http://localhost:4004/odata/v4/beershop/Breweries
 Authorization: Basic bob:
 ### Read Breweries with $count
-GET http://localhost:4004/beershop/Breweries?$count=true&$select=ID,name&$skip=0&$top=30
+GET http://localhost:4004/odata/v4/beershop/Breweries?$count=true&$select=ID,name&$skip=0&$top=30
 Authorization: Basic bob:
 ### Read TypeChecks
-GET http://localhost:4004/beershop-admin/TypeChecks
+GET http://localhost:4004/odata/v4/beershop-admin/TypeChecks
 Authorization: Basic alice:
 Accept: application/json;charset=UTF-8;IEEE754Compatible=true
 ### Create new TypeCheck
-POST http://localhost:4004/beershop-admin/TypeChecks
+POST http://localhost:4004/odata/v4/beershop-admin/TypeChecks
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Accept: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
@@ -65,7 +65,7 @@ Authorization: Basic alice:
     "type_LargeString": "Magna sit do quis culpa elit laborum culpa laboris excepteur. Proident qui culpa mollit ut ad enim. Reprehenderit aute occaecat ut ut est nostrud aliquip."
 }
 ### Update new TypeCheck
-PATCH http://localhost:4004/beershop-admin/TypeChecks(169af1ff-9f74-4795-98f9-8be901e60c6b)
+PATCH http://localhost:4004/odata/v4/beershop-admin/TypeChecks(169af1ff-9f74-4795-98f9-8be901e60c6b)
 Content-Type: application/json;charset=UTF-8;IEEE754Compatible=true
 Accept: application/json;charset=UTF-8;IEEE754Compatible=true
 Authorization: Basic alice:
@@ -85,10 +85,10 @@ Authorization: Basic alice:
 }
 
 ### Delete new TypeCheck
-DELETE http://localhost:4004/beershop-admin/TypeChecks(169af1ff-9f74-4795-98f9-8be901e60c6b)
+DELETE http://localhost:4004/odata/v4/beershop-admin/TypeChecks(169af1ff-9f74-4795-98f9-8be901e60c6b)
 Authorization: Basic alice:
 
 ### Read TypeChecksWithDraft
-GET http://localhost:4004/beershop-admin/TypeChecksWithDraft
+GET http://localhost:4004/odata/v4/beershop-admin/TypeChecksWithDraft
 Authorization: Basic alice:
 Accept: application/json;charset=UTF-8;IEEE754Compatible=true

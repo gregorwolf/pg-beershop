@@ -1,24 +1,24 @@
 ### Read Available Entities
-GET http://localhost:4004/v2/beershop/
+GET http://localhost:4004/odata/v2/beershop/
 Authorization: Basic bob:
 ### Read Beers
-GET http://localhost:4004/v2/beershop/Beers?$inlinecount=allpages&$top=2
+GET http://localhost:4004/odata/v2/beershop/Beers?$inlinecount=allpages&$top=2
 Authorization: Basic bob:
 ### Read Beers $count
-GET http://localhost:4004/v2/beershop/Beers/$count
+GET http://localhost:4004/odata/v2/beershop/Beers/$count
 Authorization: Basic bob:
 ### Read Beers only ID and name
-GET http://localhost:4004/v2/beershop/Beers?$select=ID,name
+GET http://localhost:4004/odata/v2/beershop/Beers?$select=ID,name
 Authorization: Basic bob:
 ### Read Beers skip first and read only one
-GET http://localhost:4004/v2/beershop/Beers?$skip=1&$top=1
+GET http://localhost:4004/odata/v2/beershop/Beers?$skip=1&$top=1
 Authorization: Basic bob:
 ### Read Beers and expand to Brewery - not supported yet
-GET http://localhost:4004/v2/beershop/Beers?$expand=brewery
+GET http://localhost:4004/odata/v2/beershop/Beers?$expand=brewery
 Authorization: Basic bob:
 ### Read Breweries
-GET http://localhost:4004/v2/beershop/Breweries
+GET http://localhost:4004/odata/v2/beershop/Breweries
 Authorization: Basic bob:
 ### Read Breweries $count
-GET http://localhost:4004/v2/beershop/Breweries/$count
+GET http://localhost:4004/odata/v2/beershop/Breweries/$count
 Authorization: Basic bob:
