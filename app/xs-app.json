@@ -8,15 +8,29 @@
       "service": "sap-approuter-userapi"
     },
     {
-      "source": "/beershop-admin/(.*)$",
-      "target": "/beershop-admin/$1",
+      "source": "/odata/v4/beershop-admin/(.*)$",
+      "target": "/odata/v4/beershop-admin/$1",
       "authenticationType": "xsuaa",
       "destination": "srv_api",
       "csrfProtection": true
     },
     {
-      "source": "/beershop/(.*)$",
-      "target": "/beershop/$1",
+      "source": "/odata/v4/beershop/(.*)$",
+      "target": "/odata/v4/beershop/$1",
+      "authenticationType": "xsuaa",
+      "destination": "srv_api",
+      "csrfProtection": true
+    },
+    {
+      "source": "/odata/v2/beershop-admin/(.*)$",
+      "target": "/odata/v2/beershop-admin/$1",
+      "authenticationType": "xsuaa",
+      "destination": "srv_api",
+      "csrfProtection": true
+    },
+    {
+      "source": "/odata/v2/beershop/(.*)$",
+      "target": "/odata/v2/beershop/$1",
       "authenticationType": "xsuaa",
       "destination": "srv_api",
       "csrfProtection": true

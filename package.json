@@ -14,9 +14,9 @@
     "test": "jest",
     "docker:start:pg": "docker-compose -f stack.yml up -d",
     "docker:start:pg:11": "docker-compose -f stack-pg-11.yml up -d",
-    "deploy:pg": "npx cds-dbm deploy --create-db",
-    "deploy:pg:load": "npx cds-dbm deploy --create-db --load-via delta",
-    "deploy:pg:data:delta": "npx cds-dbm load --via delta",
+    "deploy:pg": "cds deploy --profile pg",
+    "deploy:pg:model-only": "cds deploy --profile pg --model-only",
+    "deploy:pg:data:delta": "cds deploy --profile pg --model-only",
     "deploy:pg:data:full": "npx cds-dbm load --via full",
     "docker:run:cds": "docker run --env-file .env --name pg-beershop --network='pg-beershop_default' -p 4004:4004 -t gregorwolf/pg-beershop:latest",
     "docker:start:ui": "docker run --name pg-beershop-ui --network='pg-beershop_default' -p 5000:5000 -t gregorwolf/pg-beershop-ui:latest",
@@ -83,6 +83,7 @@
     "pg": "^8"
   },
   "devDependencies": {
+    "@sap/cds-dk": "^7.0.2",
     "@sap/ux-specification": "^1",
     "cds-launchpad-plugin": "^1",
     "chai": "^4",
@@ -92,17 +93,12 @@
     "npm-run-all": "^4"
   },
   "cds": {
+    "features": {
+      "serve_on_root": true
+    },
     "requires": {
-      "db": {
-        "impl": "@cap-js/postgres",
-        "dialect": "postgres",
-        "kind": "postgres",
-        "credentials": {
-          "host": "beershop-postgresql"
-        }
-      },
       "auth": {
-        "kind": "basic-auth",
+        "kind": "mocked",
         "[heroku]": {
           "impl": "./heroku/mock-auth-handler.js"
         },

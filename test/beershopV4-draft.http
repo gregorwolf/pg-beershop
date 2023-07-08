@@ -1,5 +1,5 @@
 ### Switch to Draft Edit Mode
-POST http://localhost:4004/beershop-admin/TypeChecksWithDraft(ID=5e4ca9ef-7c4c-4b22-8e85-7cadefa02c94,IsActiveEntity=true)/BeershopAdminService.draftEdit?$select=HasActiveEntity,HasDraftEntity,ID,IsActiveEntity,type_Boolean,type_Date,type_DateTime,type_Decimal,type_Double,type_Int32,type_Int64,type_LargeString,type_String,type_Time,type_Timestamp&$expand=DraftAdministrativeData($select=DraftUUID,InProcessByUser)
+POST http://localhost:4004/odata/v4/beershop-admin/TypeChecksWithDraft(ID=5e4ca9ef-7c4c-4b22-8e85-7cadefa02c94,IsActiveEntity=true)/BeershopAdminService.draftEdit?$select=HasActiveEntity,HasDraftEntity,ID,IsActiveEntity,type_Boolean,type_Date,type_DateTime,type_Decimal,type_Double,type_Int32,type_Int64,type_LargeString,type_String,type_Time,type_Timestamp&$expand=DraftAdministrativeData($select=DraftUUID,InProcessByUser)
 Authorization: Basic alice:
 Accept:application/json;odata.metadata=minimal;IEEE754Compatible=true
 Content-Type:application/json;charset=UTF-8;IEEE754Compatible=true

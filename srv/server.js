@@ -1,5 +1,6 @@
-const proxy = require("@sap/cds-odata-v2-adapter-proxy");
 const cds = require("@sap/cds");
+const cov2ap = require("@cap-js-community/odata-v2-adapter");
+
 /*
 if(process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
   let appInsights = require('applicationinsights')
@@ -7,7 +8,7 @@ if(process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
 }
 */
 
-cds.on("bootstrap", (app) => app.use(proxy()));
+cds.on("bootstrap", (app) => app.use(cov2ap()));
 
 if (process.env.NODE_ENV !== "production") {
   const { cds_launchpad_plugin } = require("cds-launchpad-plugin");

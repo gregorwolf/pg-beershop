@@ -12,7 +12,7 @@
         "ach": "CA-UI5-FE",
         "dataSources": {
             "mainService": {
-                "uri": "/beershop/",
+                "uri": "/odata/v4/beershop/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"

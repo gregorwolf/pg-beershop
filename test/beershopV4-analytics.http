@@ -1,9 +1,9 @@
 ### Read BreweryAnalytics Entities
-GET http://localhost:4004/beershop/BreweryAnalytics
+GET http://localhost:4004/odata/v4/beershop/BreweryAnalytics
 Authorization: Basic bob:
 ### Read BreweryAnalytics - 
-GET http://localhost:4004/beershop/BreweryAnalytics?$apply=groupby((breweryname),aggregate(lines with sum as NumberOfBeers))
+GET http://localhost:4004/odata/v4/beershop/BreweryAnalytics?$apply=groupby((breweryname),aggregate(lines with sum as NumberOfBeers))
 Authorization: Basic bob:
 ### Read BreweryAnalytics - Specific Brewery
-GET http://localhost:4004/v2/beershop/BreweryAnalytics?$apply=groupby((breweryname),aggregate(lines with sum as NumberOfBeers))&$filter=breweryname eq 'Brauerei Meister'
+GET http://localhost:4004/odata/v4/beershop/BreweryAnalytics?$apply=groupby((breweryname),aggregate(lines with sum as NumberOfBeers))&$filter=breweryname eq 'Brauerei Meister'
 Authorization: Basic bob:

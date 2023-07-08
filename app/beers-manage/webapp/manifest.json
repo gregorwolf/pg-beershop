@@ -11,7 +11,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/beershop-admin/",
+                "uri": "/odata/v4/beershop-admin/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"
