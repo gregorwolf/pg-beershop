@@ -1,0 +1,13 @@
+{
+  "name": "pg-beershop-db-deployer",
+  "engines": {
+    "node": "^18"
+  },
+  "dependencies": {
+    "@cap-js/postgres": "*",
+    "@sap/cds": "*"
+  },
+  "scripts": {
+    "start": "cds-deploy"
+  }
+}

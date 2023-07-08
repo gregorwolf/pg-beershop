@@ -22,7 +22,7 @@
     "docker:start:ui": "docker run --name pg-beershop-ui --network='pg-beershop_default' -p 5000:5000 -t gregorwolf/pg-beershop-ui:latest",
     "docker:start:cds": "docker start -ai pg-beershop",
     "docker:shell": "docker exec -it pg-beershop /bin/bash",
-    "start": "cds run",
+    "start": "cds-serve",
     "start:app": "cds bind --exec -- npm start --prefix app --profile hybrid",
     "start:sqlite": "cds watch --profile sqlite",
     "start:issue": "run-s deploy:pg start:cds",
