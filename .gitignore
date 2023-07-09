@@ -38,8 +38,6 @@ cp.project.properties.json
 env_variables.yaml
 db-deployer/db
 db-deployer/srv
-db-deployer-apt/db
-db-deployer-apt/srv
 mtad.yaml
 
 # added by cds bind

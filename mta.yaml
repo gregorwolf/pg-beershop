@@ -18,7 +18,6 @@ build-parameters:
       - ./pg-build.sh
 #      - mkdir -p gen/db-with-express
 #      - npm run copy:db:gen
-#      - npm run copy:db:template
 
 modules:
 # DB Deploy with combined apt and Node.JS buildpack
