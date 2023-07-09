@@ -3,7 +3,7 @@ WORKDIR /app
 COPY gen/srv/package.json .
 COPY package-lock.json .
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 COPY gen/srv .
 COPY app app/
@@ -14,4 +14,4 @@ COPY --from=build-env /app /app
 WORKDIR /app
 EXPOSE 4004
 ENV NODE_ENV=production
-CMD ["node_modules/@sap/cds/bin/cds.js", "run"]
+CMD ["node_modules/@sap/cds/bin/cds-serve.js"]
