@@ -1,15 +1,13 @@
-FROM devxci/mbtci-java11-node16
+FROM node:18 AS build-env
+WORKDIR /app
+COPY gen/pg .
 
-WORKDIR /home/mta
-USER root
-RUN apt-get update && \
-    apt-get install --yes --no-install-recommends \
-    jq 
+RUN npm install --only=production
 
-USER mta
-COPY gen/db/package.json .
-COPY package-lock.json .
-RUN npm ci
-COPY gen/db .
+FROM gcr.io/distroless/nodejs:18
+COPY --from=build-env /app /app
+WORKDIR /app
+EXPOSE 4004
+ENV NODE_ENV=production
 
 CMD [ "npm", "start" ]

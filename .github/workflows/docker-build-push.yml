@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       -
@@ -40,6 +40,9 @@ jobs:
       - 
         name: cds build
         run: npm run build
+      - 
+        name: build db
+        run: ./pg-build.sh
       -
         name: Build and push
         id: docker_build
