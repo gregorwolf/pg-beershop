@@ -142,13 +142,13 @@ To test the image locally you have to create a _.env_ file that provides the env
 Then run:
 
 ```
-npm run docker:run:cds
+npm run docker:run:srv
 ```
 
 If you stopped this docker container you can start it again with
 
 ```
-npm run docker:start:cds
+npm run docker:start:srv
 ```
 
 to start the image _gregorwolf/pg-beershop:latest_ from hub.docker.com. If you want to run your own image run che command you find in _package.json_ with your image. Finally publish the created image with:
