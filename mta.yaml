@@ -5,7 +5,7 @@
 _schema-version: '3.1'
 ID: pg-beershop
 version: 1.0.0
-description: "Sample project to demonstrate the use of cds-pg"
+description: "Sample project to demonstrate the use of @cap-js/postgres"
 parameters:
   enable-parallel-deployments: true
    
