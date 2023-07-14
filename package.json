@@ -40,6 +40,8 @@
     "build:docker:db": "docker build -t gregorwolf/pg-beershop-db:latest -f db-deployer-kubernetes/Dockerfile .",
     "build:docker:srv": "docker build -t gregorwolf/pg-beershop:latest .",
     "build:docker:ui": "docker build -t gregorwolf/pg-beershop-ui:latest app",
+    "pack": "npm run-s build pack:db",
+    "pack:db": "pack build gregorwolf/pg-beershop-db:latest --path gen/pg --buildpack gcr.io/paketo-buildpacks/nodejs --builder paketobuildpacks/builder:base --env BP_NODE_RUN_SCRIPTS=",
     "push:docker": "run-s push:docker:db push:docker:srv push:docker:ui",
     "push:docker:db": "docker push gregorwolf/pg-beershop-db:latest",
     "push:docker:srv": "docker push gregorwolf/pg-beershop:latest",
