@@ -87,6 +87,7 @@
     "chai-as-promised": "^7",
     "chai-subset": "^1",
     "jest": "^29",
+    "mbt": "^1",
     "npm-run-all": "^4",
     "sqlite3": "^5.1.6"
   },
