@@ -22,10 +22,10 @@ Start the PostgreSQL database and [Adminer](https://www.adminer.org/) using:
 npm run docker:start:pg
 ```
 
-It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 11 then run:
+It will use the latest available PostgreSQL Docker container. If you want to test with PostgreSQL 15 then run:
 
 ```
-npm run docker:start:pg:11
+npm run docker:start:pg:15
 ```
 
 Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm) with the command:
