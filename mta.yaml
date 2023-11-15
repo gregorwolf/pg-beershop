@@ -15,8 +15,9 @@ build-parameters:
       commands:
         - npm install
         - cds build --production
-# Not required anymore https://cap.cloud.sap/docs/guides/databases-postgres#with-a-deployer-app
-#      - ./pg-build.sh
+        # Should not be required anymore https://cap.cloud.sap/docs/guides/databases-postgres#with-a-deployer-app
+        # but cds build --production doesn't create the gen/pg folder
+        - ./pg-build.sh
 #      - mkdir -p gen/db-with-express
 #      - npm run copy:db:gen
 
