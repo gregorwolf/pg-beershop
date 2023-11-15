@@ -28,13 +28,13 @@ It will use the latest available PostgreSQL Docker container. If you want to tes
 npm run docker:start:pg:11
 ```
 
-Now deploy the database schema using [cds-dbm](https://github.com/mikezaschka/cds-dbm) with the command:
+Now deploy the database schema with the command:
 
 ```
 npm run deploy:pg
 ```
 
-The deploy will automatically load any data which is made available via local CSV files.
+The deploy will automatically load any data which is made available via local CSV files. If you run into any issue there make sure that no .env file is present in the root folder of this project like it would be needed if you want to run the docker image.
 
 Then open [http://localhost:8080/](http://localhost:8080/) and login by selecting System _PostgreSQL_, Server: _beershop-postgresql_, Username _postgres_ and Password _postgres_. The database _postgres_ should already exist as you've just deployed it and the tables should contain data.
 
