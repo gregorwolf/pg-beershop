@@ -2,26 +2,26 @@
 ## appName = pg-beershop
 ## language=nodejs; multiTenant=false
 ## approuter=
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: pg-beershop
 version: 1.0.0
 description: "Sample project to demonstrate the use of @cap-js/postgres"
 parameters:
   enable-parallel-deployments: true
-   
+
 build-parameters:
   before-all:
-   - builder: custom
-     commands:
-      - npm install
-      - cds build --production
-# Not required anymore https://cap.cloud.sap/docs/guides/databases-postgres#with-a-deployer-app 
+    - builder: custom
+      commands:
+        - npm install
+        - cds build --production
+# Not required anymore https://cap.cloud.sap/docs/guides/databases-postgres#with-a-deployer-app
 #      - ./pg-build.sh
 #      - mkdir -p gen/db-with-express
 #      - npm run copy:db:gen
 
 modules:
-# DB Deploy with combined apt and Node.JS buildpack
+  # DB Deploy with combined apt and Node.JS buildpack
   - name: pg-beershop-db-deployer
     type: nodejs
     path: gen/pg
@@ -31,14 +31,14 @@ modules:
       disk-quota: 1GB
       memory: 256MB
       tasks:
-      - name: deploy-to-postgresql
-        command: npm start
-        disk-quota: 1GB
-        memory: 256MB
+        - name: deploy-to-postgresql
+          command: npm start
+          disk-quota: 1GB
+          memory: 256MB
     build-parameters:
       ignore: ["node_modules/"]
     requires:
-    - name: pg-beershop-database
+      - name: pg-beershop-database
 
   # ----------------- DB-UI with adminer -----------------------
   - name: pg-beershop-adminer
@@ -48,18 +48,18 @@ modules:
     parameters:
       # Only needed to track down issues in the PostgreSQL Database deployment
       no-route: false
-      no-start: true 
+      no-start: true
       disk-quota: 256MB
       memory: 128MB
       docker:
         image: dockette/adminer:pgsql
       instances: 1
     requires:
-    - name: pg-beershop-database
-#    - name: pg-beershop-external-database
+      - name: pg-beershop-database
+  #    - name: pg-beershop-external-database
   # --------------------- SERVER MODULE ------------------------
   - name: pg-beershop-srv
-  # ------------------------------------------------------------
+    # ------------------------------------------------------------
     type: nodejs
     path: gen/srv
     build-parameters:
@@ -69,13 +69,13 @@ modules:
       disk-quota: 1024M
     #  enable-ssh: true # allows to `cf ssh pg-beershop-srv`
     provides:
-    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
-      properties:
-        srv-url: ${default-url}
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
     requires:
-    - name: pg-beershop-database
-    - name: pg-beershop-uaa
-#    - name: pg-beershop-external-database
+      - name: pg-beershop-database
+      - name: pg-beershop-uaa
+  #    - name: pg-beershop-external-database
 
   - name: pg-beershop-app
     type: nodejs
@@ -86,11 +86,11 @@ modules:
       memory: 256M
       disk-quota: 1024M
     requires:
-     - name: pg-beershop-destination-service
-     - name: pg-beershop-uaa
-     - name: srv-api
-       group: destinations
-       properties:
+      - name: pg-beershop-destination-service
+      - name: pg-beershop-uaa
+      - name: srv-api
+        group: destinations
+        properties:
           forwardAuthToken: true
           strictSSL: false
           name: srv_api
@@ -101,7 +101,7 @@ resources:
     parameters:
       path: ./xs-security.json
     type: com.sap.xs.uaa
-# In SAP CP Trial only the first deployment using this definition works
+  # In SAP CP Trial only the first deployment using this definition works
   - name: pg-beershop-database
     type: org.cloudfoundry.managed-service
     parameters:
@@ -111,11 +111,11 @@ resources:
       skip-service-updates:
         parameters: true
       service-tags:
-        - plain        
+        - plain
 
-# For a second deploy use
-# npm run deploy:cf:update
-# this will use the update.mtaext
+  # For a second deploy use
+  # npm run deploy:cf:update
+  # this will use the update.mtaext
 
   - name: pg-beershop-destination-service
     parameters:
