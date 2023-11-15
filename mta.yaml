@@ -35,8 +35,10 @@ modules:
           command: npm start
           disk-quota: 1GB
           memory: 256MB
+      buildpack: nodejs_buildpack
     build-parameters:
-      ignore: ["node_modules/"]
+      ignore:
+        - "node_modules/"
     requires:
       - name: pg-beershop-database
 
@@ -63,7 +65,8 @@ modules:
     type: nodejs
     path: gen/srv
     build-parameters:
-      ignore: ["node_modules/"]
+      ignore:
+        - "node_modules/"
     parameters:
       memory: 256M
       disk-quota: 1024M
@@ -81,7 +84,8 @@ modules:
     type: nodejs
     path: app
     build-parameters:
-      ignore: ["node_modules/"]
+      ignore:
+        - "node_modules/"
     parameters:
       memory: 256M
       disk-quota: 1024M
