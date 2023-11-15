@@ -77,7 +77,7 @@
     "@cap-js/postgres": "^1",
     "@sap/audit-logging": "^5",
     "@sap/cds": "^7",
-    "@sap/xsenv": "^3",
+    "@sap/xsenv": "^4",
     "@sap/xssec": "^3",
     "applicationinsights": "^2",
     "copyfiles": "^2",
@@ -86,9 +86,9 @@
     "pg": "^8"
   },
   "devDependencies": {
-    "@sap/cds-dk": "^7.0.2",
+    "@sap/cds-dk": "^7",
     "@sap/ux-specification": "^1",
-    "cds-launchpad-plugin": "^1",
+    "cds-launchpad-plugin": "^2",
     "chai": "^4",
     "chai-as-promised": "^7",
     "chai-subset": "^1",
@@ -100,6 +100,9 @@
   "cds": {
     "features": {
       "serve_on_root": true
+    },
+    "cov2ap": {
+      "plugin": true
     },
     "requires": {
       "auth": {
