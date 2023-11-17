@@ -105,13 +105,13 @@ Until [SAP will provide a fully managed PostgreSQL DB](https://blogs.sap.com/202
 npm run create-service:pg:dbms
 ```
 
-to instanciate a PostgreSQL DBMS. Then run:
+to instantiate a PostgreSQL DBMS. Then run:
 
 ```
 npm run create-service:pg:db
 ```
 
-to create a the beershop database in the DBMS. With that opreperation done you can build the MTA by running:
+to create a the beershop database in the DBMS. With that operation done you can build the MTA by running:
 
 ```
 npm run build:cf
@@ -123,7 +123,7 @@ That MTA can be deployed using:
 npm run deploy:cf
 ```
 
-The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Business Technology Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponsing fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
+The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Business Technology Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponding fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
 
 ## Run on SAP Business Technology Platform - Kyma Environment
 
@@ -217,7 +217,7 @@ kubectl -n pg-beershop delete -f deployment/beershop.yaml
 
 ## Run on Microsoft Azure
 
-Install [Azure CLI](https://docs.microsoft.com/cli/azure/) for your resprective OS.
+Install [Azure CLI](https://docs.microsoft.com/cli/azure/) for your respective OS.
 
 Before you can use the CLI you have to login:
 
@@ -237,7 +237,7 @@ and then set the one you want to use:
 az account set --subscription <Your-Subscription-ID>
 ```
 
-With the comand:
+With the command:
 
 ```
 az account list-locations -o table
@@ -323,7 +323,7 @@ Now create the app service plan:
 az appservice plan create --name beershop --resource-group beershop --sku F1 --is-linux
 ```
 
-Check out what Node.JS runtimes are available:
+Check out what Node.JS runtime is available:
 
 ```
 az webapp list-runtimes --linux
@@ -510,4 +510,4 @@ when running the standalone script `node test/test-db.js` that uses the same way
 
 ### Use Init Containers to deploy schema in Kyma
 
-Right now for the Kyma deployment the schema must be updated manually. [Using Liquibase in Kubernetes](https://www.liquibase.org/blog/using-liquibase-in-kubernetes) describes the use of Init Containers in K8n. I think the Docker image [timbru31/java-node:11-erbium](https://hub.docker.com/r/timbru31/java-node) shoul be a good basis.
+Right now for the Kyma deployment the schema must be updated manually. [Using Liquibase in Kubernetes](https://www.liquibase.org/blog/using-liquibase-in-kubernetes) describes the use of Init Containers in K8n. I think the Docker image [timbru31/java-node:11-erbium](https://hub.docker.com/r/timbru31/java-node) should be a good basis.
