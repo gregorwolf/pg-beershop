@@ -9,5 +9,16 @@
   },
   "scripts": {
     "start": "cds-deploy"
+  },
+  "cds": {
+    "requires": {
+      "kinds": {
+        "postgres": {
+          "vcap": {
+            "label": "user-provided"
+          }
+        }
+      }
+    }
   }
 }

@@ -115,6 +115,15 @@
         "[production]": {
           "kind": "xsuaa"
         }
+      },
+      "[production]": {
+        "kinds": {
+          "postgres": {
+            "vcap": {
+              "label": "user-provided"
+            }
+          }
+        }
       }
     }
   },
