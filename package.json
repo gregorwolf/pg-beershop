@@ -92,6 +92,7 @@
     "chai": "^4",
     "chai-as-promised": "^7",
     "chai-subset": "^1",
+    "dotenv": "^16.3.1",
     "jest": "^29",
     "mbt": "^1",
     "npm-run-all": "^4",
