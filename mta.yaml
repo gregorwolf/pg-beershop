@@ -33,7 +33,7 @@ modules:
       memory: 256MB
       tasks:
         - name: deploy-to-postgresql
-          command: npm start
+          command: ./task.sh
           disk-quota: 1GB
           memory: 256MB
       buildpack: nodejs_buildpack
@@ -41,6 +41,7 @@ modules:
       ignore:
         - "node_modules/"
     requires:
+#      - name: pg-beershop-external-database
       - name: pg-beershop-database
 
   # ----------------- DB-UI with adminer -----------------------
@@ -118,9 +119,12 @@ resources:
       service-tags:
         - plain
 
-  # For a second deploy use
-  # npm run deploy:cf:update
-  # this will use the update.mtaext
+#  - name: pg-beershop-external-database
+#    type: org.cloudfoundry.user-provided-service
+#    parameters:
+##      path: ./default-azure-ups-env.json
+#      path: ./default-btp-ups-env.json
+#      service-tags: ["relational", "database","plain"]
 
   - name: pg-beershop-destination-service
     parameters:
