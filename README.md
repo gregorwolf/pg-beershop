@@ -125,6 +125,24 @@ npm run deploy:cf
 
 The created database is empty. As currently no deploy script is available the needed tables and views for the CAP application need to be created before you can run the application. The easiest way to create the tables and views is to use Adminer as for the local deployment. You can get the credentials by opening the pg-beershop-srv application via the SAP Business Technology Platform Cockpit. Navigate to the Service Bindings and click on "Show sensitive data". Enter the data in the corresponding fields of the Adminer login screen. Execute the SQL commands you find in _beershop.sql_. To fill the database with data also execute the ones in _beershop-data.sql_. Now try out the URL you find in the Overview of the pg-beershop-srv application.
 
+## Run on SAP Business Technology Platform - External PostgreSQL
+
+To test with an external PostgreSQL created an Azure Database for PostgreSQL flexible server. Via the Azure portal add the database beershop. Then checkout the branch `user-provided-service` and create `default-azure-ups-env.json` with the following content:
+
+```JSON
+{
+  "username": "<your user>",
+  "password": "<your password>",
+  "hostname": "<your hostname>",
+  "dbname": "beershop",
+  "port": "5432",
+  "ssl": true
+}
+
+```
+
+Now you can build and deploy as described above.
+
 ## Run on SAP Business Technology Platform - Kyma Environment
 
 ### Create Docker Image
