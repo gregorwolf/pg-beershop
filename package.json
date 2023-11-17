@@ -57,6 +57,7 @@
     "deploy:cf": "cf deploy mta_archives/pg-beershop_1.0.0.mtar --retries 0",
     "deploy:cf:bg": "cf bg-deploy mta_archives/pg-beershop_1.0.0.mtar -f --no-confirm",
     "deploy:cf:adminer": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-adminer --retries 0",
+    "deploy:cf:db": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-db-deployer --retries 0",
     "deploy:cf:srv": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-srv --retries 0",
     "deploy:cf:app": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -m pg-beershop-app --retries 0",
     "deploy:cf:update": "cf deploy mta_archives/pg-beershop_1.0.0.mtar -e update.mtaext --retries 0",
