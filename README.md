@@ -386,6 +386,28 @@ env_variables:
 
 This file is included in _app.yaml_.
 
+## Use neon.tech Serverless Postgres
+
+You can use the [neon.tech Serverless Postgres](https://neon.tech/) to run the beershop. Get the credentials after you've created a project and database. The connection information is stored in the _.cdsrc-private.json_ file:
+
+```JSON
+  "requires": {
+    "[pg]": {
+      "db": {
+        "kind": "postgres",
+        "credentials": {
+          "host": "yourHost",
+          "port": 5432,
+          "user": "yourUser",
+          "password": "yourPassword",
+          "database": "beershop",
+          "ssl": true
+        }
+      }
+    }
+  }
+```
+
 ## Run on HEROKU
 
 Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your respective OS. Then follow the instruction provided in the [Deploying with Git](https://devcenter.heroku.com/articles/git) guide to deploy from this repository.

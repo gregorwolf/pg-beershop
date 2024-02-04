@@ -120,7 +120,7 @@
           "impl": "./heroku/mock-auth-handler.js"
         },
         "[kyma]": {
-          "kind": "basic"
+          "kind": "mocked"
         },
         "[production]": {
           "kind": "xsuaa"
