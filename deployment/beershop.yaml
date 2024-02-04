@@ -95,15 +95,15 @@ spec:
     app: beershop
     tier: frontend
 ---
-apiVersion: gateway.kyma-project.io/v1alpha1
+apiVersion: gateway.kyma-project.io/v1beta1
 kind: APIRule
 metadata:
   labels:
     app: beershop
   name: beershop
 spec:
+  host: beershop
   service:
-    host: beershop
     name: beershop
     port: 4004
   gateway: kyma-gateway.kyma-system.svc.cluster.local

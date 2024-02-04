@@ -13,5 +13,5 @@ FROM gcr.io/distroless/nodejs:18
 COPY --from=build-env /app /app
 WORKDIR /app
 EXPOSE 4004
-ENV NODE_ENV=production
+ENV NODE_ENV=kyma
 CMD ["node_modules/@sap/cds/bin/cds-serve.js"]
