@@ -107,6 +107,13 @@
       "plugin": true
     },
     "requires": {
+      "kinds": {
+        "sql": {
+          "[kyma]": {
+            "kind": "postgres"
+          }
+        }
+      },
       "auth": {
         "kind": "mocked",
         "[heroku]": {
