@@ -90,7 +90,7 @@
     "@sap/cds-dk": "^7",
     "@sap/ux-specification": "^1",
     "cds-launchpad-plugin": "^2",
-    "chai": "^5",
+    "chai": "^4",
     "chai-as-promised": "^7",
     "chai-subset": "^1",
     "dotenv": "^16.3.1",
