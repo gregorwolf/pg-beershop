@@ -46,7 +46,7 @@ jobs:
       -
         name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
@@ -61,7 +61,7 @@ jobs:
       -
         name: Build and push db deployer
         id: docker_build_db
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: db-deployer-kubernetes/Dockerfile
@@ -75,7 +75,7 @@ jobs:
       -
         name: Build and push UI
         id: docker_build_ui
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           context: app
           push: true
