@@ -80,7 +80,7 @@
     "@sap/cds": "^7",
     "@sap/xsenv": "^4",
     "@sap/xssec": "^3",
-    "applicationinsights": "^2",
+    "applicationinsights": "^3",
     "copyfiles": "^2",
     "express": "^4",
     "passport": "^0",
