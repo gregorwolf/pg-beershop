@@ -1,7 +1,7 @@
 {
   "name": "pg-beershop",
   "engines": {
-    "node": "^18"
+    "node": "^20"
   },
   "version": "1.0.0",
   "description": "Sample project to demonstrate the use of @cap-js/postgres",
