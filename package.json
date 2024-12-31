@@ -100,9 +100,7 @@
     "sqlite3": "^5.1.6"
   },
   "cds": {
-    "features": {
-      "serve_on_root": true
-    },
+    "features": {},
     "cov2ap": {
       "plugin": true
     },
