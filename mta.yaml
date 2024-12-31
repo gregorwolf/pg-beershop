@@ -13,7 +13,7 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm install
+        - npm ci
         - cds build --production
         # Should not be required anymore https://cap.cloud.sap/docs/guides/databases-postgres#with-a-deployer-app
         # but cds build --production doesn't create the gen/pg folder
@@ -41,7 +41,7 @@ modules:
       ignore:
         - "node_modules/"
     requires:
-#      - name: pg-beershop-external-database
+      #      - name: pg-beershop-external-database
       - name: pg-beershop-database
 
   # ----------------- DB-UI with adminer -----------------------
@@ -119,12 +119,12 @@ resources:
       service-tags:
         - plain
 
-#  - name: pg-beershop-external-database
-#    type: org.cloudfoundry.user-provided-service
-#    parameters:
-##      path: ./default-azure-ups-env.json
-#      path: ./default-btp-ups-env.json
-#      service-tags: ["relational", "database","plain"]
+  #  - name: pg-beershop-external-database
+  #    type: org.cloudfoundry.user-provided-service
+  #    parameters:
+  ##      path: ./default-azure-ups-env.json
+  #      path: ./default-btp-ups-env.json
+  #      service-tags: ["relational", "database","plain"]
 
   - name: pg-beershop-destination-service
     parameters:
